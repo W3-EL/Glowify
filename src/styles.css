@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+    --PrimaryColor: #eec2c9;
+    --SecondColor : #CA965C;
+    --ThirdColor : #EEC373;
+    --FourthColor : #F4DFBA;
+    overflow-x: hidden;
+}

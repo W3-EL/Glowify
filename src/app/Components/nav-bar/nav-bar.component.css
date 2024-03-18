@@ -1,0 +1,32 @@
+.container {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding-top:10px ;
+}
+
+.box {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: .5px solid white;
+}
+
+.box > div {
+    width: calc(100% / 8);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box > div a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+}
