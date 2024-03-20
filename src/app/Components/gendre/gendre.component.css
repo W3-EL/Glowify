@@ -1,0 +1,164 @@
+.gendre {
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+}
+
+
+.gendre .women,.men {
+    top: 0;
+    width: 50%;
+    height: 100%;
+    filter:grayscale(100%);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: row;
+    color: white;
+    text-transform: uppercase;
+    font-size: 2vw;
+    transition: all 1s;
+}
+
+.men {
+    float: right;
+    background-image: url(../../../assets/models/men.jpg);
+    background-size: cover;
+    background-position: 0 -130px;
+    background-repeat: no-repeat;
+    animation: move2 both linear;
+    animation-timeline: --page-scroll;
+    animation-range: 0vh 90vh;
+
+}
+
+.women {
+    background-image: url(../../../assets/models/women.jpg);
+    background-size: cover;
+    background-position: 0 -130px;
+    background-repeat: no-repeat;
+    animation: move3 both linear ;
+    animation-timeline: --page-scroll;
+    animation-range: 0vh 90vh;
+}
+
+@keyframes move2 {
+    from {
+        transform: translateX(100%);
+        opacity: 0%;
+    }
+    to {
+        transform: translate(0%);
+        opacity: 100%;
+
+
+    }
+}
+
+@keyframes move3 {
+    from {
+        transform: translateX(-100%);
+        opacity: 0%;
+
+    }
+    to {
+        transform: translate(0%);
+        opacity: 100%;
+
+    }
+}
+
+
+
+
+.gendre .women:hover,.gendre .men:hover  {
+    width: 55% ;
+    filter:grayscale(0%) ;
+
+
+}
+
+
+.gendre >.men::after,.gendre .women::after {
+    content: 'men';
+    color: rgba(0, 0, 0, 0.459);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px var(--PrimaryColor);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-transform: uppercase;
+    font-size: 3vw;
+    filter: drop-shadow(0 0 0.625rem rgba(0, 0, 0, 0.75));
+    font-weight: bolder;
+    
+} 
+
+
+.gendre .women::after {
+    content: 'women';
+}
+
+.gendre >.men::before,.gendre .women::before {
+    content: 'discover';
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-transform:capitalize;
+    font-size: 1vw;
+    filter: drop-shadow(0 0 0.625rem rgba(0, 0, 0, 0.75));
+    text-decoration: underline;
+    opacity: 0%;
+    transition: all .5s;
+} 
+
+.gendre >.men:hover::before,.gendre .women:hover:before {
+    opacity: 100%;
+}
+
+
+@media (max-width:1200px) and (min-width:1000px ) {
+
+    .gendre .women,.men {
+        background-position: top;
+        /* background-size: 120%; */
+    }
+    .gendre {
+        height: 80vh;
+    }    
+    
+}
+
+@media (max-width:1000px) and (min-width:800px ) {
+
+    .gendre .women,.men {
+        background-position: top;
+        /* background-size: 140%; */
+    }
+    .gendre {
+        height: 70vh;
+    }
+}
+
+@media (max-width:800px) and (min-width:600px ) {
+    .gendre {
+        height: 70vh;
+    }
+
+    .gendre .women,.men {
+        background-position: top;
+        background-size: 130%;
+    }
+    .gendre >.men::before,.gendre .women::before {
+        font-size: 2vw;
+    } 
+    .gendre >.men::after,.gendre .women::after {
+        font-size: 4vw;
+    }        
+    
+}
