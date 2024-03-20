@@ -4,8 +4,20 @@
     box-sizing: border-box;
     font-family: Poppins;
     --PrimaryColor: #eec2c9;
-    --SecondColor : #CA965C;
-    --ThirdColor : #EEC373;
-    --FourthColor : #F4DFBA;
+    --SecondColor : #efafb9;
+    --ThirdColor : #e48ca4;
+    --FourthColor : #de6f90;
     overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-right: solid 2px var(--FourthColor);
+    background: var(--FourthColor);
+    border-radius: 400px;
+}
+::-webkit-scrollbar-track {
+    border: none;
+    background: var(--PrimaryColor);
 }
