@@ -1,6 +1,8 @@
 html {
     scroll-behavior: smooth;
+
 }
+
 
 .body {
     position: relative;
@@ -8,12 +10,12 @@ html {
     height:100vh;
     overflow-y: scroll;
     scroll-timeline: --page-scroll block;
+    overflow-x: hidden;
+    z-index:  9998 ;
+
+
 }
 
-.body > div {
-    scroll-snap-align:start;
-    flex: none;
-} 
 
 .container {
     position: relative;
@@ -245,7 +247,10 @@ overflow: hidden;
     z-index: 9999;
 }
 
-
+.sponsoring {
+    position: relative;
+    box-shadow: 0 0 10px 0 black;
+}
 
 
 @media (max-width:1200px) and (min-width:1000px ) {

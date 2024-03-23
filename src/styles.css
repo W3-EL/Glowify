@@ -7,7 +7,7 @@
     --SecondColor : #efafb9;
     --ThirdColor : #e48ca4;
     --FourthColor : #de6f90;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 ::-webkit-scrollbar {
     width: 10px;

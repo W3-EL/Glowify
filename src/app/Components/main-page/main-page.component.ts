@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/Services/shared.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public shared : SharedService) { }
 
   mouseX: number = 0;
   mouseY: number = 0;

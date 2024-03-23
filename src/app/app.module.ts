@@ -8,6 +8,8 @@ import { MainPageComponent } from './Components/main-page/main-page.component';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { SponsoringComponent } from './Components/sponsoring/sponsoring.component';
 import { GendreComponent } from './Components/gendre/gendre.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { GendreComponent } from './Components/gendre/gendre.component';
     MainPageComponent,
     NavBarComponent,
     SponsoringComponent,
-    GendreComponent
+    GendreComponent,
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
