@@ -1,0 +1,387 @@
+.body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+.body .filter {
+    position: sticky;
+    left: 1% ;
+    top: 18%;
+    width: 18%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.189);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.363);
+    border-radius: 10px ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.body .filter .container {
+    width: 100%;
+    height: 95%;
+    overflow-y: scroll;
+}
+
+.body .filter .title {
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px var(--ThirdColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:default;
+}
+
+.body .filter .hr {
+    margin-top: 20px;
+    width: 100%;
+    height: 2px;
+    background:linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(228,140,164,1) 15%, rgba(228,140,164,1) 85%, rgba(0, 0, 0, 0) 100%);
+}
+
+
+.filter .gendre {
+    width: 100%;
+    height: 150px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter .gendre label {
+    width: 80%;
+    color: var(--ThirdColor);
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox-wrapper:hover .check {
+    stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.checkbox-wrapper .background {
+    fill: var(--ThirdColor);
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .stroke {
+    fill: none;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper .check {
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    stroke-dashoffset: 22;
+    stroke-dasharray: 22;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+}
+
+.checkbox-wrapper input[type=checkbox] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    opacity: 0;
+    -appearance: none;
+    -webkit-appearance: none;
+}
+
+.checkbox-wrapper input[type=checkbox]:hover {
+    cursor: pointer;
+}
+.checkbox-wrapper input[type=checkbox]:checked + svg .background {
+    fill: var(--ThirdColor);
+}
+
+.checkbox-wrapper input[type=checkbox]:checked + svg .stroke {
+    stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper input[type=checkbox]:checked + svg .check {
+    stroke-dashoffset: 0;
+}
+
+.filter .brand {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter h2{
+    text-transform: capitalize;
+    color: var(--ThirdColor);
+}
+
+.form button {
+    border: none;
+    background: none;
+    color: white;
+}
+
+.form {
+    --timing: 0.3s;
+    --width-of-input: 200px;
+    --height-of-input: 40px;
+    --border-height: 2px;
+    --input-bg: #fff;
+    --border-color: var(--ThirdColor);
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--PrimaryColor);
+}
+
+.input {
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    color: white;
+
+}
+
+.form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+}
+
+.form:focus-within {
+    border-radius: var(--after-border-radius);
+}
+
+input:focus {
+    outline: none;
+}
+
+.form:focus-within:before {
+    transform: scale(1);
+}
+
+.reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form svg {
+    width: 17px;
+    margin-top: 3px;
+}
+
+.filter .category {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter .category .list_cat {
+    margin-top: 10px;
+    padding-top: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 150px;
+    overflow-y: scroll;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.249) inset;
+}
+
+.filter .category .list_cat div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    cursor: pointer;
+    transition: all .3s;
+
+}
+
+.filter .category .list_cat div:hover {
+    background-color: rgba(255, 255, 255, 0.189);
+}
+
+.body .shop {
+    position: absolute;
+    right: 1% ;
+    top: 18%;
+    width: 79%;
+    height: 80%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.363);
+    border-radius: 10px ;
+    display: flex;
+    align-items: end;   
+    padding-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.189);
+
+}
+
+.body .shop .container {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+
+}
+
+.shop .container > div {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--PrimaryColor);
+    padding: 10px;
+    cursor: pointer;
+    transition: all .5s;
+
+}
+
+.shop > .title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 30px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: white;
+
+}
+
+.shop .container > div:hover {
+    width: 220px;
+    height: 320px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.125);
+    border-radius: 5px;
+}
+
+.shop .container > div > .pic {
+    width: 80%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.shop .container > div > .pic img{
+    width: 150px;
+}
+
+.shop .container > div > .title {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.shop  .container > div > .price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 26.6%;
+    background-color: var(--ThirdColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.166);
+
+}
+
+.shop .container > div > .price::before {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width:  100%;
+    transform:  translateX(-50%);
+    background-color: var(--SecondColor);
+    rotate:  45deg;
+    box-shadow: 0 0 10px 0 black;
+}
+
+.shop .container > div > .price p {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 18px;
+    color: white;
+    text-transform: uppercase;
+
+}
+

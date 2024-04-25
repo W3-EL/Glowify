@@ -1,0 +1,231 @@
+.body {
+    width: 100vw;
+    height: 200vh;
+    position: relative;
+}
+
+.hr {
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, var(--FifthColor) 20%, var(--FifthColor) 80%, rgba(255,255,255,0) 100%);    align-items: center;
+}
+
+.item {
+    width: 60vw;
+    height: 80vh;
+    position: sticky;
+    left: 0;
+    top: 20vh;
+}
+
+.item .pic {
+    position: relative;
+    float: right;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.629);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(255,255,255,0.225);
+    z-index: 99;
+
+}
+
+.item .shadow {
+    position: absolute;
+    right:0;
+    top: 0;
+    background:linear-gradient(0deg, var(--FifthColor) 0%, rgba(0,0,0,0) 75%);
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+    transform: translate(-5%,5%);
+}
+
+.item .soldOut {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 30px;
+    border-radius: 25px;
+    background-color:red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    transform: translate(50%,-50%);
+    z-index: 999;
+
+}
+
+
+.pic > img {
+    width: 100%;
+}
+
+.pic > img .scaled {
+    transform: scale(2);
+    z-index: 3 !important;
+  }
+
+.details {
+    position: absolute;
+    width: 40vw;
+    right: 0;
+    top: 20vh;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap:  1rem;
+    padding: 20px 0 0 100px;
+}
+
+.details .name {
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+
+}
+
+.details .brand {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+
+}
+
+.details .desc {
+    font-size: 1rem;
+    font-weight: 500;
+    width: 90%;
+}
+
+.details .stock {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 75%;
+    height: 50px;
+    margin: 20px 0;
+
+}
+
+
+.details .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px var(--ThirdColor);
+    cursor: default;
+    transition: all .5s;
+}
+
+.details .quant {
+    font-size: 1rem;
+    width: 100px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid var(--ThirdColor);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border-radius: 10px;
+}
+
+.details .quant button{
+    width: 30px;
+    background-color: transparent;
+    border: none;
+    color :var(--ThirdColor);
+    font-size: 1.5rem;
+}
+
+.quant:hover + .price {
+    color: var(--ThirdColor);
+
+}
+
+.add {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.add .button {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: var(--FifthColor);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+}
+
+.add .icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease-in-out;
+}
+
+.add .button:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+}
+
+.add .button:hover .icon {
+    transform: translate(4px);
+}
+
+.add .button:hover::before {
+    animation: shine 1.5s ease-out infinite;
+}
+
+.add .button::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+}
+
+@keyframes shine {
+    0% {
+        left: -100px;
+    }
+
+    60% {
+        left: 100%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+
+
+

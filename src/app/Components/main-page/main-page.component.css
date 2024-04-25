@@ -49,7 +49,7 @@ html {
 .container .shop {
     width: 100%;
     height: 50vh;
-    background-color: var(--PrimaryColor);
+    background-color: var(--SecondColor);
     box-shadow: 0 0 10px 0 black;
     position: relative;
     overflow-y: hidden;

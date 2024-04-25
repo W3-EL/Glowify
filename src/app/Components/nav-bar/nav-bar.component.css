@@ -31,6 +31,11 @@
     font-size: 20px;
 }
 
+.box > .logo {
+    transform: translateY(25px);
+    cursor: pointer;
+}
+
 .log {
     position: absolute;
     right: 0;
@@ -74,3 +79,7 @@
         font-size: 11px;
     }
 }
+
+.scrollable-area {
+    height: 200vh;
+  }

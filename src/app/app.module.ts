@@ -10,6 +10,12 @@ import { GendreComponent } from './Components/gendre/gendre.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { ShopComponent } from './Components/shop/shop.component';
+import { ProductsComponent } from './Components/shop/products/products.component';
+import { CollectionComponent } from './Components/shop/collection/collection.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +25,18 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     SponsoringComponent,
     GendreComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    AboutUsComponent,
+    ShopComponent,
+    ProductsComponent,
+    CollectionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

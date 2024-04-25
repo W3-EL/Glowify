@@ -1,0 +1,12 @@
+.body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: var(--PrimaryColor);
+    overflow-x: hidden;
+}
+.nav_bar {
+    position: fixed;
+    z-index: 999;
+}
+
