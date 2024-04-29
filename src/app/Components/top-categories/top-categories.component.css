@@ -1,0 +1,115 @@
+.container {
+    position: relative;
+    width: 100vw;
+    height: 60vh;
+    background-color: #eec2c93e;
+    padding: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.41) inset;
+}
+.container .title {
+    font-size: 4rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container .title b {
+    text-transform: none;
+    font-weight: 800;
+}
+
+.container .box {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+
+}
+
+@keyframes filter {
+    0% {
+        filter: grayscale(1);
+    }
+
+    100% {
+        filter: grayscale(0);
+    }
+}
+
+
+
+.container .box > div {
+    width: 150px;
+    height: 200px;
+    cursor: pointer;
+
+}
+
+.container .box > div:hover .pic::before {
+    width: 150px;
+    height: 150px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;;
+}
+
+.container .box > div .pic {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: filter both linear;
+    animation-timeline: --page-scroll;
+    animation-range: 130vh 145vh;
+
+}
+
+.container .box > div .pic img{
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.315));
+
+}
+
+.container .box > div .pic::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 130px;
+    height: 130px;
+    z-index:  -1;
+    transition: all .5s cubic-bezier(.68,-.6,.32,1.6);
+
+}
+
+.container .box > div:nth-child(1) .pic::before{
+    background-color: rgba(255, 192, 203, 0.4);
+    border-radius: 81% 19% 47% 53% / 49% 21% 79% 51% ;
+}
+
+.container .box > div:nth-child(2) .pic::before{
+    background-color: rgba(99, 42, 42, 0.167);
+    border-radius: 28% 72% 51% 49% / 85% 45% 55% 15%  ;
+}
+
+.container .box > div:nth-child(3) .pic::before{
+    background-color: #ffdbcc80;
+    border-radius: 50% 50% 51% 49% / 85% 72% 28% 15% ;
+}
+
+.container .box > div:nth-child(4) .pic::before{
+    background-color: #ed4a4f75;
+    border-radius: 23% 77% 15% 85% / 40% 72% 28% 60% ;
+}
+
+.container .box > div:nth-child(5) .pic::before{
+    background-color: rgba(149, 149, 149, 0.242);
+    border-radius:40% 60% 46% 54% / 17% 50% 50% 83%   ;
+}
+
+.container .box > div .name{
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}

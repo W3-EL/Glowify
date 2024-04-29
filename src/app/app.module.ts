@@ -16,6 +16,7 @@ import { ProductsComponent } from './Components/shop/products/products.component
 import { CollectionComponent } from './Components/shop/collection/collection.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TopCategoriesComponent } from './Components/top-categories/top-categories.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     AboutUsComponent,
     ShopComponent,
     ProductsComponent,
-    CollectionComponent
+    CollectionComponent,
+    TopCategoriesComponent
   ],
   imports: [
     BrowserModule,
