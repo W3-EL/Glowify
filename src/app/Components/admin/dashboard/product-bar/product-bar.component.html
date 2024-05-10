@@ -1,0 +1,64 @@
+<div class="body">
+    
+    <div class="title"><h1>productS</h1></div>
+    <div class="products">
+        <table>
+            <tr>
+                <td>Id</td><td>Product name</td><td>Price</td><td>Stock</td><td>coach id</td><td>Category</td><td>Brand</td>
+            </tr>
+            <tr ><!--*ngFor="let product of this.Currentproducts"-->
+                <td><!--{{product.id}}--></td>
+                <td><!--{{product.title}}--></td>
+                <td><!--{{product.start_date}}--></td>
+                <td><!--{{product.start_time}}--></td>
+                <td><!--{{product.coach.firstName}}--></td>
+                <td><!--{{product.spots}}--></td>
+                <td><!--{{product.availability}}--></td>
+                <td>
+                    <button class="deletebutton" type="button" ><!--(click)="deleteproduct(product.id)"-->
+                        <span class="deletebutton__text">Delete</span>
+                        <span class="deletebutton__icon"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr class="addLine" *ngIf="showAddLine" id="btn">
+                <td></td>
+                <td><input type="text" placeholder="Title"  name="title" required></td><!--[(ngModel)]="productForm.title"-->
+                <td><input type="date" placeholder="Date"  name="start_date" required></td><!--[(ngModel)]="productForm.start_date"-->
+                <td><input type="text" placeholder="Time"  name="start_time"  required></td><!--[(ngModel)]="productForm.start_time"-->
+                <td>
+                    <select name="coach" ><!--[(ngModel)]="productForm.coach.coachId"-->
+                        <optgroup label="--Select coach--">
+                            <option ><!--{{coach.firstName}}--></option><!--[value]="coach.coachId" *ngFor="let coach of shared.coachs"-->
+                        </optgroup>
+                        </select>
+                </td>
+                <td><input type="number" placeholder="Spots"  name="spots"  required></td><!--[(ngModel)]="productForm.spots"-->
+                <td><label class="container"><input checked="checked"  type="checkbox" name="availability"  required><div class="checkmark"></div></label></td><!--[(ngModel)]="productForm.availability"-->
+            </tr>
+            <tr *ngIf="showAddLine">
+                <td></td><td></td><td></td>
+                <td class="addLine_btn" colspan="7"><button class="cssbuttons-io-button" ><!--(click)="addNewproduct()"--><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg><span>Add</span></button></td>
+                <td></td><td></td><td></td>
+            </tr>
+        </table>
+    </div>
+    <button class="button" (click)="toggleAddLine()"  >
+        <div class="bloom-container">
+            <div class="button-container-main">
+                <div class="button-inner">
+                    <div class="back"></div>
+                    <div class="front">
+                    </div>
+                </div>
+            
+            <div class="button-glass">
+                <div class="back"></div>
+                <div class="front"></div>
+            </div>
+            </div>
+            <div class="bloom bloom1"></div>
+            <div class="bloom bloom2"></div>
+        </div>
+    </button>
+</div>

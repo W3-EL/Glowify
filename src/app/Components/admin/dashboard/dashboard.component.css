@@ -1,0 +1,40 @@
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+.body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.side-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 15%;
+    height: 90%;
+    box-shadow: 0 0 10px 0 black;
+    z-index: 999;
+}
+
+.top-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    z-index: 9999;
+}
+
+.dashboard {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 90%;
+    width: 85%;
+}
+

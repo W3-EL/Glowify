@@ -1,0 +1,77 @@
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+html {
+    scroll-behavior: smooth;
+    
+}
+
+
+.body {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 5%;
+    align-items: center;
+    background-color:#ebe0e2;
+    background-image: url(../../../../../assets/logo/glowify_text.png);
+    background-size: 8%;
+    background-position: center;
+    background-repeat:space;
+    background-blend-mode:overlay;
+    
+}
+
+.body img {
+    max-width: 40rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* opacity: 40%; */
+    z-index: 9;
+}
+
+.body > div {
+    background-image: url(../../../../../assets/logo/circle_glowify_logo.png);
+    background-size: 17rem;
+    background-position:bottom;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 39vh;
+    color: #d39715;
+    text-align: center;
+    border-radius: 20px;
+    z-index: 99;
+    cursor: pointer;
+    transition:all .3s ;
+    padding-top: 60px;
+    filter: drop-shadow(0px 0px 10px black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.body > div:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 10px var(--FourthColor));
+}
+
+.body > div h1 {
+    font-size: 22px;
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-color:var(--ThirdColor) ;
+
+}
+
+.body > div >div {
+    font-size: 3.5vw;
+}

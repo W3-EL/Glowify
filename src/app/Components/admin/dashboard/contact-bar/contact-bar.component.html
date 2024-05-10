@@ -1,0 +1,24 @@
+
+<div class="body">
+    <div class="title"><h1>Contacts</h1></div>
+    <div class="Contacts">
+        <table>
+            <tr>
+                <td>Id</td><td>Full name</td><td>Email</td><td>Phone</td><td>Message</td>
+            </tr>
+            <tr ><!--*ngFor="let contact of shared.Contact"-->
+                <td><!--{{contact.id}}--></td>
+                <td><!--{{contact.fullname}}--></td>
+                <td><!--{{contact.email}}--></td>
+                <td><!--{{contact.phonenumber}}--></td>
+                <td><!--{{contact.message}}--></td>
+                <td>
+                    <button class="deletebutton" type="button" ><!--(click)="deleteContact(contact.id)"-->
+                        <span class="deletebutton__text">Delete</span>
+                        <span class="deletebutton__icon"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

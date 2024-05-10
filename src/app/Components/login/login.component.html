@@ -9,13 +9,13 @@
             <div class="flip-card__inner">
                <div class="flip-card__front">
                   <div class="title">Log in</div>
-                  <form class="flip-card__form" action="">
+                  <form class="flip-card__form" (ngSubmit)="login()" action="">
                      <div class="container">
-                        <input required="" type="email" name="email" class="input">
+                        <input required="" type="email" [(ngModel)]="email" name="email" class="input">
                         <label class="label_user">Email</label>
                      </div>
                      <div class="container">
-                        <input required="" type="password" name="password" class="input">
+                        <input required="" type="password" [(ngModel)]="password" name="password" class="input">
                         <label class="label_user">Password</label>
                      </div>                     
                      <button class="flip-card__btn">Let`s go!</button>
@@ -36,9 +36,12 @@
                         <input required="" type="password" name="password" class="input" [(ngModel)]="userData.password">
                         <label class="label_user">Password</label>
                      </div>
+                     <div class="container">
+                        <input required="" type="text" name="phone" class="input" [(ngModel)]="userData.phone">
+                        <label class="label_user">Phone</label>
+                     </div>
                      <div class="container select">
-                        <select placeholder="Gender" name="coach" [(ngModel)]="userData.gender">
-                           
+                        <select placeholder="Gender" name="gender" [(ngModel)]="userData.gender">   
                            <option value="" aria-hidden="true" >Gender</option>
                            <optgroup label="--Select Gender">
                               <option value="Male" >Male</option>

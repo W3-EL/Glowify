@@ -1,0 +1,602 @@
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.body {
+    width: 85%;
+    height: 90%;
+    position: fixed;
+    background-color:#ebe0e2;
+    box-shadow: 0 0 10px 0px black;
+
+}
+.title {
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px var(--ThirdColor);    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 3vw;
+    text-decoration: underline;
+    text-transform: uppercase;
+    text-decoration-color:var(--ThirdColor) ;
+}
+
+.users {
+    width: 80%;
+    height: 70%;
+    overflow-y: scroll;
+    color: var(--FourthColor);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-35%);
+}
+
+.users table {
+    width: 100%;
+    text-align: center;
+}
+
+.users table tr:first-child td{
+    border-bottom: 1px solid var(--FourthColor) ;
+}
+
+
+
+.users table tr:not(:first-child)  {
+    height: 60px;
+    font-size: 14px;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.users table tr:not(:first-child) td{
+    height: 60px;
+}
+
+.users table tr:hover:not(:first-child) {
+  background-color: rgba(255, 255, 255, 0.299);
+}
+
+.users table tr td:last-child  {
+    width: 10%;
+}
+
+.users table tr td:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.users table tr td:first-child p  {
+    width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.users table tr td .details {
+    border: none;
+    background: none;
+    color: var(--FifthColor);
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+
+.button1 {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.button1 .bloom-container {
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    background: none;
+}
+
+.button1 .bloom-container .button-container-main {
+    width: 110px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-content: center;
+    border-right: 5px solid white;
+    border-left: 5px solid rgba(128, 128, 128, 0.147);
+    transition: all 0.5s ease-in-out;
+}
+
+.button1 .bloom-container .button-container-main .button-inner {
+    height: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: rgba(100, 100, 111, 0.5) -10px 5px 10px 0px;
+    transition: all 0.5s ease-in-out;
+}
+
+.button1 .bloom-container .button-container-main .button-inner .back {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(60deg, #f4dfba10 0%, var(--PrimaryColor) 100%);
+}
+
+.button1 .bloom-container .button-container-main .button-inner .front {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: linear-gradient(60deg, #f5ddb410 0%, var(--SecondColor) 100%);
+    display: grid;
+    place-content: center;
+}
+
+.button1 .bloom-container .button-container-main .button-inner .front .svg {
+    fill: #ffffff;
+    opacity: 0.5;
+    width: 30px;
+    aspect-ratio: 1;
+    transform: rotate(45deg);
+    transition: all 0.2s ease-in;
+}
+
+.button1 .bloom-container .button-container-main .button-glass {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #f4dfba05 0%, var(--PrimaryColor) 100%);
+    transform: translate(0%, -50%) rotate(0deg);
+    transform-origin: bottom center;
+    transition: all 0.5s ease-in-out;
+}
+
+.button1 .bloom-container .bloom {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    background: white;
+}
+
+.button1 .bloom-container .bloom1 {
+    top: 10px;
+    right: 20px;
+    box-shadow: rgb(255, 255, 255) 0px 0px 10px 10px, rgb(255, 255, 255) 0px 0px 20px 20px;
+}
+
+.button1 .bloom-container .bloom2 {
+    bottom: 10px;
+    left: 20px;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px 10px, rgba(255, 255, 255, 0.5) 0px 0px 30px 20px;
+}
+
+.button1 .bloom-container:hover {
+    transform: scale(1.1);
+}
+
+.button1 .bloom-container:hover .button-container-main .button-glass {
+    transform: translate(0%, -40%);
+}
+
+.button1 .bloom-container:hover .button-container-main .button-inner .front .svg {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px white);
+}
+
+.button1 .bloom-container:active {
+    transform: scale(0.7);
+}
+
+.button1 .bloom-container:active .button-container-main .button-inner {
+    transform: scale(1.2);
+}
+
+.addLine input {
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: 2px solid var(--SecondColor);
+    padding: 2px 5px;
+    
+}
+
+.addLine input::placeholder {
+    color: white;
+    opacity: 0.5; /* Firefox */
+  }
+
+  .cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0.7em 1.4em 0.7em 1.1em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, var(--PrimaryColor) 0%, var(--SecondColor) 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #00000098;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+    cursor: pointer;
+  }
+  
+  .cssbuttons-io-button svg {
+    margin-right: 6px;
+  }
+  
+  .cssbuttons-io-button:hover {
+    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
+  }
+  
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.1em 1em -0.5em #00000098;
+  }
+
+  /* Hide the default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+   }
+   
+   .container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+   }
+   
+   /* Create a custom checkbox */
+   .checkmark {
+    height: 1.3em;
+    width: 1.3em;
+    background: black;
+    border-radius: 50px;
+    transition: all 0.7s;
+    --spread: 20px;
+    transform: translateX(34px);
+   }
+   
+   /* When the checkbox is checked, add a blue background */
+   .container input:checked ~ .checkmark {
+    background: black;
+    box-shadow: -10px -10px var(--spread) 0px var(--PrimaryColor), 0 -10px var(--spread) 0px var(--FourthColor), 10px -10px var(--spread) 0px var(--SecondColor), 10px 0 var(--spread) 0px var(--ThirdColor), 10px 10px var(--spread) 0px var(--PrimaryColor), 0 10px var(--spread) 0px var(--FourthColor), -10px 10px var(--spread) 0px var(--SecondColor);
+   }
+   
+   /* Create the checkmark/indicator (hidden when not checked) */
+   .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+   }
+   
+   /* Show the checkmark when checked */
+   .container input:checked ~ .checkmark:after {
+    display: block;
+   }
+   
+   /* Style the checkmark/indicator */
+   .container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #f0f0f0;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+   }
+
+.addLine select {
+    color: black;
+    background-color: #876445e1;
+    border: 2px solid var(--SecondColor);
+    padding: 2px 5px;
+}
+
+.addLine select option:hover,.addLine select option:checked  {
+    background-color: var(--PrimaryColor);
+}
+
+
+.addLine_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.actions {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+}
+
+.deletebutton,.addbutton {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #cc0000;
+    background-color: #e50000;
+    overflow: hidden;
+  }
+
+  .addbutton {
+    border: 1px solid green;
+    background-color: green;
+
+  }
+  
+  .deletebutton, .deletebutton__icon, .deletebutton__text {
+    transition: all 0.3s;
+  }
+
+  .addbutton, .addbutton__icon, .addbutton__text {
+    transition: all 0.3s;
+  }
+  
+  .deletebutton .deletebutton__text,.addbutton .addbutton__text {
+    font-size: 14px;
+    transform: translateX(13px);
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .deletebutton .deletebutton__icon,.addbutton .addbutton__icon {
+    position: absolute;
+    transform: translateX(66.5px);
+    height: 100%;
+    width: 32.5px;
+    background-color: #cc0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .addbutton .addbutton__icon {
+    background-color: rgb(2, 86, 2);
+  }
+  
+  .deletebutton .svg , .addbutton .svg{
+    width: 10px;
+  }
+  
+  .deletebutton:hover {
+    background: #cc0000;
+  }
+
+  .addbutton:hover {
+    background: green;
+  }
+  
+  .deletebutton:hover .deletebutton__text , .addbutton:hover .addbutton__text {
+    color: transparent;
+  }
+  
+  .deletebutton:hover .deletebutton__icon ,.addbutton:hover .addbutton__icon {
+    width: 100px;
+    transform: translateX(0);
+  }
+  
+  .deletebutton:active .deletebutton__icon {
+    background-color: #b20000;
+  }
+
+  .addbutton:active .addbutton__icon {
+    background-color: rgb(2, 86, 2);
+  }
+  
+  
+  .deletebutton:active {
+    border: 1px solid #b20000;
+  }
+
+  .addbutton:active {
+    border: 1px solid rgb(2, 86, 2);
+  }
+
+  .pic_coach{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .details-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.189);
+    backdrop-filter: blur(5px);
+    border: 4px solid var(--FourthColor);
+    z-index: 999;
+    border-radius: 25px;
+  }
+
+  .details-container .box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+}
+
+.details-container .box h1 {
+  position: absolute;
+  text-align: center;
+  color: var(--ThirdColor);
+  top: -20px;
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.details-container .box div {
+    background: rgb(255, 255, 255);
+    width: 45%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-container .box div .label{
+    background: var(--FourthColor);
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.details-container .box div .result{
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.result > input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+}
+
+.result select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+}
+
+.result  select > option:first-of-type {
+  display: none;
+}
+
+
+.details-container .box div .result div{ 
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.details-container .box .id .result , .details-container .box .email .result {
+    font-size: 12px;
+}
+
+
+  .details-container .button {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+  }
+  
+  .details-container .button:before,
+  .details-container .button:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+  }
+  
+  .details-container .button:before {
+    border: 4px solid var(--FourthColor);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button:after {
+    border: 4px solid var(--FourthColor);
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+  
+  .details-container .button:hover:before,
+  .details-container .button:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .details-container .button:hover:after,
+  .details-container .button:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .details-container .button-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: var(--FourthColor);
+  }
+  
+  .details-container .button:hover .button-box,
+  .details-container .button:focus .button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+  }
+  
+
+
+  

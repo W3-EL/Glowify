@@ -1,0 +1,21 @@
+
+<div class="body">
+    <div class="title"><h1>orders</h1></div>
+    <div class="orders">
+        <table>
+            <tr>
+                <td>id</td><td>customer id</td><td>customer name</td><td>course id</td><td>course title</td><td>coach name</td><td></td>
+            </tr>
+            <tr ><!--*ngFor="let orders of this.shared.order"-->
+                <td><!--{{orders.id}}--></td><td><!--{{orders.customer.id}}--></td><td><!--{{orders.customer.fullname}}--></td><td><!--{{orders.course.id}}--></td><td><!--{{orders.course.title}}--></td><td><!--{{orders.course.coach.firstName}}--></td>
+                <td>
+                    <button class="deletebutton" type="button" ><!--(click)="deleteorder(orders.id)"-->
+                        <span class="deletebutton__text">Delete</span>
+                        <span class="deletebutton__icon"></span>
+                    </button>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>

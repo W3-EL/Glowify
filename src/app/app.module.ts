@@ -17,6 +17,14 @@ import { CollectionComponent } from './Components/shop/collection/collection.com
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TopCategoriesComponent } from './Components/top-categories/top-categories.component';
+import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
+import { OrderBarComponent } from './Components/admin/dashboard/order-bar/order-bar.component';
+import { ProductBarComponent } from './Components/admin/dashboard/product-bar/product-bar.component';
+import { CategoriesBarComponent } from './Components/admin/dashboard/categories-bar/categories-bar.component';
+import { SideBarComponent } from './Components/admin/dashboard/side-bar/side-bar.component';
+import { TopBarComponent } from './Components/admin/dashboard/top-bar/top-bar.component';
+import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
+import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +39,16 @@ import { TopCategoriesComponent } from './Components/top-categories/top-categori
     ShopComponent,
     ProductsComponent,
     CollectionComponent,
-    TopCategoriesComponent
+    TopCategoriesComponent,
+    DashboardComponent,
+    OrderBarComponent,
+    ProductBarComponent,
+    CategoriesBarComponent,
+    SideBarComponent,
+    TopBarComponent,
+    UserBarComponent,
+    GeneralBarComponent,
+
   ],
   imports: [
     BrowserModule,
