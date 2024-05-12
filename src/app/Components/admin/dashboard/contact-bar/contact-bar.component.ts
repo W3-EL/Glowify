@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { Contact } from 'src/app/Models/contact.model';
 import { SharedService } from 'src/app/Services/shared.service';
 // import { Contact } from 'src/app/Models/contact.model';
 import Swal from 'sweetalert2';
@@ -13,28 +15,33 @@ export class ContactBarComponent implements OnInit {
 
   constructor(public shared : SharedService) { }
 
-  // userForm: Contact = {
-  //   id: 0,
-  //   fullname: '',
-  //   email: '',
-  //   phonenumber:'',
-  //   message: ''
-  // };
+  selectedContact: any;
+
+  showDetails(Contact: any) {
+    this.selectedContact = Contact;
+  }
+  closeDetails() {
+    this.selectedContact = null;
+    if(this.showAddLine){
+      this.showAddLine=!this.showAddLine
+    }
+  }
   ngOnInit(): void {
     this.getAllContact();
   }
   getAllContact(){
-    // this.shared.getAllContact().subscribe(
-    //   (data: Contact[]) => {
-    //     this.shared.Contact=data;
-
-    //     console.log(data);
-    //   },
-    //   (error) => {
-    //     // Handle errors here
-    //     console.error('Error:', error);
-    //   }
-    // );
+    this.shared.getAllContact().subscribe(
+      (response) => {
+        if (response.success) {
+          this.shared.Contact = response.data;
+        } else {
+          console.error('Failed to fetch contacts:');
+        }
+      },
+      (error) => {
+        console.error('Error fetching contacts:', error);
+      }
+    );  
   }
   toggleAddLine(): void {
     this.showAddLine = !this.showAddLine;

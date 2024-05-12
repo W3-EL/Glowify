@@ -1,16 +1,15 @@
-<div class="body">
+<div class="body" *ngFor="let product of selectedProducts">
     <div class="item">
         <div class="pic">
-            <img src="../../../../assets/float/main product.png"  alt="">
-
+            <img [src]="this.img"  alt="">
         </div>
-        <div class="soldOut">sold out</div>
+        <div class="soldOut" *ngIf="product.stock === 0">sold out</div>
         <div class="shadow"></div>
     </div>
-    <div class="details">
-        <div class="name">parfume</div>
-        <div class="brand">Dior</div>
-        <div class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi blanditiis non porro ipsa quia saepe veniam distinctio ab facere consequuntur deserunt quod ullam voluptas quisquam beatae, dolor commodi rerum similique!</div>
+    <div class="details" >
+        <div class="name">{{product.product_name}}</div>
+        <div class="brand">{{product.brand.name}}</div>
+        <div class="desc">{{product.desc_prod}}</div>
         <div class="stock">
             <div class="quant">
                     <button (click)="decreaseNumber()">-</button>
@@ -19,7 +18,7 @@
             </div>
             <div class="price">{{ calculateTotalPrice() }} DT</div>
         </div>
-        <div class="add">
+        <div class="add" [ngClass]="{ 'disabled': product.stock === 0 }">
             <button class="button">
                 Add to bag
                 <svg xmlns="http://www.w3.org/2000/svg" height="27" width="24" viewBox="0 0 576 512" class="icon">

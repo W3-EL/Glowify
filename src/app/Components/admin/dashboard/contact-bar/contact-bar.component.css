@@ -10,19 +10,19 @@ html {
     width: 85%;
     height: 90%;
     position: fixed;
-    background-color:var(--PrimaryColor);
+    background-color:#ebe0e2;
     box-shadow: 0 0 10px 0px black;
 
 }
 .title {
-    color: white;
-    width: 100%;
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px var(--ThirdColor);    width: 100%;
     text-align: center;
     margin-top: 10px;
     font-size: 3vw;
     text-decoration: line-through;
     text-transform: uppercase;
-
     text-decoration-color:var(--ThirdColor) ;
 }
 
@@ -30,7 +30,7 @@ html {
     width: 80%;
     height: 70%;
     overflow-y: scroll;
-    color: white;
+    color: var(--FourthColor);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -46,9 +46,18 @@ html {
     border-bottom: 1px solid var(--FourthColor) ;
 }
 .Contacts table tr:not(:first-child)  {
+    height: 60px;
     font-size: 14px;
     transition: all .3s;
     cursor: pointer;
+}
+
+.Contacts table tr:not(:first-child) td{
+    height: 60px;
+}
+
+.Contacts table tr:hover:not(:first-child) {
+    background-color: rgba(255, 255, 255, 0.299);
 }
 
 .Contacts table tr:hover:not(:first-child) {
@@ -59,6 +68,26 @@ html {
     width: 10%;
 }
 
+.Contacts table tr td:first-child , .Contacts table tr .message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Contacts table tr td:first-child p,.Contacts table tr .message p  {
+    width: 75px;
+    height: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Contacts table tr td .details {
+    border: none;
+    background: none;
+    color: var(--FifthColor);
+    text-decoration: underline;
+    font-size: 12px;
+}
 
 .button {
     background: none;
@@ -185,9 +214,9 @@ html {
 .addLine input::placeholder {
     color: white;
     opacity: 0.5; /* Firefox */
-  }
+}
 
-  .cssbuttons-io-button {
+.cssbuttons-io-button {
     display: flex;
     align-items: center;
     font-family: inherit;
@@ -202,39 +231,37 @@ html {
     letter-spacing: 0.05em;
     border-radius: 20em;
     cursor: pointer;
-  }
-  
-  .cssbuttons-io-button svg {
-    margin-right: 6px;
-  }
-  
-  .cssbuttons-io-button:hover {
-    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
-  }
-  
-  .cssbuttons-io-button:active {
-    box-shadow: 0 0.1em 1em -0.5em #00000098;
-  }
+}
 
-  /* Hide the default checkbox */
+.cssbuttons-io-button svg {
+    margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
+}
+
+.cssbuttons-io-button:active {
+    box-shadow: 0 0.1em 1em -0.5em #00000098;
+}
+
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-   }
-   
-   .container {
+}
+
+.container {
     display: block;
     position: relative;
     cursor: pointer;
     font-size: 20px;
     user-select: none;
-   }
-   
-   /* Create a custom checkbox */
-   .checkmark {
+}
+
+.checkmark {
     height: 1.3em;
     width: 1.3em;
     background: black;
@@ -242,28 +269,24 @@ html {
     transition: all 0.7s;
     --spread: 20px;
     transform: translateX(34px);
-   }
-   
-   /* When the checkbox is checked, add a blue background */
-   .container input:checked ~ .checkmark {
+}
+
+.container input:checked ~ .checkmark {
     background: black;
     box-shadow: -10px -10px var(--spread) 0px var(--PrimaryColor), 0 -10px var(--spread) 0px var(--FourthColor), 10px -10px var(--spread) 0px var(--SecondColor), 10px 0 var(--spread) 0px var(--ThirdColor), 10px 10px var(--spread) 0px var(--PrimaryColor), 0 10px var(--spread) 0px var(--FourthColor), -10px 10px var(--spread) 0px var(--SecondColor);
-   }
-   
-   /* Create the checkmark/indicator (hidden when not checked) */
-   .checkmark:after {
+}
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-   }
-   
-   /* Show the checkmark when checked */
-   .container input:checked ~ .checkmark:after {
+}
+
+.container input:checked ~ .checkmark:after {
     display: block;
-   }
-   
-   /* Style the checkmark/indicator */
-   .container .checkmark:after {
+}
+
+.container .checkmark:after {
     left: 0.45em;
     top: 0.25em;
     width: 0.25em;
@@ -271,7 +294,7 @@ html {
     border: solid #f0f0f0;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
-   }
+}
 
 .addLine select {
     color: black;
@@ -302,20 +325,20 @@ html {
     border: 1px solid #cc0000;
     background-color: #e50000;
     overflow: hidden;
-  }
-  
-  .deletebutton, .deletebutton__icon, .deletebutton__text {
+}
+
+.deletebutton, .deletebutton__icon, .deletebutton__text {
     transition: all 0.3s;
-  }
-  
-  .deletebutton .deletebutton__text {
+}
+
+.deletebutton .deletebutton__text {
     font-size: 10px;
     transform: translateX(17.5px);
     color: #fff;
     font-weight: 600;
-  }
-  
-  .deletebutton .deletebutton__icon {
+}
+
+.deletebutton .deletebutton__icon {
     position: absolute;
     transform: translateX(54.5px);
     height: 100%;
@@ -324,35 +347,225 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .deletebutton .svg {
+}
+
+.deletebutton .svg {
     width: 10px;
-  }
-  
-  .deletebutton:hover {
+}
+
+.deletebutton:hover {
     background: #cc0000;
-  }
-  
-  .deletebutton:hover .deletebutton__text {
+}
+
+.deletebutton:hover .deletebutton__text {
     color: transparent;
-  }
-  
-  .deletebutton:hover .deletebutton__icon {
+}
+
+.deletebutton:hover .deletebutton__icon {
     width: 74px;
     transform: translateX(0);
-  }
-  
-  .deletebutton:active .deletebutton__icon {
-    background-color: #b20000;
-  }
-  
-  .deletebutton:active {
-    border: 1px solid #b20000;
-  }
+}
 
-  .pic_coach{
+.deletebutton:active .deletebutton__icon {
+    background-color: #b20000;
+}
+
+.deletebutton:active {
+    border: 1px solid #b20000;
+}
+
+.pic_coach{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.details-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.189);
+    backdrop-filter: blur(5px);
+    border: 4px solid var(--FourthColor);
+    z-index: 999;
+    border-radius: 25px;
+}
+
+.details-container .box {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+}
+
+.details-container .box h1 {
+    position: absolute;
+    text-align: center;
+    color: var(--ThirdColor);
+    top: -70px;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.details-container .box div {
+    background: rgb(255, 255, 255);
+    width: 45%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-container .box div .label{
+    background: var(--FourthColor);
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.details-container .box div .result{
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.result > input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+}
+
+.result select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+}
+
+.result  select > option:first-of-type {
+  display: none;
+}
+
+
+.details-container .box div .result div{ 
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.details-container .box .id .result , .details-container .box .email .result {
+    font-size: 12px;
+}
+
+
+  .details-container .button {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
   }
+  
+  .details-container .button:before,
+  .details-container .button:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+  }
+  
+  .details-container .button:before {
+    border: 4px solid var(--FourthColor);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button:after {
+    border: 4px solid var(--FourthColor);
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+  
+  .details-container .button:hover:before,
+  .details-container .button:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .details-container .button:hover:after,
+  .details-container .button:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .details-container .button-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: var(--FourthColor);
+  }
+  
+  .details-container .button:hover .button-box,
+  .details-container .button:focus .button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+  }
+
+.details-container .message {
+    width: 95% !important; 
+    height: 100px !important;
+}
+
+.details-container .message .label {
+    height: 100%;
+    width: 20% ; 
+}
+
+.details-container .message .result {
+    width: 80% !important; 
+}
+

@@ -6,10 +6,7 @@
             <div class="category">
                 <h2>category</h2>
                 <div class="list_cat">
-                    <div>lipsticks</div>
-                    <div>parfumes</div>
-                    <div>skincares</div>
-                    <div>Face mask</div>
+                    <div *ngFor="let Category of shared.Category">{{Category.name}}</div>
                 </div>
             </div>
             <div class="hr"></div>
@@ -46,49 +43,26 @@
                 </label>
             </div>
             <div class="hr"></div>
-            <div class="brand">
-                <h2>brands</h2>
-                <form class="form">
-                    <button>
-                        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-                            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </button>
-                    <input class="input" placeholder="Search" required="" type="text">
-                    <button class="reset" type="reset">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </form>
+            <div class="category">
+                <h2>Brands</h2>
+                <div class="list_cat">
+                    <div *ngFor="let Brands of shared.Brands">{{Brands.name}}</div>
+                </div>
             </div>
+
+                        
         </div>
     </div>
-    <div class="shop">
-        <div class="title">Category</div>
-        <div class="container" *ngIf="shared.products">
-            <div class="card" routerLink="/shop/products">
-                <div class="pic"><img src="../../../assets/float/main product.png" alt=""></div>
-                <div class="title">parfume</div>
-                <div class="price"><p>10dt</p></div>
-            </div>
-            <div class="card" *ngFor="let product of shared.products">
-                <div class="pic"><img src="../../../assets/float/main product.png" alt=""></div>
-                <div class="title">{{product.product_name}}</div>
-                <div class="price"><p>{{product.price}}DT</p></div>
-            </div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+<div class="shop">
+    <div class="title">Category</div>
+    <div class="container" *ngIf="shared.products">
+        <!-- Use routerLink to navigate to product details component -->
+        <div class="card" *ngFor="let product of shared.products" (click)="sendProductDetails(product)">
+            <div class="pic"><img [src]="getProductImgPath(product)"  alt=""></div>
+            <div class="title">{{product.product_name}}</div>
+            <div class="price"><p>{{product.price}}DT</p></div>
         </div>
     </div>
+</div>
 </div>
 

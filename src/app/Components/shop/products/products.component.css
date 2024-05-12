@@ -28,9 +28,14 @@
     backdrop-filter: blur(7px);
     border: 1px solid rgba(255,255,255,0.225);
     z-index: 99;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.pic > img {
+    width: 50%;
+    height: 100%;
+}
 .item .shadow {
     position: absolute;
     right:0;
@@ -62,9 +67,7 @@
 }
 
 
-.pic > img {
-    width: 100%;
-}
+
 
 .pic > img .scaled {
     transform: scale(2);
@@ -154,6 +157,11 @@
     width: 80%;
     display: flex;
     justify-content: center;
+}
+
+.add.disabled {
+    pointer-events: none;
+    opacity: 0.5; 
 }
 
 .add .button {

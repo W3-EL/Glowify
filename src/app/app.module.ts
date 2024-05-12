@@ -25,6 +25,7 @@ import { SideBarComponent } from './Components/admin/dashboard/side-bar/side-bar
 import { TopBarComponent } from './Components/admin/dashboard/top-bar/top-bar.component';
 import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
 import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
+import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/ge
     TopCategoriesComponent,
     DashboardComponent,
     OrderBarComponent,
+    ContactBarComponent,
     ProductBarComponent,
     CategoriesBarComponent,
     SideBarComponent,

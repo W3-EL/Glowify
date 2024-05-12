@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { product } from 'src/app/Models/product.model';
 import { SharedService } from 'src/app/Services/shared.service';
-// import { product } from 'src/app/Models/product.module';
-// import { coach } from '../../../../Models/coach.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,31 +9,45 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product-bar.component.css']
 })
 export class ProductBarComponent implements OnInit {
-  // Currentproducts: product[] = [];
+  productData: product = {
+    product_name: '',
+    desc_prod: '',
+    price: 50, 
+    stock: 100,
+    img:'',
+    gender:'',
+    category:{
+      name:'',
+    },
+    brand: {
+      name:'',
+      logo:'',
+    }
+  };
   showAddLine: boolean = false;
+  selectedProduct: any;
   constructor(public shared : SharedService) { }
 
 
   ngOnInit(): void {
-    this.getproductsForCurrentWeek();
-    this.getCoachs();
+    this.getAllProduct();
+
+  }
+  getAllProduct(){
+    this.shared.getAllProduct().subscribe(
+      (response) => {
+        if (response.success) {
+          this.shared.products = response.data;
+        } else {
+          console.error('Failed to fetch products:');
+        }
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );  
   }
 
-  getproductsForCurrentWeek(): void {
-    // this.shared.getproductsForCurrentWeek().subscribe(
-    //     (data: product[]) => {
-    //         this.Currentproducts = data;
-    //         console.log(data);
-    //     },
-    //     (error) => {
-    //         // Handle errors here
-    //         console.error('Error:', error);
-    //     }
-    // );
-}
-toggleAddLine(): void {
-  this.showAddLine = !this.showAddLine;
-}
 // productForm: product = {
 //   id: 0,
 //   title: '',
@@ -136,5 +149,16 @@ toggleAddLine(): void {
     //   );
     // }
 
-
+    showDetails(user: any) {
+      this.selectedProduct = user;
+    }
+    closeDetails() {
+      this.selectedProduct = null;
+      if(this.showAddLine){
+        this.showAddLine=!this.showAddLine
+      }
+    }
+    toggleAddLine(): void {
+      this.showAddLine = !this.showAddLine;
+    }
 }

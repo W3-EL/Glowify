@@ -213,7 +213,7 @@ html {
 
 .addLine input::placeholder {
     color: white;
-    opacity: 0.5; /* Firefox */
+    opacity: 0.5; 
   }
 
   .cssbuttons-io-button {
@@ -245,7 +245,6 @@ html {
     box-shadow: 0 0.1em 1em -0.5em #00000098;
   }
 
-  /* Hide the default checkbox */
 .container input {
     position: absolute;
     opacity: 0;
@@ -262,8 +261,7 @@ html {
     user-select: none;
    }
    
-   /* Create a custom checkbox */
-   .checkmark {
+  .checkmark {
     height: 1.3em;
     width: 1.3em;
     background: black;
@@ -271,28 +269,24 @@ html {
     transition: all 0.7s;
     --spread: 20px;
     transform: translateX(34px);
-   }
-   
-   /* When the checkbox is checked, add a blue background */
-   .container input:checked ~ .checkmark {
+  }
+
+  .container input:checked ~ .checkmark {
     background: black;
     box-shadow: -10px -10px var(--spread) 0px var(--PrimaryColor), 0 -10px var(--spread) 0px var(--FourthColor), 10px -10px var(--spread) 0px var(--SecondColor), 10px 0 var(--spread) 0px var(--ThirdColor), 10px 10px var(--spread) 0px var(--PrimaryColor), 0 10px var(--spread) 0px var(--FourthColor), -10px 10px var(--spread) 0px var(--SecondColor);
-   }
-   
-   /* Create the checkmark/indicator (hidden when not checked) */
-   .checkmark:after {
+  }
+
+  .checkmark:after {
     content: "";
     position: absolute;
     display: none;
-   }
-   
-   /* Show the checkmark when checked */
-   .container input:checked ~ .checkmark:after {
+  }
+
+  .container input:checked ~ .checkmark:after {
     display: block;
-   }
-   
-   /* Style the checkmark/indicator */
-   .container .checkmark:after {
+  }
+
+  .container .checkmark:after {
     left: 0.45em;
     top: 0.25em;
     width: 0.25em;
@@ -300,7 +294,7 @@ html {
     border: solid #f0f0f0;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
-   }
+  }
 
 .addLine select {
     color: black;

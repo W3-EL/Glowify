@@ -330,11 +330,13 @@ input:not(:placeholder-shown) ~ .reset {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
 
 }
 
 .shop .container > div > .pic img{
-    width: 150px;
+    width: 50%;
+    height: 95%;
 }
 
 .shop .container > div > .title {

@@ -16,7 +16,7 @@ export class UserBarComponent implements OnInit {
   userForm: user = {
     fullname: '',
     email: '',
-    password: '', // Excluded from the frontend model, but required for form binding
+    password: '', 
     gender: ''
 
   };
@@ -98,7 +98,7 @@ export class UserBarComponent implements OnInit {
         no-repeat
       `,
         confirmButtonColor:"#d39715"
-                }); 
+        }); 
         console.error('Sign up error:', error);
       }
     );
