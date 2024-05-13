@@ -13,6 +13,9 @@ import { OrderBarComponent } from './Components/admin/dashboard/order-bar/order-
 import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
 import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
 import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './payment/success/success.component';
+import { FailComponent } from './payment/fail/fail.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -34,7 +37,15 @@ const routes: Routes = [
     { path: 'Contacts' , component:ContactBarComponent  },
     { path: '' , component:GeneralBarComponent  },
   ]
-}
+},
+{ path: 'payment' , component:PaymentComponent,
+children:[
+  {path: 'success' , component: SuccessComponent},
+  { path: 'fail' , component: FailComponent },
+]
+},
+
+
 
 ];
 

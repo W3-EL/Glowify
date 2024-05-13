@@ -26,6 +26,9 @@ import { TopBarComponent } from './Components/admin/dashboard/top-bar/top-bar.co
 import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
 import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
 import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './payment/success/success.component';
+import { FailComponent } from './payment/fail/fail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +53,9 @@ import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/co
     TopBarComponent,
     UserBarComponent,
     GeneralBarComponent,
+    PaymentComponent,
+    SuccessComponent,
+    FailComponent,
 
   ],
   imports: [
