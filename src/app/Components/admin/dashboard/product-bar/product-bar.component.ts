@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./product-bar.component.css']
 })
 export class ProductBarComponent implements OnInit {
+  products: product[] = [];
+
   productData: product = {
     product_name: '',
     desc_prod: '',
@@ -48,109 +50,108 @@ export class ProductBarComponent implements OnInit {
     );  
   }
 
-// productForm: product = {
-//   id: 0,
-//   title: '',
-//   start_date: '',
-//   availability: false,
-//   coach: {
-//     coachId: 0,
-//     firstName: '',
-//     lastName: '',
-//     age: 0,
-//     pic: ''
-//   },
-//   spots: 0,
-//   start_time: ''
-// };
-// addNewproduct():void {
 
-//     this.shared.addproducts(this.productForm).subscribe(
-//       (response) => {
-//         console.log('Added new product:', response);
-//         Swal.fire({
-//           icon: "success",
-//           title: "product added successfully",
-//           width: 300,
-//           background: "transparent",
-//           backdrop: `
-//           rgba(0,0,0,0.7)
-//           url("../../../assets/alert.png")
-//           center
-//           no-repeat
-//         `,  
-//           showConfirmButton: false,
-//           timer: 3000
-//         });
-//         setTimeout(() => {
-//           window.location.reload();
-//         }, 3000);
-//       },
-//       (error) => {
-//         Swal.fire({
-//           title: "ERROR adding product",
-//           width: 300,
-//           text: 'You are missing something to add',
-//           padding: "1em",
-//           color: "#F4DFBA",
-//           background: "transparent",
-//           backdrop: `
-//             rgba(0,0,0,0.7)
-//             url("../../../assets/alert.png")
-//             center
-//             no-repeat
-//           `,
-//           confirmButtonColor:"#876445"
-//         });        
 
-//         console.error('Error adding products:', error);
+  addNewproduct():void {
 
-//       } 
-//     )}
-    getCoachs():void {
-      // this.shared.getAllCoachs().subscribe(
-      //   (data: coach[]) => {
-      //     this.shared.coachs=data;
+    this.shared.addProduct(this.productData).subscribe(
+      (response) => {
+        console.log('Added new product:', response);
+        Swal.fire({
+          icon: "success",
+          title: "Product Added successfully",
+          width: 300,
+          background: "transparent",
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+          showConfirmButton: false,
+          timer: 3000
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      },
+      (error) => {
+        Swal.fire({
+          title: "ERROR Adding Product",
+          width: 300,
+          text: error.error,
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          background: "transparent",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+  
+          confirmButtonColor:"#876445"
+        });        
 
-      //     console.log(data);
-      //   },
-      //   (error) => {
-      //     // Handle errors here
-      //     console.error('Error:', error);
-      //   }
-      // );
-    }
-    // deleteproduct(productId: number): void {
-    //   this.shared.deleteproduct(productId).subscribe(
-    //     (data: product[]) => {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "product Deleted successfully",
-    //         width: 300,
-    //         background: "transparent",
-    //         backdrop: `
-    //         rgba(0,0,0,0.7)
-    //         url("../../../assets/alert.png")
-    //         center
-    //         no-repeat
-    //       `,  
-    //         showConfirmButton: false,
-    //         timer: 3000
-    //       });
-    //       setTimeout(() => {
-    //         window.location.reload();
-    //       }, 3000);
-    //       console.log('product deleted:', data);
-    //     },
-    //     (error) => {
-    //       // Handle error
-    //       console.error('Error deleting product:', error);
-    //     }
-    //   );
-    // }
+        console.error('Error adding products:', error);
 
-    showDetails(user: any) {
-      this.selectedProduct = user;
+      } 
+  )}
+
+  deleteproduct(productId: string): void {
+    this.shared.deleteProduct(productId).subscribe(
+      response => {
+        Swal.fire({
+          icon: "success",
+          title: "product Deleted successfully",
+          width: 300,
+          background: "transparent",
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+          showConfirmButton: false,
+          timer: 3000
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        console.log('product deleted successfully:', response);
+        this.products = this.products.filter(product => product._id !== productId);
+      },
+      error => {
+        Swal.fire({
+          title: "ERROR deleting product",
+          width: 300,
+          text: error.error.message,
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          background: "transparent",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+  
+          confirmButtonColor:"#876445"
+        });        
+
+        console.error('Error deleting product:', error);
+      }
+    );
+  }
+
+
+  
+    showDetails(product: any) {
+      this.selectedProduct = product;
     }
     closeDetails() {
       this.selectedProduct = null;

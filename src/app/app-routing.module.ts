@@ -16,6 +16,8 @@ import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/ge
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { FailComponent } from './payment/fail/fail.component';
+import { IsAuthenticatedGuard } from './Guards/is-authenticated.guard';
+import { HasRoleGuard } from './Guards/has-role.guard';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -28,7 +30,8 @@ const routes: Routes = [
       {path: 'products' , component: ProductsComponent},
     ],
   },
-  { path: 'admin' , component:DashboardComponent,
+  { path: 'admin' , component:DashboardComponent ,
+
   children:[
     {path: 'products' , component: ProductBarComponent},
     { path: 'categories' , component: CategoriesBarComponent },
@@ -36,7 +39,11 @@ const routes: Routes = [
     { path: 'users' , component:UserBarComponent  },
     { path: 'Contacts' , component:ContactBarComponent  },
     { path: '' , component:GeneralBarComponent  },
-  ]
+  ],
+  canActivate:[IsAuthenticatedGuard],
+  data:{
+    role:'admin',
+  }
 },
 { path: 'payment' , component:PaymentComponent,
 children:[

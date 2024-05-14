@@ -1,12 +1,12 @@
 
 export interface user {
-  _id?: string; // Optional if you have an _id from backend
+  _id?: string; 
   fullname: string;
   email: string;
-  password?: string; // Exclude password from frontend model for security
+  password?: string; 
   phone?: number;
-  role?: 'user' | 'admin'; // Make it optional if needed
+  role: 'user' | 'admin'; 
   gender: string;
-  createdAt?: Date; // Optional if you need timestamp
-  updatedAt?: Date; // Optional if you need timestamp
+  createdAt?: Date; 
+  updatedAt?: Date; 
 }

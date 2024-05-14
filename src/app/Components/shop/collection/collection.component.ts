@@ -19,8 +19,6 @@ export class CollectionComponent implements OnInit {
   sendProductDetails(product: product): void {
     // Add the selected product to the list in the service
     this.shared.addProductDetails(product);
-
-    // Navigate to the product details component
     this.router.navigate(['/shop/products']);
   }
   getProductImgPath(product: product): string {

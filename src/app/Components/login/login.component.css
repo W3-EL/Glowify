@@ -364,6 +364,16 @@
     inset -1px -1px 6px rgba(255, 255, 255, 0.4);
   }
 
+.error-message {
+  position: relative;
+  color:white;
+}
+.error-message svg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(150%, -50%) rotate(25deg);
+}
 
   @media (max-width:950px)  {
 

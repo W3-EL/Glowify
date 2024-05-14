@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { user } from 'src/app/Models/user.model';
 import {SharedService} from 'src/app/Services/shared.service'
+import {AuthService} from 'src/app/Services/auth.service'
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -18,19 +19,20 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '', 
     phone:0,
-    gender: ''
+    gender: '',
+    role : 'user',
   };
   email: string = '';
   password: string = '';
-  constructor(private SharedService: SharedService,private router: Router) { }
+  loginErrorMessage: string = '';
+  constructor(public AuthService: AuthService,private SharedService: SharedService,private router: Router) { }
 
   ngOnInit(): void {
 
   }
   login(): void {
-    this.SharedService.loginUser(this.email, this.password).subscribe(
+    this.AuthService.login(this.email, this.password).subscribe(
       ({ user, token }) => {
-        token=this.SharedService.token;
         if (user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else {
@@ -38,8 +40,8 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-
-        console.error('Login error:', error);
+        this.loginErrorMessage = error.error.error;
+        console.error('Login error:', error.error);
       }
     );
   }

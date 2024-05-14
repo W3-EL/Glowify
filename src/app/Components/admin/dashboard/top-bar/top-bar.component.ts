@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes } from '@angular/router';
+import {AuthService} from 'src/app/Services/auth.service'
 
 @Component({
   selector: '.top-bar',
@@ -9,7 +10,7 @@ import { Routes } from '@angular/router';
 
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public AuthService: AuthService) { }
 
   ngOnInit(): void {
   }

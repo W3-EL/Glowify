@@ -14,6 +14,7 @@ export class ContactBarComponent implements OnInit {
   showAddLine: boolean = false;
 
   constructor(public shared : SharedService) { }
+  contacts: Contact[] = [];
 
   selectedContact: any;
 
@@ -47,33 +48,53 @@ export class ContactBarComponent implements OnInit {
     this.showAddLine = !this.showAddLine;
   }
 
-  // deleteContact(contactId: number): void {
-  //   this.shared.deleteContact(contactId).subscribe(
-  //     (data: Contact[]) => {
-  //       Swal.fire({
-  //         icon: "success",
-  //         title: "Customer Deleted successfully",
-  //         width: 300,
-  //         background: "transparent",
-  //         backdrop: `
-  //         rgba(0,0,0,0.7)
-  //         url("../../../assets/alert.png")
-  //         center
-  //         no-repeat
-  //       `,  
-  //         showConfirmButton: false,
-  //         timer: 3000
-  //       });
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 3000);
-  //       console.log('Customer deleted:', data);
-  //     },
-  //     (error) => {
-  //       // Handle error
-  //       console.error('Error deleting Customer:', error);
-  //     }
-  //   );
-  // }
+  deletecontact(contactId: string): void {
+    this.shared.deleteContact(contactId).subscribe(
+      response => {
+        Swal.fire({
+          icon: "success",
+          title: "contact Deleted successfully",
+          width: 300,
+          background: "transparent",
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+          showConfirmButton: false,
+          timer: 3000
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        console.log('User deleted successfully:', response);
+        this.contacts = this.contacts.filter(contact => contact._id !== contactId);
+      },
+      error => {
+        Swal.fire({
+          title: "ERROR deleting contact",
+          width: 300,
+          text: error.error.message,
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          background: "transparent",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+  
+          confirmButtonColor:"#876445"
+        });        
+
+        console.error('Error deleting contact:', error);
+      }
+    );
+  }
+
 
 }

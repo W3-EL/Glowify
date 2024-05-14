@@ -19,7 +19,6 @@ export class SharedService {
   Contact:Contact[]=[];
   Category:Category[]=[];
   Brands:Brand[]=[];
-  token="";
   selectedProducts: product[] = [];
   img = "";
 
@@ -27,10 +26,13 @@ export class SharedService {
   selectedProducts$: Observable<product[]> = this.selectedProductsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
-  loginUser(email: string, password: string): Observable<{ user: user, token: string }> {
-    return this.http.post<{ user: user, token: string }>(this.baseApiUrl +`user/login`, { email, password });
+  private getToken(): string {
+    return localStorage.getItem('token') || '';
   }
 
+  login(email: string, password: string): Observable<{ user: user, token: string }> {
+    return this.http.post<{ user: user, token: string }>(this.baseApiUrl +`user/login`, { email, password });
+  }
   signUpUser(user: user) : Observable<user>  {
     return this.http.post<user>(this.baseApiUrl +`user/signup`, user);
   }
@@ -38,20 +40,33 @@ export class SharedService {
   getAllProduct(): Observable<{ success: boolean, data: product[] }> {
     return this.http.get<{ success: boolean, data: product[] }>(this.baseApiUrl +`product/`);
   }
+  
   addProduct(product:product) : Observable<product> {
-    return this.http.post<product>(this.baseApiUrl +`product/`,product);  
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<product>(this.baseApiUrl +`product/`,product, { headers });  
+  }
+  deleteProduct(productId: string): Observable<product[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<product[]>(this.baseApiUrl +`product/${productId}`, { headers });
   }
 
   getAllUser() : Observable<user[]> {
     return this.http.get<user[]>(this.baseApiUrl + 'user/');
   }
-  deleteUser(userId:number):Observable<user[]>{
-    const url = this.baseApiUrl + `user/${userId}`;
-    const authToken = localStorage.getItem('authToken');
+
+  deleteUser(userId: string): Observable<user[]> {
+    const token = this.getToken(); 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${authToken}`
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.delete<user[]>(url, { headers });  
+
+    return this.http.delete<user[]>(this.baseApiUrl +`user/${userId}`, { headers });
   }
 
   addContact(contact:Contact) : Observable<Contact> {
@@ -60,6 +75,14 @@ export class SharedService {
 
   getAllContact(): Observable<{ success: boolean, data: Contact[] }> {
     return this.http.get<{ success: boolean, data: Contact[] }>(this.baseApiUrl +`contact/`);
+  }
+
+  deleteContact(contactId: string): Observable<Contact[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<Contact[]>(this.baseApiUrl +`contact/${contactId}`, { headers });
   }
 
   

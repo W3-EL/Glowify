@@ -17,17 +17,18 @@ export class UserBarComponent implements OnInit {
     fullname: '',
     email: '',
     password: '', 
-    gender: ''
-
+    gender: '',
+    role : 'user',
   };
   userData: user = {
     fullname: '',
     email: '',
     password: '', 
     phone:0,
-    gender: ''
+    gender: '',
+    role : 'user',
   };
-
+  users: user[] = [];
   selectedUser: any;
 
   showDetails(user: any) {
@@ -148,35 +149,53 @@ export class UserBarComponent implements OnInit {
 
   //     } 
   //   )}
+  deleteUser(userId: string): void {
+    this.shared.deleteUser(userId).subscribe(
+      response => {
+        Swal.fire({
+          icon: "success",
+          title: "User Deleted successfully",
+          width: 300,
+          background: "transparent",
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+          showConfirmButton: false,
+          timer: 3000
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+        console.log('User deleted successfully:', response);
+        this.users = this.users.filter(user => user._id !== userId);
+      },
+      error => {
+        Swal.fire({
+          title: "ERROR deleting User",
+          width: 300,
+          text: error.error,
+          padding: "10em 1em 1em 1em ",
+          color: "#d39715",
+          background: "transparent",
+          backdrop: `
+          rgba(0,0,0,0.7)
+          url("../../../../../assets/alert/alert.png")
+          center
+          no-repeat
+        `,
+  
+          confirmButtonColor:"#876445"
+        });        
 
-    deleteUser(userId: number): void {
-      this.shared.deleteUser(userId).subscribe(
-        (data: user[]) => {
-          Swal.fire({
-            icon: "success",
-            title: "User Deleted successfully",
-            width: 300,
-            background: "transparent",
-            backdrop: `
-            rgba(0,0,0,0.7)
-            url("../../../assets/alert.png")
-            center
-            no-repeat
-          `,  
-            showConfirmButton: false,
-            timer: 3000
-          });
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
-          console.log('User deleted:', data);
-        },
-        (error) => {
-          // Handle error
-          console.error('Error deleting User:', error);
-        }
-      );
-    }
+        console.error('Error deleting user:', error);
+      }
+    );
+  }
 
 
 
