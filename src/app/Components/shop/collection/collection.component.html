@@ -56,11 +56,12 @@
 <div class="shop">
     <div class="title">Category</div>
     <div class="container" *ngIf="shared.products">
-        <!-- Use routerLink to navigate to product details component -->
         <div class="card" *ngFor="let product of shared.products" (click)="sendProductDetails(product)">
-            <div class="pic"><img [src]="getProductImgPath(product)"  alt=""></div>
-            <div class="title">{{product.product_name}}</div>
+            <div class="pic"><img [src]="getProductImgPath(product)"  [alt]="product.img"></div>
+            <div class="title" [ngStyle]="{ 'color': product.stock === 0 ? 'red' : 'white' }">{{product.product_name}}</div>
             <div class="price"><p>{{product.price}}DT</p></div>
+            <div class="soldOut" *ngIf="product.stock === 0">x</div>
+
         </div>
     </div>
 </div>

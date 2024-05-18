@@ -162,4 +162,11 @@ export class ProductBarComponent implements OnInit {
     toggleAddLine(): void {
       this.showAddLine = !this.showAddLine;
     }
+    onFileChange(event: Event): void {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        const file = input.files[0];
+        this.productData.img = file.name; // Get only the file name
+      }
+    }
 }

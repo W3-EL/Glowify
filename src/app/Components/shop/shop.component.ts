@@ -35,6 +35,7 @@ export class ShopComponent implements OnInit {
   }
 
 
+
   getAllCategory(): void {
     this.shared.getAllCategory().subscribe(
       (response) => {

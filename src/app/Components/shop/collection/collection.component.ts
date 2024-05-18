@@ -22,6 +22,6 @@ export class CollectionComponent implements OnInit {
     this.router.navigate(['/shop/products']);
   }
   getProductImgPath(product: product): string {
-    return `${this.imgBaseUrl}${product.img}.jpg`;
+    return `${this.imgBaseUrl}${product.img}`;
   }
 }

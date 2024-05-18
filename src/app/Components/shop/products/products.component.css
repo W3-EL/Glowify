@@ -4,12 +4,6 @@
     position: relative;
 }
 
-.hr {
-    width: 90%;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, var(--FifthColor) 20%, var(--FifthColor) 80%, rgba(255,255,255,0) 100%);    align-items: center;
-}
-
 .item {
     width: 60vw;
     height: 80vh;
@@ -31,9 +25,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .5s cubic-bezier(.68,-.6,.32,1.6);
+
 }
 .pic > img {
-    width: 50%;
+    width: 100%;
     height: 100%;
 }
 .item .shadow {
@@ -44,7 +40,18 @@
     width: 500px;
     height: 500px;
     z-index: -1;
-    transform: translate(-5%,5%);
+    transition: all .5s cubic-bezier(.68,-.6,.32,1.6);
+
+}
+
+.item:hover .shadow {
+    transform: translate(-3%,3%);
+
+}
+
+.item:hover .pic {
+    transform: translate(2%,-2%);
+
 }
 
 .item .soldOut {
@@ -67,13 +74,6 @@
 }
 
 
-
-
-.pic > img .scaled {
-    transform: scale(2);
-    z-index: 3 !important;
-  }
-
 .details {
     position: absolute;
     width: 40vw;
@@ -84,13 +84,14 @@
     flex-direction: column;
     gap:  1rem;
     padding: 20px 0 0 100px;
+    color: white;
 }
 
 .details .name {
     font-size: 1.7rem;
     font-weight: 500;
     text-transform: uppercase;
-
+    width: 95%;
 }
 
 .details .brand {
@@ -122,7 +123,7 @@
     font-weight: 800;
     color: rgba(255, 255, 255, 0);
     font-family: Bernard MT CONDENSED;
-    -webkit-text-stroke: .1px var(--ThirdColor);
+    -webkit-text-stroke: .1px rgba(0, 0, 0, 0.529);
     cursor: default;
     transition: all .5s;
 }
@@ -234,6 +235,176 @@
     }
 }
 
+.back {
+    display: block;
+    left: 5%;
+    top: 15%;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    position: sticky;
+
+}
+
+.back:before,
+.back:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+}
+
+.back:before {
+    border: 4px solid var(--FourthColor);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.back:after {
+    border: 4px solid var(--FourthColor);
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+}
+
+.back:hover:before,
+.back:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back:hover:after,
+.back:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.button-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: var(--FourthColor);
+}
+
+.back:hover .button-box,
+.back:focus .button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+}
+
+.hr {
+    margin: 20px 0;
+    width: 80%;
+    height: 1px;
+    background: var(--FifthColor);
+}
+
+.gender h2{
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.more_products .container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.more_products .container > div {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--PrimaryColor);
+    padding: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
 
 
+.more_products .container > div > .pic {
+    width: 80%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+
+.more_products .container > div > .pic img{
+    width: 80%;
+    height: 95%;
+}
+
+.more_products .container > div > .title {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.more_products  .container > div > .price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 26.6%;
+    background-color: var(--ThirdColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.166);
+
+}
+
+.more_products .container > div > .price::before {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width:  100%;
+    transform:  translateX(-50%);
+    background-color: var(--SecondColor);
+    rotate:  45deg;
+    box-shadow: 0 0 10px 0 black;
+}
+
+.more_products .container > div > .price p {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+
+}
+
+.more_products h2 {
+    margin-bottom: 20px;
+}
