@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Brand } from 'src/app/Models/brand.model';
 import { Category } from 'src/app/Models/category.model';
 import { product } from 'src/app/Models/product.model';
@@ -11,9 +11,9 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-
   constructor(public shared : SharedService, private router: Router) { }
   ngOnInit(): void {
+  
     this.getAllProducts();
     this.getAllCategory();
     this.getAllBrand(); 

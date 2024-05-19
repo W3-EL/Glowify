@@ -16,6 +16,8 @@
     background-color: var(--FourthColor);
     overflow: hidden;
     overscroll-behavior: none;
+    z-index: 999;
+    
 
 }
 

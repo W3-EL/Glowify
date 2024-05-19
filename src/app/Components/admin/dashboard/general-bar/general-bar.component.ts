@@ -15,79 +15,38 @@ export class GeneralBarComponent implements OnInit {
   countorders = 0;
   countContacts= 0;
   ngOnInit(): void {
-    this.countcategories();
-    this.countproduct();
-    this.countCustomer();
-    this.countorder();
-    this.countContact();
-  }
-  countcategories(){
-    // this.shared.countCategories().subscribe(
-    //   (data: number) => {
-    //     this.countCategories=data;
-  
-    //     console.log(data);
-    //   },
-    //   (error: any) => {
-    //     // Handle errors here
-    //     console.error('Error:', error);
-    //   }
-    // );
-    }
-    countproduct(){
-      // this.shared.countproduct().subscribe(
-      //   (data: number) => {
-      //     this.countproducts=data;
-    
-      //     console.log(data);
-      //   },
-      //   (error: any) => {
-      //     // Handle errors here
-      //     console.error('Error:', error);
-      //   }
-      // );
-      }
-      countCustomer(){
-        // this.shared.countCustomer().subscribe(
-        //   (data: number) => {
-        //     this.countCustomers=data;
-      
-        //     console.log(data);
-        //   },
-        //   (error: any) => {
-        //     // Handle errors here
-        //     console.error('Error:', error);
-        //   }
-        // );
-        }
-      countContact(){
-        // this.shared.countContact().subscribe(
-        //   (data: number) => {
-        //     this.countContacts=data;
-        
-        //     console.log(data);
-        //   },
-        //   (error: any) => {
-        //     // Handle errors here
-        //     console.error('Error:', error);
-        //   }
-        // );
-      }
-        countorder(){
-          // this.shared.countorder().subscribe(
-          //   (data: number) => {
-          //     this.countorders=data;
-        
-          //     console.log(data);
-          //   },
-          //   (error: any) => {
-          //     // Handle errors here
-          //     console.error('Error:', error);
-          //   }
-          // );
-          }
-            
-
-
+    this.fetchCounts();
 
   }
+
+  fetchCounts(): void {
+    this.shared.getProductCount().subscribe(
+      response => {
+        this.countproducts = response.data;
+      },
+      error => {
+        console.error('Error fetching product count:', error);
+      }
+    );
+
+    this.shared.getUserCount().subscribe(
+      response => {
+        this.countCustomers = response.count;
+      },
+      error => {
+        console.error('Error fetching user count:', error);
+      }
+    );
+
+    this.shared.getContactCount().subscribe(
+      response => {
+        this.countContacts = response.count;
+      },
+      error => {
+        console.error('Error fetching contact count:', error);
+      }
+    );
+  }
+}
+
+

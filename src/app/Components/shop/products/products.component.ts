@@ -15,7 +15,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   price: number = 25;
   img = "";
   imgBaseUrl: string = "../../../../assets/product/";
-  filteredProducts: product[] = [];
+  filterByCategory: product[] = [];
+  filterByBrand: product[] = [];
   selectedProduct!: product;
   selectedProducts: product[] = [];
   private subscription: Subscription | undefined;
@@ -32,6 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.price = this.selectedProduct.price;
       this.img = `${this.imgBaseUrl}${this.selectedProduct.img}`;
       this.filterProductsByCategory();
+      this.filterProductsByBrand();
     }
 
     this.subscription = this.shared.selectedProducts$.subscribe((products: product[]) => {
@@ -79,7 +81,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   filterProductsByCategory(): void {
     if (this.selectedProduct) {
-      this.filteredProducts = this.shared.products
+      this.filterByCategory = this.shared.products
         .filter(product => 
           product.category.name === this.selectedProduct.category.name && 
           product._id !== this.selectedProduct._id &&
@@ -88,15 +90,36 @@ export class ProductsComponent implements OnInit, OnDestroy {
         .slice(0, 4);
     }
   }
+  filterProductsByBrand(): void {
+    if (this.selectedProduct) {
+      this.filterByBrand = this.shared.products
+        .filter(product => 
+          product.brand.name === this.selectedProduct.brand.name && 
+          product._id !== this.selectedProduct._id &&
+          product.stock !== 0
+        )
+        .slice(0, 4);
+    }
+  }
+
   updateSelectedProductView(product: product): void {
     this.selectedProduct = product;
     this.price = product.price;
     this.img = `${this.imgBaseUrl}${product.img}`;
     this.number = 1; // Reset quantity
     this.filterProductsByCategory(); // Update the filtered products
+    this.filterProductsByBrand(); // Update the filtered products
   }
 
   onProductClick(product: product): void {
     this.updateSelectedProductView(product);
+  }
+  isNewProduct(createdAt: Date | undefined): boolean {
+    if (!createdAt) {
+      return false; // Return false if createdAt is undefined
+    }
+    const today = new Date();
+    const productDate = new Date(createdAt);
+    return productDate.toDateString() === today.toDateString();
   }
 }

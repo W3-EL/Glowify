@@ -20,6 +20,8 @@
 <div class="item">
         <div class="pic">
             <img [src]="this.img"  alt="">
+            <div class="newProduct" *ngIf="isNewProduct(product.createdAt)">New</div>
+
         </div>
         <div class="soldOut" *ngIf="product.stock === 0">sold out</div>
         <div class="shadow"></div>
@@ -52,15 +54,24 @@
         <div class="hr"></div>
         <div class="more_products">
             <h2>More products like this one</h2>
-            <div class="container" *ngIf="filteredProducts.length">
-                <div class="card" *ngFor="let product of filteredProducts" (click)="onProductClick(product)">
+            <div class="container" *ngIf="filterByCategory.length">
+                <div class="card" *ngFor="let product of filterByCategory" (click)="onProductClick(product)">
                     <div class="pic"><img [src]="getProductImgPath(product)"  [alt]="product.img"></div>
                     <div class="title" [ngStyle]="{ 'color': product.stock === 0 ? 'red' : 'white' }">{{product.product_name}}</div>
                     <div class="price"><p>{{product.price}}DT</p></div>
                     <div class="soldOut" *ngIf="product.stock === 0">x</div>
                 </div>
-            </div>
-        
+            </div> 
+            <div class="hr"></div>
+            <h2>More {{product.brand.name}} products </h2>
+            <div class="container" *ngIf="filterByBrand.length">
+                <div class="card" *ngFor="let product of filterByBrand" (click)="onProductClick(product)">
+                    <div class="pic"><img [src]="getProductImgPath(product)"  [alt]="product.img"></div>
+                    <div class="title" [ngStyle]="{ 'color': product.stock === 0 ? 'red' : 'white' }">{{product.product_name}}</div>
+                    <div class="price"><p>{{product.price}}DT</p></div>
+                    <div class="soldOut" *ngIf="product.stock === 0">x</div>
+                </div>
+            </div>    
         </div>
     </div>
 </div>

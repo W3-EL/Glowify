@@ -11,4 +11,6 @@ export interface product {
   gender:string;
   category: Category;
   brand: Brand;
+  createdAt?: Date; 
+  updatedAt?: Date; 
 }

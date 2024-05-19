@@ -53,17 +53,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .filter .gendre label {
     width: 80%;
     color: var(--ThirdColor);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-transform: capitalize;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 5px;
 }
-
 .checkbox-wrapper:hover .check {
     stroke-dashoffset: 0;
 }
@@ -247,6 +249,7 @@ input:not(:placeholder-shown) ~ .reset {
     height: 150px;
     overflow-y: scroll;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.249) inset;
+    overflow-x: hidden ;
 }
 
 .filter .category .list_cat div {
@@ -257,12 +260,31 @@ input:not(:placeholder-shown) ~ .reset {
     height: 30px;
     cursor: pointer;
     transition: all .3s;
-
+    text-transform: capitalize;
+    position: relative;
 }
 
-.filter .category .list_cat div:hover {
+.filter .category .list_cat div:hover{
     background-color: rgba(255, 255, 255, 0.189);
 }
+.filter .category .list_cat div input:checked + label {
+    background-color: rgba(255, 255, 255, 0.189);
+
+}
+.filter .category .list_cat div label {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    
+}
+
+.filter .category .list_cat div input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+}
+
 
 .body .shop {
     position: absolute;
@@ -281,7 +303,7 @@ input:not(:placeholder-shown) ~ .reset {
 
 .body .shop .container {
     position: absolute;
-    padding-top: 20px;
+    padding: 20px 0;
     width: 100%;
     height: 80%;
     overflow-y: scroll;
@@ -306,15 +328,59 @@ input:not(:placeholder-shown) ~ .reset {
     transition: all .5s;
 }
 
+.shop .container > div .brand {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    text-transform: uppercase;
+    color: var(--FifthColor);
+    width: 60%;
+}
+
 .shop > .title {
     position: absolute;
     top: 0;
     left: 0;
     padding: 30px;
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: white;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
+.shop > .title > div {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white;
+    min-width: 100px;
+    background-color: var(--ThirdColor);
+    display: inline-block;
+    text-align: center;
+    border-radius: 25px;
+    padding:0 20px;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.shop > .title > div:not(.all) {
+    padding: 0 30px 0 20px;
+
+}
+
+.shop > .title > div .close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    font-size: 0.6rem;
+
+}
+
+.shop > .title > div .close:hover + div{
+    text-decoration: underline;
 }
 
 .shop .container > div:hover {
@@ -365,6 +431,19 @@ input:not(:placeholder-shown) ~ .reset {
 
 }
 
+.shop  .container > div  .newProduct {
+    width: 30%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    background-color: red;
+    color: white;
+    z-index: 999;
+    box-shadow: 0px 10px 20px 0px #000000;
+}
+
 .shop .container > div > .price::before {
     content: "";
     position: absolute;
@@ -380,7 +459,7 @@ input:not(:placeholder-shown) ~ .reset {
     position: absolute;
     bottom: 0;
     right: 10px;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     text-transform: uppercase;
 
@@ -400,4 +479,34 @@ input:not(:placeholder-shown) ~ .reset {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 10px 20px 0px #000000;
+
 }
+
+.shop .title .sorting-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    gap: 20px;
+    background-color: transparent;
+}
+
+.shop .title .sorting-buttons button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.shop .title .sorting-buttons div {
+    color: white;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.shop .title .sorting-buttons button:hover {
+    text-decoration: underline;
+}
+

@@ -1,19 +1,26 @@
 <div class="body">
-    <div class="filter">            
+    <div class="filter">
         <div class="title">glowify</div>
         <div class="container">
             <div class="hr"></div>
             <div class="category">
-                <h2>category</h2>
+                <h2>Category</h2>
                 <div class="list_cat">
-                    <div *ngFor="let Category of shared.Category">{{Category.name}}</div>
+                    <div *ngFor="let Category of shared.Category | sortby">
+                        <input type="checkbox" [id]="Category.name"  (change)="onCategoryToggle(Category.name, $event)">
+                        <label>
+                            {{Category.name}}
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="hr"></div>
             <div class="gendre">
-                <label for="men">men
+                <label for="Male">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152z"/></svg>
+                    Male
                     <div class="checkbox-wrapper">
-                        <input type="checkbox">
+                        <input type="checkbox" id="Male" [(ngModel)]="maleChecked" (change)="onGenderToggle('Male', $event)">
                         <svg viewBox="0 0 35.6 35.6">
                             <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
                             <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
@@ -21,9 +28,10 @@
                         </svg>
                     </div>
                 </label>
-                <label for="women">women
+                <label for="Female">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M160 0a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM88 384H70.2c-10.9 0-18.6-10.7-15.2-21.1L93.3 248.1 59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l53.6-89.2c20.3-33.7 56.7-54.3 96-54.3h11.6c39.3 0 75.7 20.6 96 54.3l53.6 89.2c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9l-33.9-56.3L265 362.9c3.5 10.4-4.3 21.1-15.2 21.1H232v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H152v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V384z"/></svg>                    Female
                     <div class="checkbox-wrapper">
-                        <input checked="" type="checkbox">
+                        <input type="checkbox" id="Female" [(ngModel)]="femaleChecked" (change)="onGenderToggle('Female', $event)">
                         <svg viewBox="0 0 35.6 35.6">
                             <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
                             <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
@@ -31,9 +39,11 @@
                         </svg>
                     </div>
                 </label>
-                <label for="children">children
+                <label for="Children">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="12.5" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M96 64a64 64 0 1 1 128 0A64 64 0 1 1 96 64zm48 320v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V287.8L59.1 321c-9.4 15-29.2 19.4-44.1 10S-4.5 301.9 4.9 287l39.9-63.3C69.7 184 113.2 160 160 160s90.3 24 115.2 63.6L315.1 287c9.4 15 4.9 34.7-10 44.1s-34.7 4.9-44.1-10L240 287.8V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V384H144z"/></svg>
+                    Children
                     <div class="checkbox-wrapper">
-                        <input  type="checkbox">
+                        <input type="checkbox" id="Children" (change)="onGenderToggle('Children', $event)">
                         <svg viewBox="0 0 35.6 35.6">
                             <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
                             <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
@@ -46,24 +56,57 @@
             <div class="category">
                 <h2>Brands</h2>
                 <div class="list_cat">
-                    <div *ngFor="let Brands of shared.Brands">{{Brands.name}}</div>
+                    <div *ngFor="let Brand of shared.Brands | sortby" >
+                        <input type="checkbox" [id]="Brand.name" (change)="onBrandToggle(Brand.name, $event)">
+                        <label>
+                        {{Brand.name}}
+                    </label>
+                    </div>
                 </div>
             </div>
-
-                        
         </div>
     </div>
-<div class="shop">
-    <div class="title">Category</div>
-    <div class="container" *ngIf="shared.products">
-        <div class="card" *ngFor="let product of shared.products" (click)="sendProductDetails(product)">
-            <div class="pic"><img [src]="getProductImgPath(product)"  [alt]="product.img"></div>
-            <div class="title" [ngStyle]="{ 'color': product.stock === 0 ? 'red' : 'white' }">{{product.product_name}}</div>
-            <div class="price"><p>{{product.price}}DT</p></div>
-            <div class="soldOut" *ngIf="product.stock === 0">x</div>
 
+    <div class="shop">
+        <div class="title">
+            <div class="all" *ngIf="shared.selectedCategories.length==0 && shared.selectedBrand.length==0 && shared.selectedGenders.length==0">All</div>
+            <div *ngFor="let item of shared.selectedCategories">
+                <div (click)="removeCategory(item)" class="close">x</div>
+                <div>{{item}}</div>  
+            </div>
+            <div *ngFor="let item of shared.selectedBrand">
+                <div (click)="removeBrand(item)" class="close">x</div>
+                <div>{{item}}</div>
+            </div>
+            <div *ngFor="let item of shared.selectedGenders">
+                <div (click)="removeGender(item)" class="close">x</div>
+                <div>{{item}}</div>    
+            </div>
+            <div class="sorting-buttons">
+                <div>Sort by :</div>
+                <button (click)="sortProducts('alphabetically')">A .. Z</button>
+                <button (click)="sortProducts('newest')">Newest</button>
+            </div>
+
+        </div>
+        <div class="container" *ngIf="filteredProducts">
+            <div class="card" *ngFor="let product of filteredProducts" (click)="sendProductDetails(product)">
+                <div class="pic">
+                    <img [src]="getProductImgPath(product)" [alt]="product.img">
+                </div>
+                <div class="title" [ngStyle]="{ 'color': product.stock === 0 ? 'red' : 'white' }">
+                    {{product.product_name}}
+                </div>
+                <div class="price">
+                    <p>{{product.price}}DT</p>
+                </div>
+                <div class="brand">
+                    <p>{{product.brand.name}}</p>
+                </div>
+                <div class="soldOut" *ngIf="product.stock === 0">x</div>
+                <div class="newProduct" *ngIf="isNewProduct(product.createdAt)">New</div>
+
+            </div>
         </div>
     </div>
 </div>
-</div>
-

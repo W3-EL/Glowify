@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,6 +13,9 @@ import { Brand } from '../Models/brand.model';
   providedIn: 'root'
 })
 export class SharedService {
+  selectedCategories: string[] = [];
+  selectedBrand: string[] = [];
+  selectedGenders: string[] = [];
   baseApiUrl : string = environment.baseApiUrl;
   products: product[] = [];
   user:user[]=[];
@@ -55,7 +58,15 @@ export class SharedService {
     });
     return this.http.delete<product[]>(this.baseApiUrl +`product/${productId}`, { headers });
   }
-
+  getProductCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`product/count/p`);
+  }
+  getUserCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`user/count/u`);
+  }
+  getContactCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`contact/count/c`);
+  }
   getAllUser() : Observable<user[]> {
     return this.http.get<user[]>(this.baseApiUrl + 'user/');
   }
@@ -102,4 +113,7 @@ export class SharedService {
   clearSelectedProducts(): void {
     this.selectedProducts = [];
     this.selectedProductsSubject.next(this.selectedProducts);
-  }}
+  }
+
+
+}

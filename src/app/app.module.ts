@@ -28,6 +28,7 @@ import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/co
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { FailComponent } from './payment/fail/fail.component';
+import { SortbyPipe } from './Pipes/sortby.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { FailComponent } from './payment/fail/fail.component';
     PaymentComponent,
     SuccessComponent,
     FailComponent,
+    SortbyPipe,
 
   ],
   imports: [

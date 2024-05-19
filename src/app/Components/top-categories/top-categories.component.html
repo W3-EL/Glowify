@@ -1,24 +1,24 @@
 <div class="container">
     <div class="title">top <b>categories</b></div>
     <div class="box">
-        <div routerLink="/shop">
+        <div (click)="goToShopWithCat('lipstick')">
             <div class="pic"><img src="../../../assets/categories/lips.webp" alt=""></div>
             <div class="name">lips</div>
         </div>
-        <div routerLink="/shop">
+        <div routerLink="/shop" (click)="goToShopWithCat('eyeliner')">
             <div class="pic"><img src="../../../assets/categories/eyes.webp" alt=""></div>
             <div class="name">eyes</div>
 
         </div>
-        <div routerLink="/shop">
+        <div routerLink="/shop" (click)="goToShopWithCat('face makeup')">
             <div class="pic"><img src="../../../assets/categories/face.webp" alt=""></div>
             <div class="name">face</div>
         </div>
-        <div routerLink="/shop">
+        <div routerLink="/shop" (click)="goToShopWithCat('skincare')">
             <div class="pic"><img src="../../../assets/categories/skincare.webp" alt=""></div>
             <div class="name">skin care</div>
         </div>
-        <div routerLink="/shop">
+        <div routerLink="/shop" (click)="goToShopWithCat('accessories')">
             <div class="pic"><img src="../../../assets/categories/accessories.webp" alt=""></div>
             <div class="name">accessories</div>
         </div>

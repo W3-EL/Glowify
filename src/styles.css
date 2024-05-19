@@ -1,4 +1,5 @@
 *{
+    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,4 +22,7 @@
 ::-webkit-scrollbar-track {
     border: none;
     background: var(--PrimaryColor);
+}
+html {
+    scroll-behavior: smooth;
 }
