@@ -6,10 +6,6 @@
                 <div class="label">Id</div>
                 <div class="result">{{selectedProduct._id}}</div>
             </div>
-            <div class="img">
-                <div class="label">img</div>
-                <div class="result">{{selectedProduct.img}}</div>
-            </div>
             <div class="stock">
                 <div class="label">Stock</div>
                 <div class="result">{{selectedProduct.stock}}</div>
@@ -30,6 +26,10 @@
                 <div class="label">Brand</div>
                 <div class="result">{{selectedProduct.brand.name}}</div>
             </div>
+            <div class="img">
+                <div class="label">img</div>
+                <div class="result"><img [src]="getProductImgPath(selectedProduct)" [alt]="selectedProduct.img"></div>
+            </div>
             <div class="desc">
                 <div class="label">Description</div>
                 <div class="result"><textarea name="desc" disabled>{{selectedProduct.desc_prod}}</textarea></div>
@@ -48,7 +48,7 @@
             <div class="name">
                 <div class="label">Name</div>
                 <div class="result">
-                    <input required="" [(ngModel)]="productData.product_name" type="text" name="_id" class="input">
+                    <input required="" [(ngModel)]="productData.product_name" type="text" name="name" class="input">
                 </div>
             </div>
             <div class="category">
@@ -159,7 +159,7 @@
             </tr>
             <tr *ngFor="let product of shared.products">
                 <td><p [title]="product._id">{{product._id}}</p></td>
-                <td>{{product.img}}</td>
+                <td><img [src]="getProductImgPath(product)" [alt]="product.img"></td>
                 <td>{{product.product_name}}</td>
                 <td>{{product.price}}</td>
                 <td>{{product.stock}}</td>

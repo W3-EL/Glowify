@@ -8,7 +8,7 @@ import { ProductsComponent } from './Components/shop/products/products.component
 import { CollectionComponent } from './Components/shop/collection/collection.component';
 import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
 import { ProductBarComponent } from './Components/admin/dashboard/product-bar/product-bar.component';
-import { CategoriesBarComponent } from './Components/admin/dashboard/categories-bar/categories-bar.component';
+import { PromoCodeBarComponent } from './Components/admin/dashboard/promoCode-bar/promoCode-bar.component';
 import { OrderBarComponent } from './Components/admin/dashboard/order-bar/order-bar.component';
 import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
 import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
@@ -18,6 +18,7 @@ import { SuccessComponent } from './payment/success/success.component';
 import { FailComponent } from './payment/fail/fail.component';
 import { IsAuthenticatedGuard } from './Guards/is-authenticated.guard';
 import { HasRoleGuard } from './Guards/has-role.guard';
+import { CartComponent } from './Components/cart/cart.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -34,7 +35,7 @@ const routes: Routes = [
 
   children:[
     {path: 'products' , component: ProductBarComponent},
-    { path: 'categories' , component: CategoriesBarComponent },
+    { path: 'promocodes' , component: PromoCodeBarComponent },
     { path: 'Resrvations' , component:OrderBarComponent  },
     { path: 'users' , component:UserBarComponent  },
     { path: 'Contacts' , component:ContactBarComponent  },
@@ -51,7 +52,7 @@ children:[
   { path: 'fail' , component: FailComponent },
 ]
 },
-
+{ path: 'cart', component: CartComponent }
 
 
 ];

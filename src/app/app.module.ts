@@ -19,7 +19,7 @@ import { TopCategoriesComponent } from './Components/top-categories/top-categori
 import { DashboardComponent } from './Components/admin/dashboard/dashboard.component';
 import { OrderBarComponent } from './Components/admin/dashboard/order-bar/order-bar.component';
 import { ProductBarComponent } from './Components/admin/dashboard/product-bar/product-bar.component';
-import { CategoriesBarComponent } from './Components/admin/dashboard/categories-bar/categories-bar.component';
+import { PromoCodeBarComponent } from './Components/admin/dashboard/promoCode-bar/promoCode-bar.component';
 import { SideBarComponent } from './Components/admin/dashboard/side-bar/side-bar.component';
 import { TopBarComponent } from './Components/admin/dashboard/top-bar/top-bar.component';
 import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar.component';
@@ -29,6 +29,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { FailComponent } from './payment/fail/fail.component';
 import { SortbyPipe } from './Pipes/sortby.pipe';
+import { CartComponent } from './Components/cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,7 @@ import { SortbyPipe } from './Pipes/sortby.pipe';
     OrderBarComponent,
     ContactBarComponent,
     ProductBarComponent,
-    CategoriesBarComponent,
+    PromoCodeBarComponent,
     SideBarComponent,
     TopBarComponent,
     UserBarComponent,
@@ -56,6 +57,7 @@ import { SortbyPipe } from './Pipes/sortby.pipe';
     SuccessComponent,
     FailComponent,
     SortbyPipe,
+    CartComponent,
 
   ],
   imports: [

@@ -9,7 +9,7 @@ import { SharedService } from 'src/app/Services/shared.service';
 export class GeneralBarComponent implements OnInit {
 
   constructor(public shared : SharedService) { }
-  countCategories = 0;
+  countpromocodes = 0;
   countproducts = 0;
   countCustomers = 0;
   countorders = 0;
@@ -41,6 +41,15 @@ export class GeneralBarComponent implements OnInit {
     this.shared.getContactCount().subscribe(
       response => {
         this.countContacts = response.count;
+      },
+      error => {
+        console.error('Error fetching contact count:', error);
+      }
+    );
+
+    this.shared.getpromoCode().subscribe(
+      response => {
+        this.countpromocodes = response.count;
       },
       error => {
         console.error('Error fetching contact count:', error);

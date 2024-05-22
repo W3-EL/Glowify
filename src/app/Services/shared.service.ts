@@ -8,6 +8,8 @@ import { product } from '../Models/product.model';
 import { Contact } from '../Models/contact.model';
 import { Category } from '../Models/category.model';
 import { Brand } from '../Models/brand.model';
+import { Cart } from '../Models/cart.model';
+import { PromoCode } from '../Models/promoCode.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,7 @@ export class SharedService {
   products: product[] = [];
   user:user[]=[];
   Contact:Contact[]=[];
+  PromoCode:PromoCode[]=[];
   Category:Category[]=[];
   Brands:Brand[]=[];
   selectedProducts: product[] = [];
@@ -43,6 +46,9 @@ export class SharedService {
   getAllProduct(): Observable<{ success: boolean, data: product[] }> {
     return this.http.get<{ success: boolean, data: product[] }>(this.baseApiUrl +`product/`);
   }
+  getProductById(productId:string): Observable<{ success: boolean, data: product[] }> {
+    return this.http.get<{ success: boolean, data: product[] }>(this.baseApiUrl +`product/${productId}`);
+  }
   
   addProduct(product:product) : Observable<product> {
     const token = this.getToken(); 
@@ -51,6 +57,8 @@ export class SharedService {
     });
     return this.http.post<product>(this.baseApiUrl +`product/`,product, { headers });  
   }
+
+
   deleteProduct(productId: string): Observable<product[]> {
     const token = this.getToken(); 
     const headers = new HttpHeaders({
@@ -66,6 +74,9 @@ export class SharedService {
   }
   getContactCount(): Observable<any> {
     return this.http.get<any>(this.baseApiUrl +`contact/count/c`);
+  }
+  getpromoCode(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`cart/count/pc`);
   }
   getAllUser() : Observable<user[]> {
     return this.http.get<user[]>(this.baseApiUrl + 'user/');
@@ -114,6 +125,53 @@ export class SharedService {
     this.selectedProducts = [];
     this.selectedProductsSubject.next(this.selectedProducts);
   }
+  getCart(userId: string): Observable<Cart> {
+    return this.http.get<Cart>(this.baseApiUrl +`cart/user/${userId}`);
+  }
 
+  addProductToCart(productId: string, quantity: number) {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(this.baseApiUrl +`cart/add`, { productId, quantity }, { headers });
+  }
 
+  removeFromCart(productId: string): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<any>(this.baseApiUrl +`cart/remove`, { productId },{ headers });
+  }
+  clearCart(userId: string): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<any>(this.baseApiUrl +`cart/clear/${userId}`, {},{ headers });
+  }
+
+  addPromoCode(promoCode : PromoCode):Observable<PromoCode> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<PromoCode>(this.baseApiUrl +`cart/promocode/add`, promoCode,{headers});
+  }
+  
+  getPromoCode(): Observable<{ success: boolean, data: PromoCode[] }> {
+    return this.http.get<{ success: boolean, data: PromoCode[] }>(this.baseApiUrl +`cart/promocode/`);
+  }
+  deletPromoCode(PromoCodeId: string): Observable<PromoCode[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<PromoCode[]>(this.baseApiUrl +`cart/promocode/delete/${PromoCodeId}`, { headers });
+  }
+
+  validatePromoCode(codePromo: string): Observable<any> {
+  return this.http.post<any>(this.baseApiUrl +`cart/promocode/validate`, { codePromo })
+  }
 }

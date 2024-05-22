@@ -34,6 +34,19 @@ export class AuthService {
     )
   }
 
+
+  getUserID(): string | null {
+    const token = this.token;
+    if (token) {
+      const user = this.getUser(token);
+      if (user && user._id) {
+        return user._id;
+      }
+    }
+    return null;
+  }
+
+
   private getUser(token : string):user {
     return JSON.parse(atob(token.split(".")[1])) as user
   }

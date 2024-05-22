@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { product } from 'src/app/Models/product.model';
 import { SharedService } from 'src/app/Services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products',
@@ -20,7 +21,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   selectedProduct!: product;
   selectedProducts: product[] = [];
   private subscription: Subscription | undefined;
+  @Input() product: any;
 
+  
   constructor(public shared: SharedService, private router: Router) { }
 
   ngOnInit(): void {
@@ -122,4 +125,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const productDate = new Date(createdAt);
     return productDate.toDateString() === today.toDateString();
   }
+
+  addToCart(productid:string | undefined): void {
+    if (productid) {
+    this.shared.addProductToCart(productid, this.number).subscribe(
+      (response) => {
+        console.log('Product added to cart:', response);
+        Swal.fire({
+          title: "PRODUCT ADDED TO YOUR CART",
+          width: 600,
+          background: "#eec2c9",
+          color: "black",
+          showConfirmButton: false,
+          timer: 1000
+        });
+      },
+      (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    );
+  }
+}
 }

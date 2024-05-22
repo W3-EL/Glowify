@@ -1,0 +1,53 @@
+<div class="body">
+    <div class="title"><h1>Promo Code</h1></div>
+    <div class="categories">
+        <table>
+            <tr>
+                <td>Code</td><td>discount Amount</td><td>expirationDate</td><td>Delete</td>
+            </tr>
+            <tr class="list" [title]="PromoCode._id" *ngFor="let PromoCode of shared.PromoCode">
+                <td>{{PromoCode.codePromo}}</td>
+                <td>{{PromoCode.discountAmount}}</td>
+                <td>{{PromoCode.expirationDate |date}}</td>
+                <td>
+                    <button class="deletebutton" type="button" (click)="deletPromoCode(PromoCode._id)">
+                        <span class="deletebutton__text">Delete</span>
+                        <span class="deletebutton__icon"><svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><path fill="#ffffff" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></span>
+                    </button>
+                </td>
+            </tr>
+            <tr class="addLine" *ngIf="showAddLine" id="btn">
+                <td><input type="text" placeholder="Code"  name="code" [(ngModel)]="promoCodeForm.codePromo" required></td>
+                <td><input type="text" placeholder="discount Amount"  name="discountAmount" [(ngModel)]="promoCodeForm.discountAmount" required></td>
+                <td><input type="date"  placeholder="expirationDate"  name="expirationDate" [(ngModel)]="promoCodeForm.expirationDate " required></td>
+                <td></td>
+            </tr>
+            <tr *ngIf="showAddLine">
+                <td></td>
+                <td class="addLine_btn" colspan="7"><button (click)="addPromoCode()" class="cssbuttons-io-button" ><span>Add</span></button></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <button class="button" (click)="toggleAddLine()"  >
+        <div class="bloom-container">
+            <div class="button-container-main">
+                <div class="button-inner">
+                    <div class="back"></div>
+                    <div class="front">
+                        +
+                    </div>
+                </div>
+            
+            <div class="button-glass">
+                <div class="back"></div>
+                <div class="front"></div>
+            </div>
+            </div>
+            <div class="bloom bloom1"></div>
+            <div class="bloom bloom2"></div>
+        </div>
+    </button>
+    
+</div>

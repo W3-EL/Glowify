@@ -56,8 +56,8 @@ html {
     background-color: var(--PrimaryColor);
 }
 
-.products table tr:not(:first-child) td{
-    height: 60px;
+.products table tr:not(:first-child)  td{
+    height: 100px;
 }
 
 .products table tr:hover:not(:first-child) {
@@ -66,6 +66,9 @@ html {
 
 .products table tr td:last-child  {
     width: 10%;
+}
+.products table tr td > img {
+  width: 100px;
 }
 
 .products table tr td:first-child {
@@ -451,8 +454,11 @@ html {
   text-align: center;
   color: var(--ThirdColor);
   top: -60px;
-  font-size: 4rem;
+  font-size: 3rem;
   text-transform: uppercase;
+  text-shadow: 0 0 10px white;
+  height: 20%;
+  overflow: hidden;
 }
 
 .details-container .box div {
@@ -480,6 +486,19 @@ html {
     justify-content: center;
     flex-direction: column;
 }
+
+.details-container .box div .result img{
+  height: 100%;
+}
+
+.details-container .box .img{
+  height: 20%;
+}
+
+.details-container .box .img > div{
+  height: 100%;
+}
+
 
 .result > input {
   width: 100%;
@@ -606,6 +625,9 @@ html {
     width: 70%;
     height: 100%;
 }
+
+
+
 .details-container .box .desc .result textarea {
     width: 100%;
     height: 100%;

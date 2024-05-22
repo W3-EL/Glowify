@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductBarComponent implements OnInit {
   products: product[] = [];
-
+  imgBaseUrl: string = "../../../../assets/product/";
   productData: product = {
     product_name: '',
     desc_prod: '',
@@ -168,5 +168,8 @@ export class ProductBarComponent implements OnInit {
         const file = input.files[0];
         this.productData.img = file.name; // Get only the file name
       }
+    }
+    getProductImgPath(product: product): string {
+      return `${this.imgBaseUrl}${product.img}`;
     }
 }

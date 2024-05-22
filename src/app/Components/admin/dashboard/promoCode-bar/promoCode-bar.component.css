@@ -16,14 +16,16 @@ html {
 
 }
 .title {
-    color: white;
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px white;
     width: 100%;
     text-align: center;
     margin-top: 10px;
     font-size: 3vw;
-    text-decoration: line-through;
+    text-decoration: underline;
     text-transform: uppercase;
-    text-decoration-color:var(--ThirdColor) ;
+    text-decoration-color:white ;
 }
 
 .categories {
@@ -45,14 +47,15 @@ html {
 .categories table tr:first-child td{
     border-bottom: 1px solid var(--FourthColor) ;
 }
-.categories table tr:not(:first-child)  {
+.categories table tr:not(:first-child) {
     font-size: 14px;
+    height: 40px;
     transition: all .3s;
     cursor: pointer;
 }
 
-.categories table tr:hover:not(:first-child) {
-    background-color: var(--PrimaryColor);
+.categories table .list:hover  {
+    background-color: rgba(255, 255, 255, 0.149);
 }
 
 .categories table tr td:last-child  {
@@ -113,6 +116,8 @@ html {
     background: linear-gradient(60deg, #f5ddb410 0%, #f4d6a2 100%);
     display: grid;
     place-content: center;
+    color: white;
+    font-size: 3rem;
 }
 
 .button .bloom-container .button-container-main .button-inner .front .svg {

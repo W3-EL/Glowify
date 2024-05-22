@@ -1,5 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { CartItem } from 'src/app/Models/cartItem.model';
+import { product } from 'src/app/Models/product.model';
 import { user } from 'src/app/Models/user.model';
 import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
@@ -12,14 +15,11 @@ import Swal from 'sweetalert2';
 })
 export class UserBarComponent implements OnInit {
   showAddLine: boolean = false;
+  cartItems: CartItem[] = [];
+  ImgUrl: string = "../../../../assets/product/";
+  products: any[] = [];
+
   constructor(public shared : SharedService) { }
-  userForm: user = {
-    fullname: '',
-    email: '',
-    password: '', 
-    gender: '',
-    role : 'user',
-  };
   userData: user = {
     fullname: '',
     email: '',
@@ -31,9 +31,7 @@ export class UserBarComponent implements OnInit {
   users: user[] = [];
   selectedUser: any;
 
-  showDetails(user: any) {
-    this.selectedUser = user;
-  }
+
   closeDetails() {
     this.selectedUser = null;
     if(this.showAddLine){
@@ -42,12 +40,12 @@ export class UserBarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllUsers();
+
   }
   getAllUsers(){
     this.shared.getAllUser().subscribe(
       (data: user[]) => {
         this.shared.user=data;
-
         console.log(data);
       },
       (error) => {
@@ -105,50 +103,53 @@ export class UserBarComponent implements OnInit {
     );
   }
 
-  // addNewUser():void {
+  showDetails(user: any) {
+    this.selectedUser = user;
+      if (user) {
+        this.shared.getCart(user._id).subscribe(
+          async (response: any) => {
+            if (response.success) {
+              const cart = response.data;
+              console.log('Cart:', cart.products); // Display the cart products array
+              this.products = cart.products;
+              this.cartItems = [];
+              for (const cartProduct of cart.products) {
+                const productId = cartProduct.product;
+                const quantity = cartProduct.quantity;
+  
+                try {
+                  const productResponse = await firstValueFrom(this.shared.getProductById(productId));
+                  if (productResponse && productResponse.success) {
+                    const productDetails: any = productResponse.data; // Fetch product as Product
+                    productDetails.img = this.ImgUrl + productDetails.img; // Update image URL
+                    const totalProductPrice = productDetails.price * quantity; // Calculate total price for the product
+                    const cartItem: CartItem = {
+                      product: productDetails,
+                      quantity: quantity,
+                      totalProductPrice: totalProductPrice // Assign total price to cart item
+                    };
+                    this.cartItems.push(cartItem); // Add to cart items
+                  }
+                } catch (error) {
+                  console.error('Error fetching product details:', error);
+                }
+              }
+            } else {
+              console.error('Error fetching cart:', response);
+            }
+          },
+          (error) => {
+            console.error('Error fetching cart:', error);
+          }
+        );
+      } else {
+        console.error('User ID not found', user._id);
+      }
+  }
 
-  //   this.shared.addCustomer(this.userForm).subscribe(
-  //     (response) => {
-  //       console.log('Added new user:', response);
-  //       Swal.fire({
-  //         icon: "success",
-  //         title: "User added successfully",
-  //         width: 300,
-  //         background: "transparent",
-  //         backdrop: `
-  //         rgba(0,0,0,0.7)
-  //         url("../../../assets/alert.png")
-  //         center
-  //         no-repeat
-  //       `,  
-  //         showConfirmButton: false,
-  //         timer: 3000
-  //       });
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 3000);
-  //     },
-  //     (error) => {
-  //       Swal.fire({
-  //         title: "ERROR adding User",
-  //         width: 300,
-  //         text: 'You are missing something to add',
-  //         padding: "1em",
-  //         color: "#F4DFBA",
-  //         background: "transparent",
-  //         backdrop: `
-  //           rgba(0,0,0,0.7)
-  //           url("../../../assets/alert.png")
-  //           center
-  //           no-repeat
-  //         `,
-  //         confirmButtonColor:"#876445"
-  //       });        
 
-  //       console.error('Error adding Users:', error);
 
-  //     } 
-  //   )}
+
   deleteUser(userId: string): void {
     this.shared.deleteUser(userId).subscribe(
       response => {
@@ -166,11 +167,11 @@ export class UserBarComponent implements OnInit {
           no-repeat
         `,
           showConfirmButton: false,
-          timer: 3000
+          timer: 2000
         });
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
         console.log('User deleted successfully:', response);
         this.users = this.users.filter(user => user._id !== userId);
       },
@@ -196,7 +197,9 @@ export class UserBarComponent implements OnInit {
       }
     );
   }
-
+  getProductImgPath(product: product): string {
+    return `path_to_your_images/${product.img}`;
+  }
 
 
 

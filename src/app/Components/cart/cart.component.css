@@ -1,0 +1,310 @@
+.cart-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: conic-gradient(from 0deg, var(--ThirdColor), var(--PrimaryColor), var(--ThirdColor));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: var(--PrimaryColor);
+    padding: 5% 1%;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav_bar {
+    position:fixed;
+    top: 0px;
+    z-index: 1050;
+
+}
+
+.cart-container > h1 {
+    text-align: center;
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px white;
+    font-size: 4rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
+    margin: 2% 0 3% 0;
+
+}
+
+.cart-container .notempty  {
+    position: relative;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+}
+
+
+.cart-container .notempty > div > div   {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    border: 2px solid var(--FourthColor);
+    border-radius: 25px;
+}
+
+.cart-container .notempty > .box  {
+    width:80%;
+    height: 50vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 #0000005c inset;
+}
+
+.cart-container .notempty > .box::-webkit-scrollbar {
+    width: 2px;
+}
+
+
+.cart-container .notempty > div  .cart-item  {
+    width: 100%;
+    height: 120px;
+    
+}
+
+.cart-container .notempty >  .cart-summary  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.cart-container .notempty >  .cart-summary button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    border-radius:20px ;
+    font-size: 1rem;
+    font-weight: 800;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: all .3s;
+}
+.cart-container .notempty  .cart-summary h2 {
+    width: 100%;
+}
+
+.cart-container .notempty > .cart-summary button:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px 0 black;
+}
+
+
+.cart-container .notempty  .cart-item .id {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    
+}
+
+.cart-container .notempty .cart-item h2 {
+    width: 40%;
+    font-size: 1rem;
+}
+
+.cart-container .notempty .cart-item  .img {
+    height:  116px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-container .notempty .cart-item  .img img {
+    height:  100%;
+}
+
+.cart-container .notempty .cart-item .item {
+    display: flex;
+    width: 20vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-container .notempty .cart-item .item-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60vw;
+}
+
+.cart-container .notempty .cart-item .item-details > button{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.empty {
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 10px black;
+    gap: 30px;
+    height: 50vh;
+}
+
+.empty > svg {
+    height: 150px;
+    width: 150px;
+    filter: drop-shadow(0 0 10px  rgba(0, 0, 0, 0.43));
+
+}
+
+.empty > .btn {
+    width: 30%;
+    height: 50px;
+    background-color: var(--FourthColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.337) inset;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.empty > .btn::before {
+    content: "";
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--PrimaryColor);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.337) inset;
+    z-index: 1;
+    transition: all .5s;
+}
+
+.empty > .btn:hover::before {
+    width: 100%;
+}
+
+.empty > .btn p{
+    z-index: 5;
+}
+
+.notempty .continue,.notempty .clear {
+    width: 30%;
+    height: 50px;
+    background-color: var(--FourthColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.337) inset;
+    cursor: pointer;
+    position: absolute;
+    transform: translateX(-50%);
+
+}
+
+.notempty .continue {
+    bottom: -25%;
+    left: 50%;
+
+}
+
+.notempty .clear {
+    width: 15%;
+    left: 0%;
+    top: 0;
+    transform: translateY(-100%);
+}
+
+.notempty .continue::before,.notempty .clear::before {
+    content: "";
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--PrimaryColor);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.337) inset;
+    z-index: 1;
+    transition: all .5s;
+}
+
+.notempty .continue:hover::before,.notempty .clear:hover::before {
+    width: 100%;
+}
+.notempty .continue:hover::before,.notempty .clear svg {
+    z-index: 5;
+}
+
+.notempty .continue p,.notempty .clear p{
+    width: 80%;
+    text-align: center;
+    z-index: 5;
+    font-weight: 800;
+    display: inline-block;
+}
+
+.promocode {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.promocode  .input {
+    min-height: 50px;
+    max-width: 150px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid var(--FourthColor);
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+}
+
+.promocode  .button--submit {
+    min-height: 50px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: var(--FourthColor);
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+}
+
+.promocode  .button--submit:hover {
+    background-color: var(--PrimaryColor);
+}
+
+.promocode  .input:focus, .input:focus-visible {
+    border-color: var(--FourthColor);
+    outline: none;
+}

@@ -56,9 +56,31 @@
     cursor: pointer;
 }
 
+.log .shop {
+  position: relative;
+
+}
+
 .log div:hover svg path {
     fill: rgba(255, 255, 255, 0.601);
 
+}
+
+.log div .itemIncart {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(30%, -30%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 2px 0 black;
 }
 
 @media (max-width:1200px) and (min-width:1000px ) {
