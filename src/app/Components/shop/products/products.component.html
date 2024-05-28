@@ -21,7 +21,6 @@
         <div class="pic">
             <img [src]="this.img"  alt="">
             <div class="newProduct" *ngIf="isNewProduct(product.createdAt)">New</div>
-
         </div>
         <div class="soldOut" *ngIf="product.stock === 0">sold out</div>
         <div class="shadow"></div>

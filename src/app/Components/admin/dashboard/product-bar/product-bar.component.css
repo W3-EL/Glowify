@@ -327,6 +327,19 @@ html {
     bottom: -20px;
 }
 
+.updatebutton {
+  border: 1px solid #ff8c00 !important;
+  background-color: #ff8c00 !important;
+
+}
+
+.updatebutton input[type="radio"] {
+  opacity: 0%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .deletebutton,.addbutton {
     position: relative;
     width: 100px;
@@ -369,6 +382,10 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .updatebutton .deletebutton__icon , .updatebutton .addbutton__icon {
+    background-color: #db8c0d !important;
   }
 
   .addbutton .addbutton__icon {

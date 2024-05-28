@@ -190,9 +190,9 @@ html {
 .addLine input::placeholder {
     color: white;
     opacity: 0.5; /* Firefox */
-  }
+}
 
-  .cssbuttons-io-button {
+.cssbuttons-io-button {
     display: flex;
     align-items: center;
     font-family: inherit;
@@ -207,39 +207,37 @@ html {
     letter-spacing: 0.05em;
     border-radius: 20em;
     cursor: pointer;
-  }
-  
-  .cssbuttons-io-button svg {
-    margin-right: 6px;
-  }
-  
-  .cssbuttons-io-button:hover {
-    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
-  }
-  
-  .cssbuttons-io-button:active {
-    box-shadow: 0 0.1em 1em -0.5em #00000098;
-  }
+}
 
-  /* Hide the default checkbox */
+.cssbuttons-io-button svg {
+    margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
+}
+
+.cssbuttons-io-button:active {
+    box-shadow: 0 0.1em 1em -0.5em #00000098;
+}
+
 .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-   }
-   
-   .container {
+}
+
+.container {
     display: block;
     position: relative;
     cursor: pointer;
     font-size: 20px;
     user-select: none;
-   }
-   
-   /* Create a custom checkbox */
-   .checkmark {
+}
+
+.checkmark {
     height: 1.3em;
     width: 1.3em;
     background: black;
@@ -247,28 +245,24 @@ html {
     transition: all 0.7s;
     --spread: 20px;
     transform: translateX(34px);
-   }
-   
-   /* When the checkbox is checked, add a blue background */
-   .container input:checked ~ .checkmark {
+}
+
+.container input:checked ~ .checkmark {
     background: black;
     box-shadow: -10px -10px var(--spread) 0px var(--PrimaryColor), 0 -10px var(--spread) 0px var(--FourthColor), 10px -10px var(--spread) 0px var(--SecondColor), 10px 0 var(--spread) 0px var(--ThirdColor), 10px 10px var(--spread) 0px var(--PrimaryColor), 0 10px var(--spread) 0px var(--FourthColor), -10px 10px var(--spread) 0px var(--SecondColor);
-   }
-   
-   /* Create the checkmark/indicator (hidden when not checked) */
-   .checkmark:after {
+}
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-   }
-   
-   /* Show the checkmark when checked */
-   .container input:checked ~ .checkmark:after {
+}
+
+.container input:checked ~ .checkmark:after {
     display: block;
-   }
-   
-   /* Style the checkmark/indicator */
-   .container .checkmark:after {
+}
+
+.container .checkmark:after {
     left: 0.45em;
     top: 0.25em;
     width: 0.25em;
@@ -276,7 +270,7 @@ html {
     border: solid #f0f0f0;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
-   }
+}
 
 .addLine select {
     color: black;
@@ -307,20 +301,26 @@ html {
     border: 1px solid #cc0000;
     background-color: #e50000;
     overflow: hidden;
-  }
-  
-  .deletebutton, .deletebutton__icon, .deletebutton__text {
+}
+
+.updatebutton {
+    border: 1px solid #ff8c00 !important;
+    background-color: #ff8c00 !important;
+
+}
+
+.deletebutton, .deletebutton__icon, .deletebutton__text {
     transition: all 0.3s;
-  }
-  
-  .deletebutton .deletebutton__text {
+}
+
+.deletebutton .deletebutton__text {
     font-size: 10px;
     transform: translateX(17.5px);
     color: #fff;
     font-weight: 600;
-  }
-  
-  .deletebutton .deletebutton__icon {
+}
+
+.deletebutton .deletebutton__icon {
     position: absolute;
     transform: translateX(54.5px);
     height: 100%;
@@ -329,35 +329,46 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .deletebutton .svg {
+}
+
+.updatebutton .deletebutton__icon , .updatebutton .addbutton__icon {
+    background-color: #db8c0d !important;
+}
+
+.deletebutton .svg {
     width: 10px;
-  }
-  
-  .deletebutton:hover {
+}
+
+.deletebutton:hover {
     background: #cc0000;
-  }
-  
-  .deletebutton:hover .deletebutton__text {
+}
+
+.deletebutton:hover .deletebutton__text {
     color: transparent;
-  }
-  
-  .deletebutton:hover .deletebutton__icon {
+}
+
+.deletebutton:hover .deletebutton__icon {
     width: 74px;
     transform: translateX(0);
-  }
-  
-  .deletebutton:active .deletebutton__icon {
-    background-color: #b20000;
-  }
-  
-  .deletebutton:active {
-    border: 1px solid #b20000;
-  }
+}
 
-  .pic_coach{
+.deletebutton:active .deletebutton__icon {
+    background-color: #b20000;
+}
+
+.deletebutton:active {
+    border: 1px solid #b20000;
+}
+
+.pic_coach{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-  }
+}
+
+.updatebutton input[type="radio"] {
+    opacity: 0%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

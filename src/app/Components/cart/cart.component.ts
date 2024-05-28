@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
+import {  Router } from '@angular/router';
 import { product } from '../../Models/product.model';
 import { CartItem } from '../../Models/cartItem.model';
 import { SharedService } from 'src/app/Services/shared.service';
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  @Output() dataEvent = new EventEmitter<number>();
+  
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   today: Date = new Date();
@@ -22,16 +25,20 @@ export class CartComponent implements OnInit {
   number: number = 1;
   promoCodeInput!: string;
   discountAmount = 0;
-  finalAmount = 0;
+  finalAmount = 0
   promoCode = '';
-  constructor(public shared: SharedService, public auth: AuthService) {
+  constructor(public shared: SharedService, public auth: AuthService, private router: Router) {
     const day = this.today.getDay();
     const diff = this.today.getDate() - day + (day === 0 ? -6 : 1);
     this.weekStart = new Date(this.today.setDate(diff));
+
   }
 
   ngOnInit(): void {
     this.getCart();
+    this.shared.totalPrice$.subscribe(price => {
+      this.finalAmount = price;
+    });
   }
 
   getCart(): void {
@@ -44,7 +51,6 @@ export class CartComponent implements OnInit {
             console.log('Cart:', cart.products); // Display the cart products array
             this.products = cart.products;
 
-            // Reset cart items
             this.cartItems = [];
 
             // Fetch product details for each product ID in the cart
@@ -64,14 +70,14 @@ export class CartComponent implements OnInit {
                     quantity: quantity,
                     totalProductPrice: totalProductPrice // Assign total price to cart item
                   };
-                  this.cartItems.push(cartItem); // Add to cart items
+                  this.cartItems.push(cartItem); 
                 }
               } catch (error) {
                 console.error('Error fetching product details:', error);
               }
             }
 
-            this.calculateTotal(); // Calculate the total price of the cart
+            this.calculateTotal(); 
           } else {
             console.error('Error fetching cart:', response);
           }
@@ -88,7 +94,8 @@ export class CartComponent implements OnInit {
 
   calculateTotal(): void {
     this.totalPrice = this.cartItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-    this.finalAmount = this.totalPrice - this.discountAmount;
+    const totalPrice = this.totalPrice - this.discountAmount;
+    this.shared.setTotalPrice(totalPrice); 
   }
 
   removeFromCart(productId: string | undefined): void {
@@ -118,6 +125,7 @@ export class CartComponent implements OnInit {
           if (response.success) {
             this.cartItems = [];
             this.totalPrice = 0;
+            this.shared.setTotalPrice(this.totalPrice);
             Swal.fire({
               title: "CART CLEARED",
               width: 600,
@@ -139,9 +147,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  proceedToCheckout(): void {
-    // Handle checkout process
-  }
+
 
   getProductImgPath(product: product): string {
     return `path_to_your_images/${product.img}`;
@@ -182,6 +188,10 @@ export class CartComponent implements OnInit {
         });
       }
     );
+  }
+  sendProductDetails(product: product): void {
+    this.shared.addProductDetails(product);
+    this.router.navigate(['/shop/products']);
   }
 
 }

@@ -158,6 +158,10 @@
     cursor: pointer;
 }
 
+.cart-container .notempty .cart-item .item-details > h2 {
+    cursor: pointer;
+}
+
 
 .empty {
     inset: 0;

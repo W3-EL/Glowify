@@ -46,7 +46,6 @@ export class CollectionComponent implements OnInit {
     );
   }
   sendProductDetails(product: product): void {
-    // Add the selected product to the list in the service
     this.shared.addProductDetails(product);
     this.router.navigate(['/shop/products']);
   }

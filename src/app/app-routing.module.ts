@@ -19,6 +19,8 @@ import { FailComponent } from './payment/fail/fail.component';
 import { IsAuthenticatedGuard } from './Guards/is-authenticated.guard';
 import { HasRoleGuard } from './Guards/has-role.guard';
 import { CartComponent } from './Components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { AddressComponent } from './Components/checkout/address/address.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -52,7 +54,16 @@ children:[
   { path: 'fail' , component: FailComponent },
 ]
 },
-{ path: 'cart', component: CartComponent }
+{ path: 'cart', component: CartComponent },
+{ path: 'checkout' , component: CheckoutComponent,
+  children:[
+    {path: 'address' , component: AddressComponent},
+  ],
+  canActivate:[IsAuthenticatedGuard],
+  data:{
+    role:'user',
+  }
+}
 
 
 ];

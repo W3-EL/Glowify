@@ -1,0 +1,52 @@
+
+<div class="container" *ngIf="!userHasAddress || showUpdateForm; else Address">
+    <form action="">
+        <div class="container-input">
+            <input  [value]="userName" disabled type="text" name="text" class="input">
+        </div>
+        <div class="container-input">
+            <input  [value]="userPhone" disabled  type="text" name="text" class="input">
+        </div>
+        <div class="container-input">
+            <input required="" type="text" name="text" class="input" [(ngModel)]="address.address">
+            <label class="label_user">Address</label>
+        </div>
+        <div class="container-input select">
+            <select placeholder="State" name="state" [(ngModel)]="address.state" (ngModelChange)="onStateChange($event)">   
+                <option value="" aria-hidden="true" >State</option>
+                <optgroup label="--Select State">
+                    <option *ngFor="let state of this.states" [ngValue]="state.isoCode"  >{{state.name}}</option>
+                </optgroup>
+            </select>
+            <label class="label_user" >{{address.state}}</label>
+        </div>
+        <div class="container-input select">
+            <select placeholder="City" name="state" [(ngModel)]="address.city">   
+                <option value="" aria-hidden="true" >City</option>
+                <optgroup label="--Select City">
+                    <option *ngFor="let city of cities" [value]="city.name" >{{city.name}}</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="container-input additional">
+            <input required="" type="text" name="additional" [(ngModel)]="address.additionalInformation" class="input">
+            <label class="label_user">Additional Information</label>
+        </div>
+        <div class="container-btn">
+            <input required="" type="reset" name="Cancel" class="btn" *ngIf="!showUpdateForm">
+            <input required="" type="submit" name="Add" class="btn" (click)="addAddress()" *ngIf="!showUpdateForm">
+            <input required="" value="Cancel" type="reset" name="Update" class="btn" (click)="toggleUpdate()" *ngIf="showUpdateForm">
+            <input required="" type="submit" name="Update" class="btn" (click)="updateAddress()" *ngIf="showUpdateForm">
+        </div>
+    </form>
+</div>
+<ng-template class="container-hasAddress"  #Address>
+    <div class="has-address">
+        <h3>{{userName}}</h3>
+        <p>{{address.address}} | {{address.city}}, {{address.state}} | {{userPhone}}</p>
+    </div>
+    <div class="action">
+        <div class="delete" (click)="deleteAddress()">DELETE</div>
+        <div class="update" (click)="toggleUpdate()">UPDATE</div>
+    </div>
+</ng-template>

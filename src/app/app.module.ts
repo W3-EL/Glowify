@@ -30,6 +30,9 @@ import { SuccessComponent } from './payment/success/success.component';
 import { FailComponent } from './payment/fail/fail.component';
 import { SortbyPipe } from './Pipes/sortby.pipe';
 import { CartComponent } from './Components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { AddressComponent } from './Components/checkout/address/address.component';
+import { PaymentMethodComponent } from './Components/checkout/payment-method/payment-method.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +61,9 @@ import { CartComponent } from './Components/cart/cart.component';
     FailComponent,
     SortbyPipe,
     CartComponent,
+    CheckoutComponent,
+    AddressComponent,
+    PaymentMethodComponent,
 
   ],
   imports: [

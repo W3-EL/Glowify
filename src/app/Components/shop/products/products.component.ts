@@ -48,17 +48,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from the subscription to prevent memory leaks
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
 
-    // Clear the selectedProducts list
     this.shared.clearSelectedProducts();
   }
 
   increaseNumber() {
-    // Ensure the number does not exceed stock
     if (this.number < this.selectedProduct.stock) {
       this.number++;
     }
@@ -139,8 +136,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
           showConfirmButton: false,
           timer: 1000
         });
+        this.router.navigate(['/cart']);
       },
       (error) => {
+        this.router.navigate(['/login']);
         console.error('Error adding product to cart:', error);
       }
     );

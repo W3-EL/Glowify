@@ -45,6 +45,26 @@ export class AuthService {
     }
     return null;
   }
+  getUserName(): string | null {
+    const token = this.token;
+    if (token) {
+      const user = this.getUser(token);
+      if (user && user.fullname) {
+        return user.fullname;
+      }
+    }
+    return null;
+  }
+  getUserPhone(): number | null {
+    const token = this.token;
+    if (token) {
+      const user = this.getUser(token);
+      if (user && user.phone) {
+        return user.phone;
+      }
+    }
+    return null;
+  }
 
 
   private getUser(token : string):user {

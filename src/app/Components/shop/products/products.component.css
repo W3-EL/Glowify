@@ -166,6 +166,7 @@
     border: none;
     color :var(--ThirdColor);
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .quant:hover + .price {

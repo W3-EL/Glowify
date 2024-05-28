@@ -28,6 +28,8 @@ export class ProductBarComponent implements OnInit {
   };
   showAddLine: boolean = false;
   selectedProduct: any;
+  updatebutton:boolean=false;
+
   constructor(public shared : SharedService) { }
 
 
@@ -99,6 +101,42 @@ export class ProductBarComponent implements OnInit {
 
       } 
   )}
+  updateProduct(productId:string | undefined): void {
+    if (productId) {
+      this.shared.updateProduct(productId, this.productData).subscribe(
+        (response) => {
+          if (response.success) {
+            console.log('Product updated successfully', response.data);
+            this.closeDetails()
+            Swal.fire({
+              icon: 'success',
+              title: 'Product updated successfully',
+              showConfirmButton: false,
+              background:'#eec2c9',
+              color:'white',
+              timer: 2000
+            });
+            this.resetProductData();
+          } else {
+            console.error('Error updating product', response.error);
+          }
+        },
+        (error) => {
+          console.error('Error updating product', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error updating product',
+            text: 'Please try again.',
+            background:'#eec2c9',
+            showConfirmButton: true,
+            color:'white',
+            confirmButtonColor:"black"
+          });
+        }
+      );
+    }
+  }
+
 
   deleteproduct(productId: string): void {
     this.shared.deleteProduct(productId).subscribe(
@@ -158,18 +196,51 @@ export class ProductBarComponent implements OnInit {
       if(this.showAddLine){
         this.showAddLine=!this.showAddLine
       }
+      this.updatebutton = false;
     }
+
+
     toggleAddLine(): void {
       this.showAddLine = !this.showAddLine;
+    }
+
+    onUpdateButtonClick(product:any): void {
+      this.updatebutton = true;
+      this.productData = product;
+      this.toggleAddLine(); 
+
+    }
+  
+    onAddButtonClick(): void {
+      this.updatebutton = false;
+      this.toggleAddLine(); 
     }
     onFileChange(event: Event): void {
       const input = event.target as HTMLInputElement;
       if (input.files && input.files.length > 0) {
         const file = input.files[0];
-        this.productData.img = file.name; // Get only the file name
+        this.productData.img = file.name; 
       }
     }
     getProductImgPath(product: product): string {
       return `${this.imgBaseUrl}${product.img}`;
+    }
+
+    resetProductData(): void {
+      this.productData = {
+        product_name: '',
+        desc_prod: '',
+        price: 50,
+        stock: 100,
+        img: '',
+        gender: '',
+        category: {
+          name: '',
+        },
+        brand: {
+          name: '',
+          logo: '',
+        }
+      };
     }
 }

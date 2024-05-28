@@ -10,6 +10,7 @@ import { Category } from '../Models/category.model';
 import { Brand } from '../Models/brand.model';
 import { Cart } from '../Models/cart.model';
 import { PromoCode } from '../Models/promoCode.model';
+import { Address } from '../Models/address.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +28,34 @@ export class SharedService {
   Brands:Brand[]=[];
   selectedProducts: product[] = [];
   img = "";
-
+  totalorder=0;
+  onlinePay = false;
+  deliveryPay = false;
+  private totalPriceKey = 'totalPrice';
+  private totalPriceSource = new BehaviorSubject<number>(this.getTotalPriceFromLocalStorage());
+  totalPrice$ = this.totalPriceSource.asObservable();
   private selectedProductsSubject: BehaviorSubject<product[]> = new BehaviorSubject<product[]>(this.selectedProducts);
   selectedProducts$: Observable<product[]> = this.selectedProductsSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
   private getToken(): string {
     return localStorage.getItem('token') || '';
+    
+  }
+
+
+  resetTotalPrice() {
+    this.setTotalPrice(0);
+  }
+  setTotalPrice(price: number) {
+    this.totalPriceSource.next(price);
+    localStorage.setItem(this.totalPriceKey, price.toString());
+  }
+  private getTotalPriceFromLocalStorage(): number {
+    const storedPrice = localStorage.getItem(this.totalPriceKey);
+    return storedPrice ? parseFloat(storedPrice) : 0;
   }
 
   login(email: string, password: string): Observable<{ user: user, token: string }> {
@@ -41,6 +63,13 @@ export class SharedService {
   }
   signUpUser(user: user) : Observable<user>  {
     return this.http.post<user>(this.baseApiUrl +`user/signup`, user);
+  }
+  updateUsersToAdmin(id: string, role: string): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`user/${id}`, {role},{headers});
   }
 
   getAllProduct(): Observable<{ success: boolean, data: product[] }> {
@@ -57,7 +86,13 @@ export class SharedService {
     });
     return this.http.post<product>(this.baseApiUrl +`product/`,product, { headers });  
   }
-
+  updateProduct(id: string, product: product): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`product/${id}`, product,{headers});
+  }
 
   deleteProduct(productId: string): Observable<product[]> {
     const token = this.getToken(); 
@@ -173,5 +208,50 @@ export class SharedService {
 
   validatePromoCode(codePromo: string): Observable<any> {
   return this.http.post<any>(this.baseApiUrl +`cart/promocode/validate`, { codePromo })
+  }
+
+  updatePromoCode(id: string, promoCode: PromoCode): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`cart/promocode/${id}`, promoCode,{headers});
+  }
+
+
+  addAddress(address: Address) {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(this.baseApiUrl +`address/`, address, { headers });
+  }
+  
+  deleteAddress() {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(this.baseApiUrl +`address/`, { headers });
+  }
+
+  updateAddress(address: Address) {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`address/`,address, { headers });
+  }
+
+  getSpecificAddress(userId: string): Observable<any> {
+    return this.http.get(this.baseApiUrl +`address/${userId}`);
+  }
+
+  createOrder(total: number): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(this.baseApiUrl +`order`, { total },{headers});
   }
 }

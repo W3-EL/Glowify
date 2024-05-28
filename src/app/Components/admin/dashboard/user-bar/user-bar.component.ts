@@ -1,9 +1,11 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { Address } from 'src/app/Models/address.model';
 import { CartItem } from 'src/app/Models/cartItem.model';
 import { product } from 'src/app/Models/product.model';
 import { user } from 'src/app/Models/user.model';
+import { AuthService } from 'src/app/Services/auth.service';
 import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
 
@@ -15,11 +17,20 @@ import Swal from 'sweetalert2';
 })
 export class UserBarComponent implements OnInit {
   showAddLine: boolean = false;
+  showAddress: boolean = false;
+  userHasAddress: boolean = false;
+
+  address: Address = {
+    address: '',
+    city: '',
+    state: '',
+    additionalInformation:''
+  };
   cartItems: CartItem[] = [];
   ImgUrl: string = "../../../../assets/product/";
   products: any[] = [];
 
-  constructor(public shared : SharedService) { }
+  constructor(public shared : SharedService, public auth: AuthService) { }
   userData: user = {
     fullname: '',
     email: '',
@@ -31,7 +42,25 @@ export class UserBarComponent implements OnInit {
   users: user[] = [];
   selectedUser: any;
 
-
+  toggleaddress(userId :string): void {
+    this.showAddress = !this.showAddress;
+    this.shared.getSpecificAddress(userId)
+      .subscribe(
+        (response) => {
+          this.address = response.data;
+          this.userHasAddress = true;
+        },
+        (error) => {
+          console.error('Error fetching address:', error);
+          // Handle error, display error message, etc.
+        }
+      );
+  }
+  closeAddress() {
+    if(this.showAddress){
+      this.showAddress=!this.showAddress
+    }
+  }
   closeDetails() {
     this.selectedUser = null;
     if(this.showAddLine){
@@ -201,7 +230,59 @@ export class UserBarComponent implements OnInit {
     return `path_to_your_images/${product.img}`;
   }
 
-
-
+  updateUsersToAdmin(): void {
+    if (this.selectedUser) {
+      const newRole = this.selectedUser.role === 'user' ? 'admin' : 'user';
+      this.shared.updateUsersToAdmin(this.selectedUser._id, newRole).subscribe(
+        (response) => {
+          if (response.success) {
+            console.log('User updated successfully', response.data);
+            this.closeDetails()
+            Swal.fire({
+              icon: 'success',
+              title: 'User updated to Admin successfully',
+              showConfirmButton: false,
+              background:'#eec2c9',
+              color:'white',
+              timer: 2000
+            });
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } else {
+            console.error('Error updating product', response.error);
+          }
+        },
+        (error) => {
+          console.error('Error updating User', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error updating User',
+            text: 'Please try again.',
+            background:'#eec2c9',
+            showConfirmButton: true,
+            color:'white',
+            confirmButtonColor:"black"
+          });
+        }
+      );
+    }
+  }
+  getAddress(userId:string |undefined): void {
+    
+    if (userId) {
+    this.shared.getSpecificAddress(userId)
+      .subscribe(
+        (response) => {
+          this.address = response.data;
+          this.userHasAddress = true;
+        },
+        (error) => {
+          console.error('Error fetching address:', error);
+          // Handle error, display error message, etc.
+        }
+      );
+    }
+  }
 
 }

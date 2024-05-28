@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class PromoCodeBarComponent implements OnInit {
   showAddLine: boolean = false;
   categoriesIdToUpdate: any;
+  updatebutton:boolean=false;
 
   constructor(public shared : SharedService) { }
 
@@ -41,9 +42,7 @@ export class PromoCodeBarComponent implements OnInit {
       }
     );  
   }
-  toggleAddLine(): void {
-    this.showAddLine = !this.showAddLine;
-  }
+
   addPromoCode():void {
     const dateSendingToServer = new DatePipe('en-US').transform(this.promoCodeForm.expirationDate, 'yyyy/MM/dd');
     if(dateSendingToServer){
@@ -140,8 +139,67 @@ export class PromoCodeBarComponent implements OnInit {
         }
       );}
     }
-  
+    toggleAddLine(): void {
+      this.showAddLine = !this.showAddLine;
+    }
+    onUpdateButtonClick(PromoCode:PromoCode): void {
+      if(PromoCode){
+        this.updatebutton = true;
+        this.toggleAddLine(); 
+        this.promoCodeForm=PromoCode;
+      }
+    }
+    onAddButtonClick(): void {
+      this.updatebutton = false;
+      this.toggleAddLine(); 
+    }
+    updatePromoCode(): void {
+      if (this.promoCodeForm._id) {
+        this.shared.updatePromoCode(this.promoCodeForm._id, this.promoCodeForm).subscribe(
+          (response) => {
+            if (response.success) {
+              console.log('Product updated successfully', response.data);
+              Swal.fire({
+                icon: 'success',
+                title: 'Product updated successfully',
+                showConfirmButton: false,
+                background:'#eec2c9',
+                color:'white',
+                timer: 2000
+              });
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            } else {
+              console.error('Error updating product', response.error);
+            }
+          },
+          (error) => {
+            console.error('Error updating product', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error updating product',
+              text: 'Please try again.',
+              background:'#eec2c9',
+              showConfirmButton: true,
+              color:'white',
+              confirmButtonColor:"black"
+            });
+          }
+        );
+      }
+    }
+    resetPromoCode(): void {
+      this.promoCodeForm = {
+        codePromo: '',
+        discountAmount: 0,
+        expirationDate: ''
+      };
+    }
+
 }
+
+
 
 
 

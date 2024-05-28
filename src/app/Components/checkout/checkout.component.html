@@ -1,0 +1,48 @@
+<div class="body">
+    <app-nav-bar class="nav_bar"></app-nav-bar>
+    <div class="box-address">
+        <div class="title">
+            <div class="input" [style.background-color]="this.userHasAddress==false ? 'rgb(194, 194, 194)' : 'green'">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" width="10.5" viewBox="0 0 448 512"><path fill="#ffffff" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+            </div>
+            <p>1. Client address</p>
+        </div>
+        <app-address class="address" ></app-address>
+    </div>
+    <div class="box-payment">
+        <div class="title">
+            <div class="input" [style.background-color]="!shared.deliveryPay && !shared.onlinePay ? 'rgb(194, 194, 194)' : 'green'">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" width="10.5" viewBox="0 0 448 512"><path fill="#ffffff" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+            </div>
+            <p>2. Payment method</p>
+        </div>
+        <app-payment-method class="method"></app-payment-method>
+    </div>
+    <div routerLink="/cart" class="back-btn"><p>Go back to your cart</p></div>
+    <div class="order">
+        <div class="title">order summary</div>
+        <div class="desc">
+            <div class="product">
+                <p>total products</p>
+                <p>{{totalPrice}} DT</p>
+            </div>
+            <div class="shipping">
+                <p>shipping cost</p>
+                <p>8 DT</p>
+            </div>
+            <div class="total">
+                <p>Total</p>
+                <p>{{totalorder}} DT</p>
+            </div>
+            <div class="order-btn">
+                <button (click)="confirmOrder()"
+                [disabled]="!orderBtn()"
+                [ngClass]="{'disabled-btn':!orderBtn()}"
+                
+            >
+                order confirmation
+            </button>
+            </div>
+        </div>
+    </div>
+</div>

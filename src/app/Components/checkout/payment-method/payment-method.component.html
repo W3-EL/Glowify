@@ -1,0 +1,27 @@
+<div class="container">
+    <span class="update" *ngIf="shared.deliveryPay || shared.onlinePay">
+        <button (click)="updateBtn()">UPDATE</button>
+    </span>
+    <div class="delivery" *ngIf="!shared.onlinePay">
+        <div class="title">home delivery</div>
+        <div class="desc">
+            <h3>pay later on delivery by credit card or cash</h3>
+            <p>payment at the time of delivery once your order is delivered</p>
+            <input type="radio" name="method"  [(ngModel)]="paymentMethod" value="delivery" checked>
+            <div class="circle" *ngIf="!shared.deliveryPay && !shared.onlinePay"></div>
+        </div>
+    </div>
+    <div class="hr" *ngIf="!shared.deliveryPay && !shared.onlinePay"></div>
+    <div class="online" *ngIf="!shared.deliveryPay">
+        <div class="title">online payment</div>
+        <div class="desc">
+            <h3>pay online now!</h3>
+            <p>Pay for your purchases through Flouci.tn, using your card or with account flouci.</p>
+            <input type="radio" name="method" [(ngModel)]="paymentMethod" value="online">
+            <div class="circle" *ngIf="!shared.deliveryPay && !shared.onlinePay"></div>
+        </div>
+    </div>
+    <span *ngIf="!shared.deliveryPay && !shared.onlinePay">
+        <button (click)="confirmPaymentMethod()">confirm payment method</button>
+    </span>
+</div>
