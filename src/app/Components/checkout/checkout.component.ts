@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/Services/auth.service';
+import { PaymentService } from 'src/app/Services/payment.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,7 +14,7 @@ export class CheckoutComponent implements OnInit {
   totalorder=this.shared.totalorder;
   userHasAddress=false;
   totalPrice = 0;
-  constructor( public shared: SharedService, public auth: AuthService,private router: Router) { 
+  constructor(private paymentService: PaymentService, public shared: SharedService, public auth: AuthService,private router: Router) { 
 
     this.totalPrice;
   }
@@ -23,7 +24,6 @@ export class CheckoutComponent implements OnInit {
       this.totalPrice = price;
     });
     this.calculateTotal()
-    console.log(this.shared.deliveryPay);
     this.getAddress();  
   }
 
@@ -53,7 +53,7 @@ export class CheckoutComponent implements OnInit {
           });
           this.shared.resetTotalPrice();
           setTimeout(() => {
-            this.router.navigate(["/cart"])
+            this.router.navigate(["/track"])
           }, 1000);
 
         },
@@ -70,17 +70,40 @@ export class CheckoutComponent implements OnInit {
         }
       );
     }
-    
-    
     else if (this.userHasAddress==true && this.shared.deliveryPay==false && this.shared.onlinePay==true) {
-      this.router.navigate(['/payment']);
+      const priceInMillimes = this.totalorder * 1000;
       this.shared.setTotalPrice(this.totalorder);
+      this.makePayment(priceInMillimes);
     }
     
     
     else {
       console.error('error')
     }
+  }
+  makePayment(amount: number): void {
+    this.paymentService.makePayment(amount)
+      .subscribe(
+        (response) => {
+          
+          console.log('Payment response:', response);
+          window.location.href = response.result.link;
+        },
+        (error) => {
+          console.error('Error making payment:', error);
+        }
+      );
+  }
+  verifyPayment(paymentId: string): void {
+    this.paymentService.verifyPayment(paymentId)
+      .subscribe(
+        (response) => {
+          console.log('Payment verification response:', response);
+        },
+        (error) => {
+          console.error('Error verifying payment:', error);
+        }
+      );
   }
   getAddress(): void {
     const userId = this.auth.getUserID();

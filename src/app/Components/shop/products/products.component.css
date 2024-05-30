@@ -138,13 +138,15 @@
 
 
 .details .price {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     color: rgba(255, 255, 255, 0);
     font-family: Bernard MT CONDENSED;
     -webkit-text-stroke: .1px rgba(0, 0, 0, 0.529);
     cursor: default;
     transition: all .5s;
+    display: flex;
+    gap: 20px;
 }
 
 .details .quant {
@@ -429,4 +431,18 @@
 
 .more_products h2 {
     margin-bottom: 20px;
+}
+
+.original-price {
+    color: rgba(252, 0, 0, 0.132);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px rgba(255, 0, 0, 0.529);
+    text-decoration: line-through;
+    /* color: red !important; */
+}
+
+.new_price {
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px rgba(0, 0, 0, 0.529);
 }

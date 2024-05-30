@@ -83,6 +83,15 @@ export class AuthService {
     this.user = null!;
     this.router.navigate(['/']);
   }
+
+  getUserRole(token:string): string | null {
+    const user = this.getUser(token);
+    return user.role || null;
+  }
+  isAdmin(): boolean {
+    const token = this.token;
+    return this.getUserRole(token) === 'admin';
+  }
 }
 
 

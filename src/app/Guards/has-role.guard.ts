@@ -7,13 +7,13 @@ import {AuthService} from 'src/app/Services/auth.service'
   providedIn: 'root'
 })
 export class HasRoleGuard implements CanActivate {
-  constructor(private AuthService: AuthService,private router: Router) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const IsAuthorized = this.AuthService.user.role.includes(route.data['role']);
-
-    return IsAuthorized
+  constructor(private authService: AuthService,private router: Router) {}
+  canActivate(): boolean {
+    if (this.authService.isLoggedIn$ && this.authService.isAdmin()) {
+      return true;
+    }
+    this.router.navigate(['/']);
+    return false;
   }
   
 }

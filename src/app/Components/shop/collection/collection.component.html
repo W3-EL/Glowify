@@ -86,6 +86,7 @@
                 <div>Sort by :</div>
                 <button (click)="sortProducts('alphabetically')">A .. Z</button>
                 <button (click)="sortProducts('newest')">Newest</button>
+                <button #discountButton (click)="sortProducts('discount')">Discounts</button>
             </div>
 
         </div>
@@ -98,7 +99,8 @@
                     {{product.product_name}}
                 </div>
                 <div class="price">
-                    <p>{{product.price}}DT</p>
+                    <p class="new_price">{{product.solde && product.solde > 0 ? product.solde : product.price}} DT</p>
+                    <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
                 </div>
                 <div class="brand">
                     <p>{{product.brand.name}}</p>

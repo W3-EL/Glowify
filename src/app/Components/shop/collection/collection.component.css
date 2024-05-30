@@ -25,6 +25,10 @@
     overflow-y: scroll;
 }
 
+.body .filter .container::-webkit-scrollbar {
+    width: 5px;
+}
+
 .body .filter .title {
     text-transform: uppercase;
     font-size: 4rem;
@@ -235,6 +239,10 @@ input:not(:placeholder-shown) ~ .reset {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.filter .category .list_cat::-webkit-scrollbar {
+    width: 5px;
 }
 
 .filter .category .list_cat {
@@ -510,3 +518,10 @@ input:not(:placeholder-shown) ~ .reset {
     text-decoration: underline;
 }
 
+.original-price {
+    position: absolute;
+    left: 2%;
+    top: 10%;
+    text-decoration: line-through;
+    color: red !important;
+}

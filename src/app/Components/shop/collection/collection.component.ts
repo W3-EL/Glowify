@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList,Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/Services/shared.service';
 import { product } from 'src/app/Models/product.model';
@@ -9,8 +9,10 @@ import { product } from 'src/app/Models/product.model';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
+  @ViewChild('discountButton') discountButton!: ElementRef;
   maleChecked: boolean = false;
   femaleChecked: boolean = false;
+  discountChecked: boolean = false;
   imgBaseUrl: string = "../../../../assets/product/";
   filteredProducts: product[] = [];
 
@@ -19,10 +21,15 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      const selectedCategory = params['discount'];
       if (params['male']) {
         this.maleChecked = true;
       } else if (params['female']) {
         this.femaleChecked = true;
+      }  else if (params['discount']) {
+
+          this.sortProducts('discount'); 
+        
       }
       
     });
@@ -119,15 +126,21 @@ export class CollectionComponent implements OnInit {
   
   sortProducts(criteria: string) {
     if (criteria === 'alphabetically') {
-      this.filteredProducts.sort((a, b) => a.product_name.localeCompare(b.product_name));
+        this.filteredProducts.sort((a, b) => a.product_name.localeCompare(b.product_name));
     } else if (criteria === 'newest') {
-      this.filteredProducts.sort((a, b) => {
-        const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-        const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-        return dateB - dateA;
-      });
+        this.filteredProducts.sort((a, b) => {
+            const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return dateB - dateA;
+        });
+    } else if (criteria === 'discount') {
+        this.filteredProducts.sort((a, b) => {
+            const soldeA = a.solde || 0;
+            const soldeB = b.solde || 0;
+            return soldeB - soldeA;
+        });
     }
-  }
+}
 
   isNewProduct(createdAt: Date | undefined): boolean {
     if (!createdAt) {

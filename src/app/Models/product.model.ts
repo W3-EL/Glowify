@@ -5,6 +5,7 @@ export interface product {
   _id?: string; 
   product_name: string;
   desc_prod: string;
+  solde?:number;
   price: number;
   stock: number;
   img:string;

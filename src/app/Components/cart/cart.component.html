@@ -13,7 +13,7 @@
                     </div>
                     <div class="item-details">
                         <h2 (click)="sendProductDetails(item.product)">{{item.product.product_name}}</h2>
-                        <p>{{item.product.price}} DT</p>
+                        <p>{{item.product.solde && item.product.solde > 0 ? item.product.solde : item.product.price}} DT</p>
                         <p>*</p>
                         <p>Quantity:  <b>{{item.quantity}}</b></p>
                         <p>=</p>

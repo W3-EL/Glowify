@@ -747,3 +747,8 @@ html {
     opacity: 1;
   }
 }
+
+.original-price {
+  text-decoration: line-through;
+  color: red !important;
+}

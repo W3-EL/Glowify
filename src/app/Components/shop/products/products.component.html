@@ -35,7 +35,10 @@
                     <span>{{ number }}</span>
                     <button (click)="increaseNumber()">+</button>
             </div>
-            <div class="price">{{ calculateTotalPrice() }} DT</div>
+            <div class="price">
+                <p class="new_price">{{calculateTotalPrice() && calculateTotalPrice() > 0 ? calculateTotalPrice() : product.price}} DT</p>
+                <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
+            </div>
         </div>
         <div class="add"  [ngClass]="{ 'disabled': product.stock === 0 }">
             <button (click)="addToCart(product._id)" class="button">

@@ -26,13 +26,12 @@ import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar
 import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
 import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
 import { PaymentComponent } from './payment/payment.component';
-import { SuccessComponent } from './payment/success/success.component';
-import { FailComponent } from './payment/fail/fail.component';
 import { SortbyPipe } from './Pipes/sortby.pipe';
 import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { AddressComponent } from './Components/checkout/address/address.component';
 import { PaymentMethodComponent } from './Components/checkout/payment-method/payment-method.component';
+import { TrackOrderComponent } from './Components/track-order/track-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,13 +56,12 @@ import { PaymentMethodComponent } from './Components/checkout/payment-method/pay
     UserBarComponent,
     GeneralBarComponent,
     PaymentComponent,
-    SuccessComponent,
-    FailComponent,
     SortbyPipe,
     CartComponent,
     CheckoutComponent,
     AddressComponent,
     PaymentMethodComponent,
+    TrackOrderComponent,
 
   ],
   imports: [

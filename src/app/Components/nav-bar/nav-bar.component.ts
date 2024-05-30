@@ -21,6 +21,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/shop']);
     this.shared.selectedCategories.push(cat);
   }
+
+  goToShopWithdis(): void {
+    this.router.navigate(['/shop'], { queryParams: { discount: true } });
+}
   getCart(): void {
     const userId = this.auth.getUserID();
     if (userId) {

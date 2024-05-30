@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FailComponent } from './fail.component';
+import { TrackOrderComponent } from './track-order.component';
 
-describe('FailComponent', () => {
-  let component: FailComponent;
-  let fixture: ComponentFixture<FailComponent>;
+describe('TrackOrderComponent', () => {
+  let component: TrackOrderComponent;
+  let fixture: ComponentFixture<TrackOrderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FailComponent ]
+      declarations: [ TrackOrderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FailComponent);
+    fixture = TestBed.createComponent(TrackOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

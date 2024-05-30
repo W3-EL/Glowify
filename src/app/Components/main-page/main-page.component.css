@@ -49,7 +49,10 @@ html {
 .container .shop {
     width: 100%;
     height: 50vh;
-    background-color: var(--SecondColor);
+    background-image: conic-gradient(from 0deg, var(--ThirdColor), var(--PrimaryColor), var(--ThirdColor));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: var(--PrimaryColor);
     box-shadow: 0 0 10px 0 black;
     position: relative;
     overflow-y: hidden;
@@ -237,7 +240,7 @@ overflow: hidden;
     justify-content: center;
     align-items: center;
     z-index: 1030;
-    filter: drop-shadow(0 0 10px #786bb0);
+    filter: drop-shadow(0 0 10px var(--ThirdColor));
     animation: float 10s linear infinite;
     transition: transform 0.4s ease-out;
 }

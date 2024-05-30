@@ -63,8 +63,15 @@ export class CartComponent implements OnInit {
                 const productResponse = await firstValueFrom(this.shared.getProductById(productId));
                 if (productResponse && productResponse.success) {
                   const productDetails: any = productResponse.data; // Fetch product as Product
-                  productDetails.img = this.ImgUrl + productDetails.img; // Update image URL
-                  const totalProductPrice = productDetails.price * quantity; // Calculate total price for the product
+                  productDetails.img = this.ImgUrl + productDetails.img;
+                  let totalProductPrice = 0;
+                  if(productDetails.solde && productDetails.solde > 0){
+                    totalProductPrice = productDetails.solde * quantity;
+
+                  } else {
+                    totalProductPrice = productDetails.price * quantity;
+
+                  }
                   const cartItem: CartItem = {
                     product: productDetails,
                     quantity: quantity,

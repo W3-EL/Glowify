@@ -14,13 +14,12 @@ import { UserBarComponent } from './Components/admin/dashboard/user-bar/user-bar
 import { ContactBarComponent } from './Components/admin/dashboard/contact-bar/contact-bar.component';
 import { GeneralBarComponent } from './Components/admin/dashboard/general-bar/general-bar.component';
 import { PaymentComponent } from './payment/payment.component';
-import { SuccessComponent } from './payment/success/success.component';
-import { FailComponent } from './payment/fail/fail.component';
 import { IsAuthenticatedGuard } from './Guards/is-authenticated.guard';
 import { HasRoleGuard } from './Guards/has-role.guard';
 import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { AddressComponent } from './Components/checkout/address/address.component';
+import { TrackOrderComponent } from './Components/track-order/track-order.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -43,17 +42,12 @@ const routes: Routes = [
     { path: 'Contacts' , component:ContactBarComponent  },
     { path: '' , component:GeneralBarComponent  },
   ],
-  canActivate:[IsAuthenticatedGuard],
+  canActivate:[HasRoleGuard],
   data:{
     role:'admin',
   }
 },
-{ path: 'payment' , component:PaymentComponent,
-children:[
-  {path: 'success' , component: SuccessComponent},
-  { path: 'fail' , component: FailComponent },
-]
-},
+{ path: 'payment' , component:PaymentComponent},
 { path: 'cart', component: CartComponent },
 { path: 'checkout' , component: CheckoutComponent,
   children:[
@@ -63,7 +57,14 @@ children:[
   data:{
     role:'user',
   }
-}
+},
+{ path: 'track', component: TrackOrderComponent,
+  canActivate:[IsAuthenticatedGuard],
+  data:{
+    role:'user',
+  } 
+},
+
 
 
 ];

@@ -14,6 +14,10 @@
                 <div class="label">Price</div>
                 <div class="result">{{selectedProduct.price}} DT</div>
             </div>
+            <div class="solde">
+                <div class="label">Solde</div>
+                <div class="result">{{selectedProduct.solde || 0}} DT</div>
+            </div>
             <div class="gender">
                 <div class="label">Gender</div>
                 <div class="result">{{selectedProduct.gender}}</div>
@@ -68,6 +72,12 @@
                 <div class="label">Price</div>
                 <div class="result">
                     <input required="" type="text" name="price" class="input" [(ngModel)]="productData.price">
+                </div>
+            </div>
+            <div class="solde">
+                <div class="label">Solde</div>
+                <div class="result">
+                    <input required="" type="text" name="solde" class="input" [(ngModel)]="productData.solde">
                 </div>
             </div>
             <div class="stock">
@@ -174,7 +184,10 @@
                 <td><p [title]="product._id">{{product._id}}</p></td>
                 <td><img [src]="getProductImgPath(product)" [alt]="product.img"></td>
                 <td>{{product.product_name}}</td>
-                <td>{{product.price}}</td>
+                <td>                    
+                    <p class="new_price">{{product.solde && product.solde > 0 ? product.solde : product.price}} DT</p>
+                    <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
+                </td>
                 <td>{{product.stock}}</td>
                 <td>{{product.category.name}}</td>
                 <td><div class="details" (click)="showDetails(product)">View Details</div></td>

@@ -15,287 +15,382 @@ html {
 
 }
 .title {
-    color: white;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    font-size: 3vw;
-    text-decoration: line-through;
-    text-transform: uppercase;
-
-    text-decoration-color:var(--ThirdColor) ;
+  color: rgba(255, 255, 255, 0);
+  font-family: Bernard MT CONDENSED;
+  -webkit-text-stroke: .1px white;    
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 3vw;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-decoration-color:white ;
 }
 
-.orders {
-    width: 80%;
-    height: 70%;
-    overflow-y: scroll;
-    color: white;
+.container {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-35%);
+    width: 75vw;
+    height: 60vh;
+    overflow-y: scroll;
+    transform: translate(-50%, -40%);
 }
 
-.orders table {
+.container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.container h1 {
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -200%);
+    color: rgba(255, 255, 255, 0);
+    font-family: Bernard MT CONDENSED;
+    -webkit-text-stroke: .1px white;
+    text-transform: uppercase;
+}
+
+.container > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
     width: 100%;
+    height: 100%;
+    padding: 5% 0;
+
+}
+
+.container > div > .ordres {
+    display: flex;
+    gap: 10px;
+    width: 90%;
+    border: 2px solid var(--ThirdColor);
     text-align: center;
 }
 
-.orders table tr:first-child td{
-    border-bottom: 1px solid var(--FourthColor) ;
-}
-.orders table tr:not(:first-child)  {
-    font-size: 14px;
-    transition: all .3s;
-    cursor: pointer;
-}
+.container > div > .ordres > * {
+    width: calc(100%/9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.orders table tr:hover:not(:first-child) {
-    background-color: var(--PrimaryColor);
 }
 
-.orders table tr td:last-child  {
-    width: 10%;
-}
-
-
-.button {
-    background: none;
-    border: none;
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    z-index: 9999;
-    cursor: pointer;
-}
-
-.button .bloom-container {
-    position: relative;
-    transition: all 0.2s ease-in-out;
-    border: none;
-    background: none;
-}
-
-.button .bloom-container .button-container-main {
-    width: 110px;
-    aspect-ratio: 1;
-    border-radius: 50%;
+.container > div > .ordres > div > .id {
     overflow: hidden;
-    position: relative;
-    display: grid;
-    place-content: center;
-    border-right: 5px solid white;
-    border-left: 5px solid rgba(128, 128, 128, 0.147);
-    transition: all 0.5s ease-in-out;
+    text-overflow: ellipsis;
 }
 
-.button .bloom-container .button-container-main .button-inner {
-    height: 60px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: rgba(100, 100, 111, 0.5) -10px 5px 10px 0px;
-    transition: all 0.5s ease-in-out;
+.container > div > .ordres  h5 {
+    font-weight: 400;
 }
 
-.button .bloom-container .button-container-main .button-inner .back {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: linear-gradient(60deg, #f4dfba10 0%, #F4DFBA 100%);
-}
-
-.button .bloom-container .button-container-main .button-inner .front {
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    background: linear-gradient(60deg, #f5ddb410 0%, #f4d6a2 100%);
-    display: grid;
-    place-content: center;
-}
-
-.button .bloom-container .button-container-main .button-inner .front .svg {
-    fill: #ffffff;
-    opacity: 0.5;
-    width: 30px;
-    aspect-ratio: 1;
-    transform: rotate(45deg);
-    transition: all 0.2s ease-in;
-}
-
-.button .bloom-container .button-container-main .button-glass {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #f4dfba05 0%, #f7d499 100%);
-    transform: translate(0%, -50%) rotate(0deg);
-    transform-origin: bottom center;
-    transition: all 0.5s ease-in-out;
-}
-
-.button .bloom-container .bloom {
-    height: 1px;
-    width: 1px;
-    position: absolute;
-    background: white;
-}
-
-.button .bloom-container .bloom1 {
-    top: 10px;
-    right: 20px;
-    box-shadow: rgb(255, 255, 255) 0px 0px 10px 10px, rgb(255, 255, 255) 0px 0px 20px 20px;
-}
-
-.button .bloom-container .bloom2 {
-    bottom: 10px;
-    left: 20px;
-    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px 10px, rgba(255, 255, 255, 0.5) 0px 0px 30px 20px;
-}
-
-.button .bloom-container:hover {
-    transform: scale(1.1);
-}
-
-.button .bloom-container:hover .button-container-main .button-glass {
-    transform: translate(0%, -40%);
-}
-
-.button .bloom-container:hover .button-container-main .button-inner .front .svg {
-    opacity: 1;
-    filter: drop-shadow(0 0 10px white);
-}
-
-.button .bloom-container:active {
-    transform: scale(0.7);
-}
-
-.button .bloom-container:active .button-container-main .button-inner {
-    transform: scale(1.2);
-}
-
-.addLine input {
-    background-color: transparent;
-    color: white;
-    outline: none;
-    border: 2px solid var(--SecondColor);
-    padding: 2px 5px;
+.container > div > .ordres > .status {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
     
 }
 
-.addLine input::placeholder {
-    color: white;
-    opacity: 0.5; /* Firefox */
+.container > div > .ordres > .status-pending {
+  background-color: rgba(255, 166, 0, 0.621);
+}
+
+.container > div > .ordres > .status-on-hold {
+  background-color: rgba(227, 227, 76, 0.577);
+}
+
+.container > div > .ordres > .status-shipped {
+  background-color: rgba(0, 0, 255, 0.522);
+}
+
+.container > div > .ordres > .status-delivered {
+  background-color: rgba(67, 188, 67, 0.604);
+}
+
+.container > div > .ordres > .status-canceled {
+  background-color: rgba(255, 0, 0, 0.604);
+}
+.container .ordres .details{
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+    font-size: 0.8rem;
+}
+
+
+.details-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 90%;
+    background: rgba(255, 255, 255, 0.189);
+    backdrop-filter: blur(5px);
+    border: 4px solid var(--FourthColor);
+    z-index: 999;
+    border-radius: 25px;
   }
 
-  .cssbuttons-io-button {
+  .details-container .box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    align-items: center;
+    width: 85%;
+    height: 90%;
+}
+
+.details-container .box h1 {
+  position: absolute;
+  text-align: center;
+  color: var(--ThirdColor);
+  top: -60px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px white;
+  height: 20%;
+  overflow: hidden;
+}
+
+.details-container .box div {
+    width: 45%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-container .box > div {
+    background: rgb(255, 255, 255);
+
+}
+
+.details-container .box div .label{
+    background: var(--FourthColor);
+    width: 35%;
     display: flex;
     align-items: center;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 0.7em 1.4em 0.7em 1.1em;
+    justify-content: center;
     color: white;
-    background: #ad5389;
-    background: linear-gradient(0deg, var(--PrimaryColor) 0%, var(--SecondColor) 100%);
-    border: none;
-    box-shadow: 0 0.7em 1.5em -0.5em #00000098;
-    letter-spacing: 0.05em;
-    border-radius: 20em;
-    cursor: pointer;
-  }
-  
-  .cssbuttons-io-button svg {
-    margin-right: 6px;
-  }
-  
-  .cssbuttons-io-button:hover {
-    box-shadow: 0 0.2em 1.5em -0.5em #00000098;
-  }
-  
-  .cssbuttons-io-button:active {
-    box-shadow: 0 0.1em 1em -0.5em #00000098;
-  }
+}
 
-  /* Hide the default checkbox */
-.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-   }
-   
-   .container {
-    display: block;
+.details-container .box .products{
+    width: 85%;
+    height: 30%;
+    box-shadow: 0 0 10px 0 var(--FourthColor);
+    border: 2px solid var(--FourthColor);
+    background-color: transparent;
+    display: flex  ;
+    flex-direction: column;
+    gap: 10px;
+    padding: 3%;
+    overflow-y: scroll;
+}
+
+.details-container .box .products .product  {
+    width:  100%;
+    background: rgba(255, 255, 255, 0.256) !important;
     position: relative;
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-   }
-   
-   /* Create a custom checkbox */
-   .checkmark {
-    height: 1.3em;
-    width: 1.3em;
-    background: black;
-    border-radius: 50px;
-    transition: all 0.7s;
-    --spread: 20px;
-    transform: translateX(34px);
-   }
-   
-   /* When the checkbox is checked, add a blue background */
-   .container input:checked ~ .checkmark {
-    background: black;
-    box-shadow: -10px -10px var(--spread) 0px var(--PrimaryColor), 0 -10px var(--spread) 0px var(--FourthColor), 10px -10px var(--spread) 0px var(--SecondColor), 10px 0 var(--spread) 0px var(--ThirdColor), 10px 10px var(--spread) 0px var(--PrimaryColor), 0 10px var(--spread) 0px var(--FourthColor), -10px 10px var(--spread) 0px var(--SecondColor);
-   }
-   
-   /* Create the checkmark/indicator (hidden when not checked) */
-   .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-   }
-   
-   /* Show the checkmark when checked */
-   .container input:checked ~ .checkmark:after {
-    display: block;
-   }
-   
-   /* Style the checkmark/indicator */
-   .container .checkmark:after {
-    left: 0.45em;
-    top: 0.25em;
-    width: 0.25em;
-    height: 0.5em;
-    border: solid #f0f0f0;
-    border-width: 0 0.15em 0.15em 0;
-    transform: rotate(45deg);
-   }
-
-.addLine select {
-    color: black;
-    background-color: #876445e1;
-    border: 2px solid var(--SecondColor);
-    padding: 2px 5px;
 }
 
-.addLine select option:hover,.addLine select option:checked  {
-    background-color: var(--PrimaryColor);
+.details-container .box .products .product-id {
+    position: absolute;    
+    background-color: red;
+    width: 100%;
+    opacity: 0;
 }
 
 
-.addLine_btn {
+.details-container .box .products .product-image {
+    width:  20%;
+}
+
+.details-container .box .products .product-quantity {
+    width:  20%;
+}
+
+.details-container .box .products .product-name {
+    width:  60%;
+}
+
+
+.details-container .box .products .product-image  img{
+    height: 100%;
+}
+
+.details-container .box div .result{
+    position: relative;
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.details-container .box .img{
+  height: 20%;
+}
+
+.details-container .box .img > div{
+  height: 100%;
+}
+
+
+.result > input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 0.8rem;
+  border: none;
+  outline: none;
+}
+
+.result select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+}
+
+.result  select > option:first-of-type {
+  display: none;
+}
+
+
+.details-container .box div .result div{ 
+    text-align: center;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 10%;
 }
 
-.deletebutton {
-    position: relative;
-    width: 75px;
+.details-container .box .id .result , .details-container .box .email .result {
+    font-size: 12px;
+}
+
+
+  .details-container .button {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+  }
+  
+  .details-container .button:before,
+  .details-container .button:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+  }
+  
+  .details-container .button:before {
+    border: 4px solid var(--FourthColor);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button:after {
+    border: 4px solid var(--FourthColor);
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+  
+  .details-container .button:hover:before,
+  .details-container .button:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .details-container .button:hover:after,
+  .details-container .button:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .details-container .button-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .details-container .button-elem {
+    display: block;
+    width: 20px;
     height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: var(--FourthColor);
+  }
+  
+  .details-container .button:hover .button-box,
+  .details-container .button:focus .button-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+  }
+  
+
+
+  .details-container .box .desc {
+    width: 100%;
+    height: 100px;
+}
+
+.details-container .box .desc .label {
+    width: 30%;
+    height: 100%;
+}
+.details-container .box .desc .result {
+    width: 70%;
+    height: 100%;
+}
+
+
+
+.details-container .box .desc .result textarea {
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: black;
+    padding: 5px;
+    outline: none;
+}
+
+.deletebutton,.addbutton {
+    position: relative;
+    width: 100px;
+    height: 40px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -303,50 +398,99 @@ html {
     background-color: #e50000;
     overflow: hidden;
   }
+
+  .addbutton {
+    border: 1px solid green;
+    background-color: green;
+
+  }
   
   .deletebutton, .deletebutton__icon, .deletebutton__text {
     transition: all 0.3s;
   }
+
+  .addbutton, .addbutton__icon, .addbutton__text {
+    transition: all 0.3s;
+  }
   
-  .deletebutton .deletebutton__text {
-    font-size: 10px;
-    transform: translateX(17.5px);
+  .deletebutton .deletebutton__text,.addbutton .addbutton__text {
+    font-size: 14px;
+    transform: translateX(13px);
     color: #fff;
     font-weight: 600;
   }
   
-  .deletebutton .deletebutton__icon {
+  .deletebutton .deletebutton__icon,.addbutton .addbutton__icon {
     position: absolute;
-    transform: translateX(54.5px);
+    transform: translateX(66.5px);
     height: 100%;
-    width: 19.5px;
+    width: 32.5px;
     background-color: #cc0000;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+  .updatebutton .deletebutton__icon , .updatebutton .addbutton__icon {
+    background-color: #db8c0d !important;
+  }
+
+  .addbutton .addbutton__icon {
+    background-color: rgb(2, 86, 2);
+  }
   
-  .deletebutton .svg {
+  .deletebutton .svg , .addbutton .svg{
     width: 10px;
   }
   
   .deletebutton:hover {
     background: #cc0000;
   }
+
+  .addbutton:hover {
+    background: green;
+  }
   
-  .deletebutton:hover .deletebutton__text {
+  .deletebutton:hover .deletebutton__text , .addbutton:hover .addbutton__text {
     color: transparent;
   }
   
-  .deletebutton:hover .deletebutton__icon {
-    width: 74px;
+  .deletebutton:hover .deletebutton__icon ,.addbutton:hover .addbutton__icon {
+    width: 100px;
     transform: translateX(0);
   }
   
   .deletebutton:active .deletebutton__icon {
     background-color: #b20000;
   }
+
+  .addbutton:active .addbutton__icon {
+    background-color: rgb(2, 86, 2);
+  }
+  
   
   .deletebutton:active {
     border: 1px solid #b20000;
   }
+
+  .updatebutton {
+    border: 1px solid #ff8c00 !important;
+    background-color: #ff8c00 !important;
+  
+  }
+  
+  .updatebutton input[type="radio"] {
+    opacity: 0%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .actions {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: -20px;
+}

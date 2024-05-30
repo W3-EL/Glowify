@@ -55,6 +55,15 @@ export class GeneralBarComponent implements OnInit {
         console.error('Error fetching contact count:', error);
       }
     );
+
+    this.shared.getOrderCount().subscribe(
+      response => {
+        this.countorders = response.count;
+      },
+      error => {
+        console.error('Error fetching contact count:', error);
+      }
+    );
   }
 }
 

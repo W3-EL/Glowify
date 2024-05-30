@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     } else {
       // Assuming there's only one selected product for simplicity
       this.selectedProduct = this.selectedProducts[0];
-      this.price = this.selectedProduct.price;
+      this.price = this.getSolde();
       this.img = `${this.imgBaseUrl}${this.selectedProduct.img}`;
       this.filterProductsByCategory();
       this.filterProductsByBrand();
@@ -145,4 +145,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
   }
 }
+
+  getSolde() :number{
+    if (this.selectedProduct.solde && this.selectedProduct.solde > 0) {
+      return this.selectedProduct.solde;
+    } else {
+      return this.selectedProduct.price;
+    }
+  }
 }

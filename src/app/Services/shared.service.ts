@@ -11,6 +11,7 @@ import { Brand } from '../Models/brand.model';
 import { Cart } from '../Models/cart.model';
 import { PromoCode } from '../Models/promoCode.model';
 import { Address } from '../Models/address.model';
+import { Order } from '../Models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class SharedService {
 
   constructor(private http: HttpClient) {
     
-   }
+  }
   private getToken(): string {
     return localStorage.getItem('token') || '';
     
@@ -116,6 +117,10 @@ export class SharedService {
   getAllUser() : Observable<user[]> {
     return this.http.get<user[]>(this.baseApiUrl + 'user/');
   }
+  getOrderCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`order/count/o`);
+  }
+
 
   deleteUser(userId: string): Observable<user[]> {
     const token = this.getToken(); 
@@ -247,11 +252,43 @@ export class SharedService {
     return this.http.get(this.baseApiUrl +`address/${userId}`);
   }
 
-  createOrder(total: number): Observable<any> {
+  createOrder(total: number,paid:boolean= false): Observable<any> {
     const token = this.getToken(); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(this.baseApiUrl +`order`, { total },{headers});
+    return this.http.post(this.baseApiUrl +`order`, { total,paid },{headers});
+  }
+  getOrdersByUser(): Observable<{ success: boolean; data: Order[] }> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<{ success: boolean; data: Order[] }>(this.baseApiUrl +`order/orders`, { headers });
+  }
+
+  getAllUsersOrders(): Observable<{ success: boolean, data: Order[] }> {
+    const token = localStorage.getItem('token'); // Or wherever you store your auth token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<{ success: boolean, data: Order[] }>(this.baseApiUrl +`order/`, { headers });
+  }
+
+  updateOrder(id: string, status: string): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`order/${id}`, {status},{headers});
+  }
+
+  deleteOrder(OrderId: string): Observable<Order[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<Order[]>(this.baseApiUrl +`order/${OrderId}`, { headers });
   }
 }
