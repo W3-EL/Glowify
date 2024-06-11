@@ -103,7 +103,7 @@
                     <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
                 </div>
                 <div class="brand">
-                    <p>{{product.brand.name}}</p>
+                    <img [src]="getBrandImgPath(product)" [alt]="product.brand.name">
                 </div>
                 <div class="soldOut" *ngIf="product.stock === 0">x</div>
                 <div class="newProduct" *ngIf="isNewProduct(product.createdAt)">New</div>

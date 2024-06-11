@@ -15,7 +15,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   number: number = 1;
   price: number = 25;
   img = "";
+  brand = "";
   imgBaseUrl: string = "../../../../assets/product/";
+  brandBaseUrl: string = "../../../../assets/brands/";
   filterByCategory: product[] = [];
   filterByBrand: product[] = [];
   selectedProduct!: product;
@@ -35,6 +37,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.selectedProduct = this.selectedProducts[0];
       this.price = this.getSolde();
       this.img = `${this.imgBaseUrl}${this.selectedProduct.img}`;
+      this.brand = `${this.brandBaseUrl}${this.selectedProduct.brand.logo}`;
       this.filterProductsByCategory();
       this.filterProductsByBrand();
     }
@@ -78,12 +81,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
   getProductImgPath(product: product): string {
     return `${this.imgBaseUrl}${product.img}`;
   }
+  getbrandImgPath(product: product): string {
+    return `${this.brandBaseUrl}${product.brand.logo}`;
+  }
 
   filterProductsByCategory(): void {
     if (this.selectedProduct) {
       this.filterByCategory = this.shared.products
         .filter(product => 
-          product.category.name === this.selectedProduct.category.name && 
+          product.category._id  === this.selectedProduct.category._id  && 
           product._id !== this.selectedProduct._id &&
           product.stock !== 0
         )
@@ -94,7 +100,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (this.selectedProduct) {
       this.filterByBrand = this.shared.products
         .filter(product => 
-          product.brand.name === this.selectedProduct.brand.name && 
+          product.brand._id === this.selectedProduct.brand._id  && 
           product._id !== this.selectedProduct._id &&
           product.stock !== 0
         )

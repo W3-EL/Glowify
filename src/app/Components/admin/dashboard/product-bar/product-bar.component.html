@@ -65,7 +65,14 @@
             <div class="category">
                 <div class="label">Category</div>
                 <div class="result">
-                    <input required="" [(ngModel)]="productData.category.name" type="text" name="category" class="input">
+                    <div class="container select">
+                        <select id="Category" placeholder="Category"  [(ngModel)]="productData.category" name="category" >
+                            <option value="" aria-hidden="true" >Category</option>
+                            <optgroup label="--Select Category">
+                                <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+                            </optgroup>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="price">
@@ -102,11 +109,17 @@
                     </div>
                 </div>
             </div>
-
             <div class="brand">
                 <div class="label">Brand</div>
                 <div class="result">
-                    <input required="" [(ngModel)]="productData.brand.name" type="text" name="brand" class="input">
+                    <div class="container select">
+                        <select id="brand" placeholder="Brand"  [(ngModel)]="productData.brand" name="brand" >
+                            <option value="" aria-hidden="true" >Brand</option>
+                            <optgroup label="--Select Brand">
+                                <option *ngFor="let brand of brands" [value]="brand._id">{{ brand.name }}</option>
+                            </optgroup>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="img_input">
@@ -189,7 +202,7 @@
                     <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
                 </td>
                 <td>{{product.stock}}</td>
-                <td>{{product.category.name}}</td>
+                <td >{{product.category.name}}</td>
                 <td><div class="details" (click)="showDetails(product)">View Details</div></td>
             </tr>
         </table>

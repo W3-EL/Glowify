@@ -120,6 +120,12 @@ export class SharedService {
   getOrderCount(): Observable<any> {
     return this.http.get<any>(this.baseApiUrl +`order/count/o`);
   }
+  getCategoryCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`category/count/c`);
+  }
+  getBrandCount(): Observable<any> {
+    return this.http.get<any>(this.baseApiUrl +`brand/count/b`);
+  }
 
 
   deleteUser(userId: string): Observable<user[]> {
@@ -151,8 +157,56 @@ export class SharedService {
   getAllCategory(): Observable<{ success: boolean, data: Category[] }> {
     return this.http.get<{ success: boolean, data: Category[] }>(this.baseApiUrl +`category/`);
   }
+  getCategoryById(CategoryId:string): Observable<{ success: boolean, data: Category }> {
+    return this.http.get<{ success: boolean, data: Category }>(this.baseApiUrl +`category/${CategoryId}`);
+  }
+  deleteCategory(CategoryId: string): Observable<Category[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<Category[]>(this.baseApiUrl +`category/${CategoryId}`, { headers });
+  }
+  addCategory(Category:Category) : Observable<Category> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<Category>(this.baseApiUrl +`category/`,Category, { headers });  
+  }
+  updateCategory(id: string, Category: Category): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`category/${id}`, Category,{headers});
+  }
   getAllBrand(): Observable<{ success: boolean, data: Brand[] }> {
     return this.http.get<{ success: boolean, data: Brand[] }>(this.baseApiUrl +`brand/`);
+  }
+  getBrandById(BrandId:string): Observable<{ success: boolean, data: Brand }> {
+    return this.http.get<{ success: boolean, data: Brand }>(this.baseApiUrl +`brand/${BrandId}`);
+  }
+  deleteBrand(BrandId: string): Observable<Brand[]> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete<Brand[]>(this.baseApiUrl +`brand/${BrandId}`, { headers });
+  }
+  addBrand(Brand:Brand) : Observable<Brand> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<Brand>(this.baseApiUrl +`brand/`,Brand, { headers });  
+  }
+  updateBrand(id: string, Brand: Brand): Observable<any> {
+    const token = this.getToken(); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(this.baseApiUrl +`brand/${id}`, Brand,{headers});
   }
 
   addProductDetails(product: product): void {

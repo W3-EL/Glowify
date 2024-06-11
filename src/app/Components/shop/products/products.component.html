@@ -27,7 +27,7 @@
     </div>
     <div class="details" >
         <div class="name">{{product.product_name}} - {{product.category.name}}</div>
-        <div class="brand">{{product.brand.name}}</div>
+        <div class="brand"><img [src]="this.brand" [alt]="product.brand.name"></div>
         <div class="desc">{{product.desc_prod}}</div>
         <div class="stock">
             <div class="quant">

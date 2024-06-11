@@ -22,31 +22,19 @@ html {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: var(--PrimaryColor);
-    /* background-image: url(../../../../../assets/logo/glowify_text.png);
-    background-size: 8%;
-    background-position: center;
-    background-repeat:space;
-    background-blend-mode:overlay; */
+
     
 }
 
-.body img {
-    max-width: 40rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* opacity: 40%; */
-    z-index: 9;
-}
+
 
 .body > div {
     background-image: url(../../../../../assets/logo/circle_glowify_logo.png);
-    background-size: 17rem;
+    background-size: 15rem;
     background-position:bottom;
     background-repeat: no-repeat;
-    width: 20vw;
-    height: 39vh;
+    width: 16vw;
+    height: 34.5vh;
     color: white;
     text-align: center;
     border-radius: 20px;
@@ -72,22 +60,23 @@ html {
 }
 
 .body > div h1 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 400;
+    width: 80%;
     /* text-decoration: underline; */
     text-decoration-color:white ;
 
 }
 
 .body > div >div>div {
-    font-size: 3.5vw;
+    font-size: 3vw;
 
  
 }
 
 .body > div >div {
-    width: 170px;
-    height: 170px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background-color: var(--FourthColor);
     display: flex;

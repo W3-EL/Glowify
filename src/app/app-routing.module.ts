@@ -20,6 +20,8 @@ import { CartComponent } from './Components/cart/cart.component';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { AddressComponent } from './Components/checkout/address/address.component';
 import { TrackOrderComponent } from './Components/track-order/track-order.component';
+import { BrandBarComponent } from './Components/admin/dashboard/brand-bar/brand-bar.component';
+import { CategoryBarComponent } from './Components/admin/dashboard/category-bar/category-bar.component';
 
 const routes: Routes = [
   { path:'',redirectTo: 'main', pathMatch: 'full'},
@@ -40,6 +42,8 @@ const routes: Routes = [
     { path: 'Resrvations' , component:OrderBarComponent  },
     { path: 'users' , component:UserBarComponent  },
     { path: 'Contacts' , component:ContactBarComponent  },
+    { path: 'category' , component:CategoryBarComponent  },
+    { path: 'brand' , component:BrandBarComponent  },
     { path: '' , component:GeneralBarComponent  },
   ],
   canActivate:[HasRoleGuard],

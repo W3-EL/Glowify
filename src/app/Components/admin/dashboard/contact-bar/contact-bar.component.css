@@ -21,7 +21,7 @@ html {
     text-align: center;
     margin-top: 10px;
     font-size: 3vw;
-    text-decoration: line-through;
+    text-decoration: underline;
     text-transform: uppercase;
     text-decoration-color:var(--ThirdColor) ;
 }

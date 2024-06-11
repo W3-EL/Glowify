@@ -2,16 +2,43 @@
     <div class="product" routerLink="/admin/products">
         <div>
             <h1>Products</h1>
-            <div>{{this.countproducts}}</div>
+            <div id="productCount">{{countproducts}}</div>
         </div>
     </div>
     <div class="User" routerLink="/admin/users">
         <div>
             <h1>Users</h1>
-            <div>{{countCustomers}}</div>
+            <div id="userCount">{{countCustomers}}</div>
         </div>
     </div>
-    <div class="promocodes" routerLink="/admin/promocodes"><div><h1>Promo Codes</h1><div>{{this.countpromocodes}}</div></div></div>
-    <div class="orders" routerLink="/admin/Resrvations"><div><h1>Orders</h1><div>{{this.countorders}}</div></div></div>
-    <div class="Contacts" routerLink="/admin/Contacts"><div><h1>Contacts</h1><div>{{this.countContacts}}</div></div></div>
+    <div  class="promocodes" routerLink="/admin/promocodes">
+        <div>
+            <h1>Promo Codes</h1>
+            <div id="promoCodeCount">{{this.countpromocodes}}</div>
+        </div>
+    </div>
+    <div  class="orders" routerLink="/admin/Resrvations">
+        <div>
+            <h1>Orders</h1>
+            <div id="orderCount">{{this.countorders}}</div>
+        </div>
+    </div>
+    <div  class="Contacts" routerLink="/admin/Contacts">
+        <div>
+            <h1>Contacts</h1>
+            <div id="contactCount">{{this.countContacts}}</div>
+        </div>
+    </div>
+    <div  class="Categories" routerLink="/admin/category">
+        <div>
+            <h1>Categories</h1>
+            <div id="categoryCount">{{this.countcategories}}</div>
+        </div>
+    </div>
+    <div  class="brands" routerLink="/admin/brand">
+        <div>
+            <h1>Brands</h1>
+            <div id="brandCount">{{this.countbrands}}</div>
+        </div>
+    </div>
 </div>

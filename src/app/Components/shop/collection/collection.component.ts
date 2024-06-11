@@ -14,6 +14,7 @@ export class CollectionComponent implements OnInit {
   femaleChecked: boolean = false;
   discountChecked: boolean = false;
   imgBaseUrl: string = "../../../../assets/product/";
+  brandBaseUrl: string = "../../../../assets/brands/";
   filteredProducts: product[] = [];
 
   constructor(private route: ActivatedRoute,public shared: SharedService, private router: Router) { 
@@ -59,6 +60,10 @@ export class CollectionComponent implements OnInit {
 
   getProductImgPath(product: product): string {
     return `${this.imgBaseUrl}${product.img}`;
+  }
+
+  getBrandImgPath(product: product): string {
+    return `${this.brandBaseUrl}${product.brand.logo}`;
   }
 
   filterProducts(): void {

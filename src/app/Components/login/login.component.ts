@@ -65,11 +65,25 @@ export class LoginComponent implements OnInit {
           no-repeat
         `,
           showConfirmButton: false,
-          timer: 3000
+          timer: 2000
         });
         setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+          if (this.userData.password)
+          this.AuthService.login(this.userData.email, this.userData.password).subscribe(
+            ({ user }) => {
+              if (user.role === 'admin') {
+                this.router.navigate(['/admin']);
+              } else {
+                this.router.navigate(['/shop']);
+              }
+            },
+            error => {
+              this.loginErrorMessage = error.error.error;
+              console.error('Login error:', error.error);
+            }
+          );
+      
+        }, 2000);
         console.log('Sign up successful:', response);
       },
       (error) => {

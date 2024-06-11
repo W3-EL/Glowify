@@ -29,6 +29,7 @@
     text-align: center;
     font-size: 1em;
     text-shadow: 0 0 2px var(--FourthColor);
+    text-transform: capitalize;
 }
 
 .body > div > .icon {

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Brand } from 'src/app/Models/brand.model';
+import { Category } from 'src/app/Models/category.model';
 import { product } from 'src/app/Models/product.model';
 import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
@@ -19,23 +21,64 @@ export class ProductBarComponent implements OnInit {
     img:'',
     gender:'',
     category:{
-      name:'',
+      name:''
     },
-    brand: {
-      name:'',
-      logo:'',
+    brand: { 
+      name :'',
+      logo:''
     }
   };
+  categoryData: Category = {
+    name:''
+  }
+  brandData: Brand = {
+    name:'',
+    logo:''
+  }
   showAddLine: boolean = false;
   selectedProduct: any;
   updatebutton:boolean=false;
-
+  categories: any[] = []; 
+  brands: any[] = [];
   constructor(public shared : SharedService) { }
 
 
   ngOnInit(): void {
     this.getAllProduct();
+    this.getCategories();
+    this.getBrands();
+    // this.getCategoryById(this.pr)
+  }
 
+
+  getCategories() {
+    this.shared.getAllCategory().subscribe(
+      (response) => {
+        if (response.success) {
+          this.categories = response.data;
+        } else {
+          console.error('Failed to fetch categories:');
+        }
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
+
+  getBrands() {
+    this.shared.getAllBrand().subscribe(
+      (response) => {
+        if (response.success) {
+          this.brands = response.data;
+        } else {
+          console.error('Failed to fetch brands:');
+        }
+      },
+      (error) => {
+        console.error('Error fetching brands:', error);
+      }
+    );
   }
   getAllProduct(){
     this.shared.getAllProduct().subscribe(
@@ -117,6 +160,9 @@ export class ProductBarComponent implements OnInit {
               timer: 2000
             });
             this.resetProductData();
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
           } else {
             console.error('Error updating product', response.error);
           }
@@ -234,14 +280,46 @@ export class ProductBarComponent implements OnInit {
         stock: 100,
         img: '',
         gender: '',
-        category: {
-          name: '',
+        category:{
+          name:''
         },
-        brand: {
-          name: '',
-          logo: '',
+        brand: { 
+          name :'',
+          logo:''
         }
       };
+    }
+    // getCategoryById(categoryId: string): string {
+    //   let categoryName = '';
+    //   this.shared.getCategoryById(categoryId).subscribe(
+    //     (response) => {
+    //       if (response.success) {
+    //         categoryName = response.data.name;
+
+    //       } else {
+    //         console.error('Failed to fetch category');
+    //       }
+    //     },
+    //     (error) => {
+    //       console.error('Error fetching category:', error);
+    //     }
+    //   );
+    //   return categoryName;
+    // }
+    getBrandById(brandId: string): void {
+      this.shared.getBrandById(brandId).subscribe(
+        (response) => {
+          if (response.success) {
+            this.brandData = response.data;
+
+          } else {
+            console.error('Failed to fetch category');
+          }
+        },
+        (error) => {
+          console.error('Error fetching category:', error);
+        }
+      );
     }
 
 

@@ -32,6 +32,8 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { AddressComponent } from './Components/checkout/address/address.component';
 import { PaymentMethodComponent } from './Components/checkout/payment-method/payment-method.component';
 import { TrackOrderComponent } from './Components/track-order/track-order.component';
+import { CategoryBarComponent } from './Components/admin/dashboard/category-bar/category-bar.component';
+import { BrandBarComponent } from './Components/admin/dashboard/brand-bar/brand-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +64,8 @@ import { TrackOrderComponent } from './Components/track-order/track-order.compon
     AddressComponent,
     PaymentMethodComponent,
     TrackOrderComponent,
+    CategoryBarComponent,
+    BrandBarComponent,
 
   ],
   imports: [
