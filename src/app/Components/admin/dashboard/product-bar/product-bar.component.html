@@ -24,11 +24,11 @@
             </div>
             <div class="category">
                 <div class="label">Category</div>
-                <div class="result">{{selectedProduct.category.name}}</div>
+                <div class="result">{{selectedProduct.category?.name}}</div>
             </div>
             <div class="brand">
                 <div class="label">Brand</div>
-                <div class="result">{{selectedProduct.brand.name}}</div>
+                <div class="result">{{selectedProduct.brand?.name}}</div>
             </div>
             <div class="img">
                 <div class="label">img</div>
@@ -202,7 +202,7 @@
                     <p *ngIf="product.solde && product.solde > 0" class="original-price">{{product.price}} DT</p>
                 </td>
                 <td>{{product.stock}}</td>
-                <td >{{product.category.name}}</td>
+                <td >{{product.category?.name}}</td>
                 <td><div class="details" (click)="showDetails(product)">View Details</div></td>
             </tr>
         </table>

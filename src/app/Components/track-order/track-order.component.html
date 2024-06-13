@@ -18,7 +18,7 @@
                 <p>Products ({{ order.products.length }})</p>
                 <p>{{ order.total}} DT</p>
                 <p>{{ order.paid ? 'Yes' : 'Cash On Delivery' }}</p>
-                <h5>{{ order.address.address }}, {{ order.address.city }}, {{ order.address.state }}</h5>
+                <h5>{{ order.address }}</h5>
                 <p class="status" [ngClass]="getStatusClass(order.status)">{{ order.status }}</p>
             </div>
         </div>

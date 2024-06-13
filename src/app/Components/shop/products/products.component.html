@@ -26,8 +26,8 @@
         <div class="shadow"></div>
     </div>
     <div class="details" >
-        <div class="name">{{product.product_name}} - {{product.category.name}}</div>
-        <div class="brand"><img [src]="this.brand" [alt]="product.brand.name"></div>
+        <div class="name">{{product.product_name}} - {{product.category?.name}}</div>
+        <div class="brand"><img [src]="this.brand" [alt]="product.brand?.name"></div>
         <div class="desc">{{product.desc_prod}}</div>
         <div class="stock">
             <div class="quant">
@@ -65,7 +65,7 @@
                 </div>
             </div> 
             <div class="hr"></div>
-            <h2>More {{product.brand.name}} products </h2>
+            <h2>More {{product.brand?.name}} products </h2>
             <div class="container" *ngIf="filterByBrand.length">
                 <div class="card" *ngFor="let product of filterByBrand" (click)="onProductClick(product)">
                     <div class="pic"><img [src]="getProductImgPath(product)"  [alt]="product.img"></div>

@@ -4,6 +4,7 @@ import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/Services/auth.service';
 import { PaymentService } from 'src/app/Services/payment.service';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
   selector: 'app-checkout',
@@ -13,11 +14,13 @@ import { PaymentService } from 'src/app/Services/payment.service';
 export class CheckoutComponent implements OnInit {
   totalorder=this.shared.totalorder;
   userHasAddress=false;
+  userAddress='';
   totalPrice = 0;
   constructor(private paymentService: PaymentService, public shared: SharedService, public auth: AuthService,private router: Router) { 
 
     this.totalPrice;
   }
+
 
   ngOnInit(): void {
     this.shared.totalPrice$.subscribe(price => {
@@ -40,8 +43,9 @@ export class CheckoutComponent implements OnInit {
 
   confirmOrder(): void {
     if (this.userHasAddress==true && this.shared.deliveryPay==true && this.shared.onlinePay==false) {
-      this.shared.createOrder(this.totalorder).subscribe(
+      this.shared.createOrder(this.totalorder,false,this.userAddress).subscribe(
         response => {
+          this.sendOrderConfirmationEmail(response.data._id);
           console.log('Order created successfully:', response);
           Swal.fire({
             title: "ORDER CREATED SUCCESSFULLY",
@@ -73,6 +77,7 @@ export class CheckoutComponent implements OnInit {
     else if (this.userHasAddress==true && this.shared.deliveryPay==false && this.shared.onlinePay==true) {
       const priceInMillimes = this.totalorder * 1000;
       this.shared.setTotalPrice(this.totalorder);
+      this.shared.setAddress(this.userAddress);
       this.makePayment(priceInMillimes);
     }
     
@@ -112,12 +117,32 @@ export class CheckoutComponent implements OnInit {
       .subscribe(
         (response) => {
           this.userHasAddress = true;
+          this.userAddress = response.data.address + ', ' + response.data.city + ', ' + response.data.state ;
+          console.log(this.userAddress);
         },
         (error) => {
           this.userHasAddress = false;
         }
       );
     }
+  }
+
+  sendOrderConfirmationEmail(orderId:string): void {
+    const templateParams = {
+      fullname: this.auth.getUserName(),
+      email: this.auth.getUserMail(),
+      orderId: orderId,
+      totalAmount: this.totalorder,
+      shippingAddress: this.userAddress
+    };
+
+    emailjs.send('service_tl0mmi9', 'template_518lkok', templateParams, 'AD45IWJuv8I55skNp')
+      .then((response: EmailJSResponseStatus) => {
+        console.log('Order confirmation email sent successfully:', templateParams);
+      })
+      .catch((error) => {
+        console.error('Error sending order confirmation email:', templateParams);
+      });
   }
 
 }

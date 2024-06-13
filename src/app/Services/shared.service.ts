@@ -20,6 +20,7 @@ export class SharedService {
   selectedCategories: string[] = [];
   selectedBrand: string[] = [];
   selectedGenders: string[] = [];
+  selectedProduct= '' ;
   baseApiUrl : string = environment.baseApiUrl;
   products: product[] = [];
   user:user[]=[];
@@ -33,8 +34,11 @@ export class SharedService {
   onlinePay = false;
   deliveryPay = false;
   private totalPriceKey = 'totalPrice';
+  private addressKey = 'Address';
   private totalPriceSource = new BehaviorSubject<number>(this.getTotalPriceFromLocalStorage());
+  private AddressSource = new BehaviorSubject<string>(this.getAddressFromLocalStorage());
   totalPrice$ = this.totalPriceSource.asObservable();
+  address$ = this.AddressSource.asObservable();
   private selectedProductsSubject: BehaviorSubject<product[]> = new BehaviorSubject<product[]>(this.selectedProducts);
   selectedProducts$: Observable<product[]> = this.selectedProductsSubject.asObservable();
 
@@ -57,6 +61,18 @@ export class SharedService {
   private getTotalPriceFromLocalStorage(): number {
     const storedPrice = localStorage.getItem(this.totalPriceKey);
     return storedPrice ? parseFloat(storedPrice) : 0;
+  }
+
+  resetAddress() {
+    this.setAddress('');
+  }
+  setAddress(Address: string) {
+    this.AddressSource.next(Address);
+    localStorage.setItem(this.addressKey, Address.toString());
+  }
+  private getAddressFromLocalStorage(): string {
+    const storedAddress = localStorage.getItem(this.addressKey);
+    return storedAddress ? storedAddress : '';
   }
 
   login(email: string, password: string): Observable<{ user: user, token: string }> {
@@ -306,12 +322,12 @@ export class SharedService {
     return this.http.get(this.baseApiUrl +`address/${userId}`);
   }
 
-  createOrder(total: number,paid:boolean= false): Observable<any> {
+  createOrder(total: number,paid:boolean= false,address: string): Observable<any> {
     const token = this.getToken(); 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(this.baseApiUrl +`order`, { total,paid },{headers});
+    return this.http.post(this.baseApiUrl +`order`, { total,paid,address },{headers});
   }
   getOrdersByUser(): Observable<{ success: boolean; data: Order[] }> {
     const token = this.getToken(); 

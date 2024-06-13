@@ -4,6 +4,7 @@ import { user } from 'src/app/Models/user.model';
 import {SharedService} from 'src/app/Services/shared.service'
 import {AuthService} from 'src/app/Services/auth.service'
 import Swal from 'sweetalert2';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     gender: '',
     role : 'user',
   };
+
   email: string = '';
   password: string = '';
   loginErrorMessage: string = '';
@@ -51,9 +53,10 @@ export class LoginComponent implements OnInit {
     this.SharedService.signUpUser(this.userData)
     .subscribe(
       (response) => {
+        this.sendEmail();
         Swal.fire({
           icon: "success",
-          title: "User added successfully",
+          title: "Welcome",
           width: 300,
           background: "transparent",
           padding: "10em 1em 1em 1em ",
@@ -107,6 +110,28 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-}
+    
+  sendEmail(): void {
+    const templateParams = {
+      fullname: this.userData.fullname,
+      email: this.userData.email
+    };
+  
+    emailjs.send('service_tl0mmi9', 'template_kdt7y7m', templateParams, 'AD45IWJuv8I55skNp')
+      .then((result: EmailJSResponseStatus) => {
+        console.log('Email sent successfully:', result.text);
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        // Log detailed error response if available
+        if (error.status === 422) {
+          console.error('Validation error:', error.response);
+        }
+      });
+  }
+  
+  
+  
+} 
 
 

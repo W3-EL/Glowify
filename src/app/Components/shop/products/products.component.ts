@@ -37,7 +37,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.selectedProduct = this.selectedProducts[0];
       this.price = this.getSolde();
       this.img = `${this.imgBaseUrl}${this.selectedProduct.img}`;
-      this.brand = `${this.brandBaseUrl}${this.selectedProduct.brand.logo}`;
+      if (this.selectedProduct.brand) {
+        this.brand = `${this.brandBaseUrl}${this.selectedProduct.brand.logo}`;
+      }else {
+        this.brand = 'error'
+      }
+
       this.filterProductsByCategory();
       this.filterProductsByBrand();
     }
@@ -82,31 +87,46 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return `${this.imgBaseUrl}${product.img}`;
   }
   getbrandImgPath(product: product): string {
-    return `${this.brandBaseUrl}${product.brand.logo}`;
+    if(product.brand) {
+      return `${this.brandBaseUrl}${product.brand.logo}`;
+    }
+    return `error`;
+
   }
 
   filterProductsByCategory(): void {
-    if (this.selectedProduct) {
-      this.filterByCategory = this.shared.products
+    if (this.selectedProduct?.category?._id) {
+      const selectedCategoryId = this.selectedProduct.category._id;
+  
+      this.filterByCategory = (this.shared.products ?? [])
         .filter(product => 
-          product.category._id  === this.selectedProduct.category._id  && 
+          product.category?._id === selectedCategoryId && 
           product._id !== this.selectedProduct._id &&
           product.stock !== 0
         )
         .slice(0, 4);
+    } else {
+      this.filterByCategory = [];
     }
   }
+  
+  
   filterProductsByBrand(): void {
-    if (this.selectedProduct) {
-      this.filterByBrand = this.shared.products
+    if (this.selectedProduct?.brand?._id) {
+      const selectedBrandId = this.selectedProduct.brand._id;
+  
+      this.filterByBrand = (this.shared.products ?? [])
         .filter(product => 
-          product.brand._id === this.selectedProduct.brand._id  && 
+          product.brand?._id === selectedBrandId && 
           product._id !== this.selectedProduct._id &&
           product.stock !== 0
         )
         .slice(0, 4);
+    } else {
+      this.filterByBrand = [];
     }
   }
+  
 
   updateSelectedProductView(product: product): void {
     this.selectedProduct = product;

@@ -10,8 +10,8 @@ export interface product {
   stock: number;
   img:string;
   gender:string;
-  category: Category;
-  brand: Brand;
+  category?: Category;
+  brand?: Brand;
   createdAt?: Date; 
   updatedAt?: Date; 
 }

@@ -18,6 +18,7 @@ export class CollectionComponent implements OnInit {
   filteredProducts: product[] = [];
 
   constructor(private route: ActivatedRoute,public shared: SharedService, private router: Router) { 
+    this.filterProducts();
   }
 
   ngOnInit(): void {
@@ -63,17 +64,30 @@ export class CollectionComponent implements OnInit {
   }
 
   getBrandImgPath(product: product): string {
+    if (product.brand) 
     return `${this.brandBaseUrl}${product.brand.logo}`;
+  else
+    return 'error'
   }
 
   filterProducts(): void {
-    this.filteredProducts = this.shared.products.filter(product => {
-      const matchesCategory = this.shared.selectedCategories.length === 0 || this.shared.selectedCategories.includes(product.category.name);
-      const matchesBrand = this.shared.selectedBrand.length === 0 || this.shared.selectedBrand.includes(product.brand.name);
-      const matchesGender = this.shared.selectedGenders.length === 0 || this.shared.selectedGenders.includes(product.gender);
-
-      return matchesCategory && matchesBrand && matchesGender;
+    const searchTerm = this.shared.selectedProduct.toLowerCase();
+    this.filteredProducts = (this.shared.products ?? []).filter(product => {
+      const matchesCategory = (this.shared.selectedCategories ?? []).length === 0 || (product.category?.name && this.shared.selectedCategories.includes(product.category.name));
+      const matchesBrand = (this.shared.selectedBrand ?? []).length === 0 || (product.brand?.name && this.shared.selectedBrand.includes(product.brand.name));
+      const matchesGender = (this.shared.selectedGenders ?? []).length === 0 || this.shared.selectedGenders.includes(product.gender);
+      const matchesSearch = searchTerm === '' ||
+      product.product_name.toLowerCase().includes(searchTerm) ||
+      (product.category?.name && product.category.name.toLowerCase().includes(searchTerm)) ||
+      (product.brand?.name && product.brand.name.toLowerCase().includes(searchTerm)) ;
+      return matchesCategory && matchesBrand && matchesGender && matchesSearch; 
     });
+  }
+  
+  onProductNameToggle(event: any): void {
+    const searchTerm = event.target.value;
+    this.shared.selectedProduct = searchTerm;
+    this.filterProducts();
   }
 
   onCategoryToggle(category: string, event: any): void {
@@ -108,6 +122,14 @@ export class CollectionComponent implements OnInit {
     this.declick(category);
 
   }
+
+  removeSearch(): void {
+    this.shared.selectedProduct = '';
+    this.filterProducts();
+
+
+  }
+
 
   removeBrand(brand: string): void {
     this.shared.selectedBrand = this.shared.selectedBrand.filter(b => b !== brand);

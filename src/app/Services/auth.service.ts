@@ -65,6 +65,16 @@ export class AuthService {
     }
     return null;
   }
+  getUserMail(): string | null {
+    const token = this.token;
+    if (token) {
+      const user = this.getUser(token);
+      if (user && user.email) {
+        return user.email;
+      }
+    }
+    return null;
+  }
 
 
   private getUser(token : string):user {

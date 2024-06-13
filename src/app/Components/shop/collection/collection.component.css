@@ -533,3 +533,106 @@ input:not(:placeholder-shown) ~ .reset {
     text-decoration: line-through;
     color: red !important;
 }
+
+.search_container {
+    width: 100%;
+    padding: 20px;
+}
+
+.form {
+    --input-text-color: #fff;
+    --input-bg-color: transparent;
+    --focus-input-bg-color: transparent;
+    --text-color: white;
+    --active-color: #1b9bee;
+    --inline-padding-of-input: 1.2em;
+    --gap: 1.1rem;
+}
+
+.form {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    isolation: isolate;
+    cursor: pointer;
+}
+
+.fancy-bg {
+    position: absolute;
+    width: 100%;
+    inset: 0;
+    background: var(--input-bg-color);
+    border-radius: 30px;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+
+}
+
+.form label {
+    width: 100%;
+    padding: 0.8em;
+    height: 40px;
+    padding-inline: var(--inline-padding-of-input);
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    position: absolute;
+}
+
+.search {
+    cursor:text;
+    width: 100%;
+    fill: var(--text-color);
+    left: var(--inline-padding-of-input);
+}
+
+.form .search svg {
+    width: 17px;
+    display: block;
+}
+
+.form .search .input {
+    color: var(--input-text-color);
+    width: 100%;
+    margin-inline: min(2em,calc(var(--inline-padding-of-input) + var(--gap)));
+    background: none;
+    border: none;
+}
+
+.form .search .input:focus {
+    outline: none;
+}
+
+.form .search .input::placeholder {
+    color: var(--text-color)
+}
+
+.form .search .input:focus ~ .fancy-bg {
+    border: 1px solid var(--active-color);
+    background: var(--focus-input-bg-color);
+}
+
+.form .search .input:focus ~ .search {
+    fill: var(--active-color);
+}
+
+.form .search .input:valid ~ .close-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form .search input:-webkit-autofill,
+.form .search input:-webkit-autofill:hover,
+.form .search input:-webkit-autofill:focus,
+.form .search input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+}

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/Services/shared.service';
 import Swal from 'sweetalert2';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { AuthService } from '../Services/auth.service';
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -9,22 +12,28 @@ import Swal from 'sweetalert2';
 })
 export class PaymentComponent implements OnInit {
   totalorder = 0 ;
+  address = '' ;
   constructor(
     private route: ActivatedRoute,
     private shared: SharedService,
-    private router: Router
+    private router: Router, public auth: AuthService
   ) { }
 
   ngOnInit(): void {
     this.shared.totalPrice$.subscribe(price => {
       this.totalorder = price;
     });
-    this.confirmOrder(this.totalorder);
+    this.shared.address$.subscribe(address => {
+      this.address = address;
+    });
+    this.confirmOrder(this.totalorder,this.address);
   }
 
-  confirmOrder(totalorder: number) {
-    this.shared.createOrder(totalorder,true).subscribe(
+  confirmOrder(totalorder: number,address : string) {
+    this.shared.createOrder(totalorder,true,address).subscribe(
       response => {
+        this.sendOrderConfirmationEmail(response.data._id);
+
         console.log('Order created successfully:', response);
         Swal.fire({
           title: "ORDER CREATED SUCCESSFULLY",
@@ -54,16 +63,22 @@ export class PaymentComponent implements OnInit {
     );
   
   }
+  sendOrderConfirmationEmail(orderId:string): void {
+    const templateParams = {
+      fullname: this.auth.getUserName(),
+      email: this.auth.getUserMail(),
+      orderId: orderId,
+      totalAmount: this.totalorder,
+      shippingAddress: this.address
+    };
 
-  // verifyPayment(paymentId: string): void {
-  //   this.paymentService.verifyPayment(paymentId)
-  //     .subscribe(
-  //       (response) => {
-  //         console.log('Payment verification response:', response);
-  //       },
-  //       (error) => {
-  //         console.error('Error verifying payment:', error);
-  //       }
-  //     );
-  // }
+    emailjs.send('service_tl0mmi9', 'template_518lkok', templateParams, 'AD45IWJuv8I55skNp')
+      .then((response: EmailJSResponseStatus) => {
+        console.log('Order confirmation email sent successfully:', templateParams);
+      })
+      .catch((error) => {
+        console.error('Error sending order confirmation email:', templateParams);
+      });
+  }
+
 }
