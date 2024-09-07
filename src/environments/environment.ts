@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'http://localhost:5000/'
+  baseApiUrl: 'https://glowify-back-end.vercel.app'
 };
 
 /*
