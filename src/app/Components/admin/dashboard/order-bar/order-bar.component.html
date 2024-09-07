@@ -26,10 +26,6 @@
                 <div class="label">Address</div>
                 <div class="result">{{ selectedOrder.address}}</div>
             </div>
-            <!-- <div class="id">
-                <div class="label">More details</div>
-                <div class="result">{{ selectedOrder.address.additionalInformation}}</div>
-            </div> -->
             <div class="products">
                 <div class="product" *ngFor="let item of selectedOrder.products">
                     <div class="product-id" [title]="item.product._id"></div>

@@ -113,3 +113,15 @@
     text-transform: uppercase;
     text-align: center;
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .container {
+        height: 120vh;
+    }
+
+    .container .box {
+        flex-wrap: wrap;
+        height: 80%;
+    }
+
+}

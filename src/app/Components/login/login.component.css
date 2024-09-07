@@ -416,3 +416,38 @@
   } 
 
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+  .flip-card__inner {
+    transform-origin: 50% 50%;
+    width: 350px;
+  }
+
+  .flip-card__inner {
+    transform: translate(0);
+  }
+  .toggle:checked ~ .flip-card__inner {
+    transform: rotateY(180deg) translateX(0%);
+  }
+  .title {
+    margin: 20px 0 20px 0;
+    font-size: 2rem;
+  }
+  .flip-card__input {
+    width: 80%;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 600;
+
+  }
+  .input {
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+  }
+  .container .label_user{
+    font-size: 17px;
+    top: 8px;
+}
+
+}

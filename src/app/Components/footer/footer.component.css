@@ -47,7 +47,7 @@
 
 .cercle h1 {
     font-weight: 500;
-    font-size: 1.3vw;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .social .title {
-    font-size: 2vw;
+    font-size: 1.5rem;
 }
 
 .social .title b{
@@ -140,4 +140,32 @@
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+@media (max-width:450px) and (max-height:900px ) {
+    .body {
+        height: 100vh;
+    }
+    .container {
+        position: flex;
+        flex-direction: column;
+        height: 80%;
+    }
+
+    .cercle {
+        position: relative;
+        height: 350px;
+        width: 350px;
+    }
+    .cercle h1 {
+        font-size: 1.2rem;
+    }
+    .social {
+        /* bottom: 10%; */
+        position: relative;
+        width: 100%;
+        left: 0%;
+        top: 10%;
+        height: 50%;
+    }
 }

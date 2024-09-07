@@ -45,4 +45,5 @@ export class NavBarComponent implements OnInit {
             console.error('User ID not found', userId);
     }
   }
+  
 }

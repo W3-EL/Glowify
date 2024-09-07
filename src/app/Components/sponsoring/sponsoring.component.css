@@ -61,3 +61,20 @@
         height: 10%;
     }
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .sponsoring {
+        height: 11%;
+    }
+    .sponsoring .slider_clone {
+        transform: translateX(-1000%);
+    }
+    @keyframes slider {
+        0% {
+            transform: translateX(-300%);
+        }
+        100% {
+            transform: translateX(300%);
+        }
+    }
+}

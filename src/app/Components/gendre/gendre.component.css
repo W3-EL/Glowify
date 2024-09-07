@@ -162,3 +162,56 @@
     }        
     
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .gendre {
+        flex-direction: column;
+        height: 150vh;
+    }
+    .gendre > .men {
+        width: 150%;
+        height: 100%;
+        background-position: -150px;
+        filter: grayscale(00%);
+    }
+    .gendre > .women {
+        width: 150%;
+        height: 100%;
+        filter: grayscale(00%);
+
+    }
+    .gendre > .men::after, .gendre .women::after {
+        font-size: 3rem;
+        transform: translate(-150%, 150%);
+    }
+
+    @keyframes move2 {
+        from {
+            transform: translateX(100%);
+            opacity: 0%;
+            filter: grayscale(100%);
+        }
+        to {
+            transform: translate(0%);
+            opacity: 100%;
+            filter: grayscale(00%);
+    
+        }
+    }
+    
+    @keyframes move3 {
+        from {
+            transform: translateX(-100%);
+            opacity: 0%;
+            filter: grayscale(100%);
+        }
+        to {
+            transform: translate(0%);
+            opacity: 100%;
+            filter: grayscale(00%);
+        }
+    }
+    
+
+
+}

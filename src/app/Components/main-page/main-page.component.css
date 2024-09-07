@@ -274,3 +274,18 @@ overflow: hidden;
         height: 80px;
     }
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .main_product img {
+        width: 200px;
+    }
+    .main_product {
+        transform: translate(-50%,-50%);
+    }
+    .container .product > div {
+        width: 150%;
+    }
+
+
+
+}
