@@ -174,3 +174,9 @@
     background-color: orange;
 
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .has-address p {
+        width: 60%;
+    }
+}

@@ -178,5 +178,26 @@ export class CollectionComponent implements OnInit {
     return productDate.toDateString() === today.toDateString();
   }
 
-  
+  collapse(){
+    const toggleDiv = document.getElementById('toggleDiv');
+    if (toggleDiv) {
+      if (toggleDiv.style.display === 'none'|| toggleDiv.style.display === '') {
+        toggleDiv.style.display = 'flex';
+        const divHeight = 86 + 'vh';
+        toggleDiv.style.height = '0';
+        toggleDiv.style.opacity = '0';
+        setTimeout(() => {
+          toggleDiv.style.height = divHeight;
+          toggleDiv.style.opacity = '1';
+        }, 10);      
+      } else {
+        toggleDiv.style.height = '0';
+        toggleDiv.style.opacity = '0';
+        setTimeout(() => {
+          toggleDiv.style.display = '';
+        }, 500);
+      }
+    }
+  }
+
 }

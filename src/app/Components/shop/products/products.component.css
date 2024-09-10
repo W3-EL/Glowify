@@ -451,3 +451,33 @@
     font-family: Bernard MT CONDENSED;
     -webkit-text-stroke: .1px rgba(0, 0, 0, 0.529);
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .item {
+        position: relative;
+        width: 60vw;
+        height: 28vh;
+        top: 10vh;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .item .pic {
+        width: 250px;
+        height: 250px;
+    }
+    .item .shadow {
+        width: 250px;
+        height: 250px;
+    }
+    .details {
+        left: 0;
+        top: 10vh;
+        width: 100%;
+        position: relative;
+        padding: 40px;
+        align-items: center;
+    }
+    .more_products .container {
+        justify-content: center;
+    }
+}

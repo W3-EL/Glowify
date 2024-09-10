@@ -56,7 +56,7 @@ export class AddressComponent implements OnInit {
             console.error('Error creating address:', error);
             Swal.fire({
               icon: 'error',
-              title: 'Invalid addess',
+              title: 'Invalid address',
               text: error.error.message || 'Please try again.',
               background:'#efafb9',
               showConfirmButton: true,

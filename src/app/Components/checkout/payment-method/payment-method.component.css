@@ -105,3 +105,9 @@
     box-shadow: 0 0 0 0 black inset;
 
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .container span > button {
+        width: 50%;
+    }
+}
