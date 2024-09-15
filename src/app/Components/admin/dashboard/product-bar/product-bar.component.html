@@ -207,4 +207,15 @@
             </tr>
         </table>
     </div>
+    <div class="products products_mobile">
+        <table>
+            <tr>
+                <td>Picture</td><td>Product name</td>
+            </tr>
+            <tr *ngFor="let product of shared.products" (click)="showDetails(product)">
+                <td><img [src]="getProductImgPath(product)" [alt]="product.img"></td>
+                <td>{{product.product_name}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

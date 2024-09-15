@@ -181,6 +181,18 @@
         
         </table>
     </div>
+    <div class=" users users_mobile">
+        <table>
+            <tr>
+                <td>Email</td><td>Action</td>
+            </tr>
+            <tr *ngFor="let user of shared.user" [ngClass]="{'admin-row': user.role === 'admin'}">
+                <td>{{user.email}}</td>
+                <td><div class="details" (click)="showDetails(user)">View Details</div></td>
+            </tr>
+        
+        </table>
+    </div>
 
 
 </div>

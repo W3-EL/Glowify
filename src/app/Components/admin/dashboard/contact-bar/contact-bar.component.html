@@ -70,4 +70,16 @@
             </tr>
         </table>
     </div>
+    <div class="Contacts Contacts_mobile">
+        <table>
+            <tr>
+                <td>Full name</td><td>Email</td>
+            </tr>
+            <tr *ngFor="let contact of shared.Contact" (click)="showDetails(contact)">
+                <td>{{contact.fullname_contact}}</td>
+                <td>{{contact.email}}</td>
+            </tr>
+        </table>
+    </div>
+
 </div>

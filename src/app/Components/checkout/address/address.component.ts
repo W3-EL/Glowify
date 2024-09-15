@@ -135,8 +135,6 @@ export class AddressComponent implements OnInit {
           (response) => {
             this.address = response.data;
             this.userHasAddress = true;
-            console.log('fetching address:');
-
           },
           (error) => {
             console.error('Error fetching address:', error);

@@ -36,6 +36,9 @@ html {
     overflow-y: scroll;
     transform: translate(-50%, -40%);
 }
+.container_mobile {
+  display: none;
+}
 
 .container::-webkit-scrollbar {
     width: 5px;
@@ -493,4 +496,78 @@ html {
     align-items: center;
     justify-content: space-around;
     bottom: -20px;
+}
+
+@media (max-width:450px) and (max-height:900px ) {
+  .body {
+  height: 95vh;
+  width: 100%;
+  }
+
+  .ordres {
+  justify-content: space-evenly;
+  }
+  .title {
+  width: 85%;
+  font-size: 5vw;
+  }
+
+  .ordres_mobile {
+  width: 70vw;
+  height: 90%;
+  transform: translate(-60%, -45%);
+  display: block ;
+  }
+
+  .details-container{
+  transform: translate(-60%, -50%);
+  width: 80%;
+  }
+  .button1 {
+  top: 0;
+  }
+  .details-container .box h1 {
+  position: relative;
+  top: 0;
+  font-size: 2rem; 
+  height: auto;
+  }
+  .details-container .box {
+    transform: translate(-50%, -47%);
+    width: 90%;
+    height: 90%;
+    overflow-y: scroll;
+    align-content: normal;
+    gap: 10px;
+  }
+  .details-container .box div {
+  width: 95%
+  }
+  .details-container .box .products {
+    height: 20%;
+  }
+  .details-container .box .products .product-name {
+    width: 50%;
+    font-size: 0.7rem;
+  }
+  .actions {
+  position: relative;
+  bottom: 0;
+  }
+  .category table tr:not(:first-child) td {
+    height: 50px;
+  }
+  .container {
+    display: none;
+  }
+  .container_mobile {
+    display: block;
+    width: 80vw;
+    height: 80vh;
+    transform: translate(-60%, -45%);
+
+  }
+  .container > div > .ordres > * {
+    width: calc(100% / 3);
+  }
 }

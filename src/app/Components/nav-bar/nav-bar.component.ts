@@ -41,8 +41,6 @@ export class NavBarComponent implements OnInit {
             console.error('Error fetching cart:', error);
           }
       );
-    } else {
-            console.error('User ID not found', userId);
     }
   }
   

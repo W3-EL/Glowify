@@ -153,7 +153,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (productid) {
     this.shared.addProductToCart(productid, this.number).subscribe(
       (response) => {
-        console.log('Product added to cart:', response);
         Swal.fire({
           title: "PRODUCT ADDED TO YOUR CART",
           width: 600,
@@ -166,7 +165,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.router.navigate(['/login']);
-        console.error('Error adding product to cart:', error);
       }
     );
   }

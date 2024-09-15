@@ -40,3 +40,9 @@
     filter: drop-shadow(0px 0px 1px var(--FourthColor));
 
 }
+
+@media (max-width:450px) and (max-height:900px ) {
+    .body > div > p {
+        display: none;
+    }
+}

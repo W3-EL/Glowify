@@ -33,7 +33,6 @@ export class OrderBarComponent implements OnInit {
             const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
             return dateB - dateA;
           });
-          console.log(this.orders);
         } else {
           this.error = 'Failed to load orders';
         }

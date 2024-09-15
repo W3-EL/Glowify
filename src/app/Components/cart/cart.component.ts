@@ -48,18 +48,13 @@ export class CartComponent implements OnInit {
         async (response: any) => {
           if (response.success) {
             const cart = response.data;
-            console.log('Cart:', cart.products); // Display the cart products array
             this.products = cart.products;
-
             this.cartItems = [];
-
-            // Fetch product details for each product ID in the cart
             for (const cartProduct of cart.products) {
               const productId = cartProduct.product;
               const quantity = cartProduct.quantity;
 
               try {
-                // Fetch product details by ID
                 const productResponse = await firstValueFrom(this.shared.getProductById(productId));
                 if (productResponse && productResponse.success) {
                   const productDetails: any = productResponse.data; // Fetch product as Product

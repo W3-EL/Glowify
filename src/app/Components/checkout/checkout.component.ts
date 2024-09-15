@@ -118,7 +118,6 @@ export class CheckoutComponent implements OnInit {
         (response) => {
           this.userHasAddress = true;
           this.userAddress = response.data.address + ', ' + response.data.city + ', ' + response.data.state ;
-          console.log(this.userAddress);
         },
         (error) => {
           this.userHasAddress = false;
